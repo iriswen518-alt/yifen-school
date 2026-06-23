@@ -179,7 +179,8 @@
   }
   .nav-inner::-webkit-scrollbar { display: none; }
   .nav-tab {
-    padding: 14px 22px;
+    position: relative;
+    padding: 14px 18px;
     font-size: 14px;
     font-weight: 600;
     color: var(--muted);
@@ -191,18 +192,44 @@
     user-select: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
   }
   .nav-tab:hover { color: var(--sage); background: var(--sage-pale); }
   .nav-tab.active { color: var(--sage); border-bottom-color: var(--sage); }
-  .nav-badge {
-    background: var(--sage-pale);
-    color: var(--sage);
+  .nav-tab.has-dropdown::after {
+    content: '▾';
     font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 10px;
-    font-weight: 700;
+    opacity: 0.55;
+    margin-left: 2px;
   }
+  /* ===== DROPDOWN ===== */
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    min-width: 110px;
+    z-index: 300;
+    padding: 4px 0;
+    overflow: hidden;
+  }
+  .nav-tab:hover .nav-dropdown,
+  .nav-tab.dd-open .nav-dropdown { display: block; }
+  .nd-item {
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text);
+    letter-spacing: 1px;
+    transition: background 0.1s, color 0.1s;
+    text-align: left;
+  }
+  .nd-item:hover { background: var(--sage-pale); color: var(--sage); font-weight: 600; }
 
   /* ===== MAIN ===== */
   main {
@@ -752,13 +779,58 @@
 <!-- ===== NAV ===== -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-tab active" data-tab="home">🐾 首頁</div>
-    <div class="nav-tab" data-tab="g1">📗 高一 <span class="nav-badge">12冊</span></div>
-    <div class="nav-tab" data-tab="g2">📘 高二 <span class="nav-badge">12冊</span></div>
-    <div class="nav-tab" data-tab="g3">📕 高三 <span class="nav-badge">學測</span></div>
-    <div class="nav-tab" data-tab="exam">📝 考試資源</div>
-    <div class="nav-tab" data-tab="tools">🛠️ 備課工具</div>
-    <div class="nav-tab" data-tab="notes">😸 我的筆記</div>
+
+    <div class="nav-tab active" data-tab="home">教學首頁</div>
+
+    <div class="nav-tab has-dropdown" data-tab="g1">高一資源
+      <div class="nav-dropdown">
+        <div class="nd-item" onclick="switchTabFilter('g1','all')">全部類型</div>
+        <div class="nd-item" onclick="switchTabFilter('g1','wen')">文言選篇</div>
+        <div class="nd-item" onclick="switchTabFilter('g1','xian')">現代文學</div>
+        <div class="nd-item" onclick="switchTabFilter('g1','xiu')">修辭語法</div>
+        <div class="nd-item" onclick="switchTabFilter('g1','xie')">寫作練習</div>
+        <div class="nd-item" onclick="switchTabFilter('g1','link')">外部資源</div>
+      </div>
+    </div>
+
+    <div class="nav-tab has-dropdown" data-tab="g2">高二資源
+      <div class="nav-dropdown">
+        <div class="nd-item" onclick="switchTabFilter('g2','all')">全部類型</div>
+        <div class="nd-item" onclick="switchTabFilter('g2','wen')">文言選篇</div>
+        <div class="nd-item" onclick="switchTabFilter('g2','yi')">議論選篇</div>
+        <div class="nd-item" onclick="switchTabFilter('g2','xiao')">小說選篇</div>
+        <div class="nd-item" onclick="switchTabFilter('g2','wen-hua')">文化思想</div>
+      </div>
+    </div>
+
+    <div class="nav-tab has-dropdown" data-tab="g3">高三資源
+      <div class="nav-dropdown">
+        <div class="nd-item" onclick="switchTab('g3')">學測攻略</div>
+        <div class="nd-item" onclick="switchTab('g3')">作文技巧</div>
+        <div class="nd-item" onclick="switchTab('g3')">歷屆試題</div>
+        <div class="nd-item" onclick="switchTab('g3')">衝刺計畫</div>
+      </div>
+    </div>
+
+    <div class="nav-tab has-dropdown" data-tab="exam">考試資源
+      <div class="nav-dropdown">
+        <div class="nd-item" onclick="switchTab('exam')">段考命題</div>
+        <div class="nd-item" onclick="switchTab('exam')">學測試題</div>
+        <div class="nd-item" onclick="switchTab('exam')">評量設計</div>
+      </div>
+    </div>
+
+    <div class="nav-tab has-dropdown" data-tab="tools">備課工具
+      <div class="nav-dropdown">
+        <div class="nd-item" onclick="switchTab('tools')">課文分析</div>
+        <div class="nd-item" onclick="switchTab('tools')">作文出題</div>
+        <div class="nd-item" onclick="switchTab('tools')">板書設計</div>
+        <div class="nd-item" onclick="switchTab('tools')">備課素材</div>
+      </div>
+    </div>
+
+    <div class="nav-tab" data-tab="notes">我的筆記</div>
+
   </div>
 </nav>
 
@@ -1558,14 +1630,49 @@
 // ========== TABS ==========
 function switchTab(id, fromSearch) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => { t.classList.remove('active'); t.classList.remove('dd-open'); });
   document.getElementById('tab-'+id).classList.add('active');
   document.querySelector('[data-tab="'+id+'"]').classList.add('active');
   if (!fromSearch) window.scrollTo(0,0);
   return false;
 }
+
+// 切換分頁並篩選
+function switchTabFilter(tabId, filter) {
+  switchTab(tabId);
+  setTimeout(() => {
+    if (tabId === 'g1') {
+      const el = document.querySelector('#tab-g1 .chip[onclick*="\''+filter+'\'"]');
+      if (el) { document.querySelectorAll('#tab-g1 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG1(filter, el); }
+    } else if (tabId === 'g2') {
+      const el = document.querySelector('#tab-g2 .chip[onclick*="\''+filter+'\'"]');
+      if (el) { document.querySelectorAll('#tab-g2 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG('g2', filter, el); }
+    }
+  }, 30);
+}
+
+// Nav tab 點擊：有下拉選單的 tab 在手機上 toggle dropdown，桌面直接切換
 document.querySelectorAll('.nav-tab').forEach(tab => {
-  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  tab.addEventListener('click', function(e) {
+    if (tab.classList.contains('has-dropdown')) {
+      // 如果點到的是 nd-item，讓它自己的 onclick 處理
+      if (e.target.classList.contains('nd-item')) return;
+      // 手機 touch：toggle dropdown
+      const isOpen = tab.classList.contains('dd-open');
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('dd-open'));
+      if (!isOpen) tab.classList.add('dd-open');
+      switchTab(tab.dataset.tab);
+    } else {
+      switchTab(tab.dataset.tab);
+    }
+  });
+});
+
+// 點外面關閉 dropdown
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-tab')) {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('dd-open'));
+  }
 });
 
 // ========== DATE ==========
