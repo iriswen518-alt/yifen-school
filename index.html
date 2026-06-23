@@ -93,9 +93,11 @@
   }
   .header-left {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 0 0 auto;
+    max-width: 52%;
   }
   .site-title {
     display: flex;
@@ -655,12 +657,12 @@
   .cat-body {
     width: 62px;
     height: 62px;
-    background: linear-gradient(145deg, #2d5a4e, #1e3f5c);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(45,90,78,0.5), 0 0 0 2px rgba(255,255,255,0.15);
+    background-image: url('yifen.jpg');
+    background-size: 200%;
+    background-position: 42% 8%;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(30,92,122,0.45), 0 0 0 3px rgba(255,255,255,0.85);
   }
   .cat-bubble {
     position: absolute;
@@ -752,13 +754,13 @@
           <p>高中國文教學資源</p>
         </div>
       </div>
-    </div>
-    <div class="search-wrap">
-      <div class="header-search">
-        <span>🔍</span>
-        <input type="text" id="search-input" placeholder="搜尋課文、資源、工具…" autocomplete="off">
+      <div class="search-wrap">
+        <div class="header-search">
+          <span>🔍</span>
+          <input type="text" id="search-input" placeholder="搜尋課文、資源、工具…" autocomplete="off">
+        </div>
+        <div id="search-results"></div>
       </div>
-      <div id="search-results"></div>
     </div>
   </div>
 </header>
@@ -2189,37 +2191,10 @@ mascot.addEventListener('click', triggerCat);
 mascot.addEventListener('touchstart', function(e){ e.preventDefault(); triggerCat(); }, {passive: false});
 </script>
 
-<!-- 浮動貓咪吉祥物 -->
-<div class="cat-mascot">
-  <div class="cat-bubble">點我說話 🐱</div>
-  <div class="cat-body">
-    <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- 尖耳 左 -->
-      <path d="M10 26 L7 6 L22 20 Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="rgba(255,255,255,0.1)"/>
-      <!-- 尖耳 右 -->
-      <path d="M50 26 L53 6 L38 20 Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="rgba(255,255,255,0.1)"/>
-      <!-- 圓臉 -->
-      <circle cx="30" cy="34" r="20" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.05)"/>
-      <!-- 左眼 大杏仁 -->
-      <path d="M16 31 Q21 25 26 31 Q21 36 16 31 Z" stroke="white" stroke-width="1.6" fill="rgba(255,255,255,0.8)"/>
-      <ellipse cx="21" cy="31" rx="2" ry="3" fill="#0d2030"/>
-      <circle cx="22.5" cy="29.5" r="0.9" fill="white"/>
-      <!-- 右眼 大杏仁 -->
-      <path d="M34 31 Q39 25 44 31 Q39 36 34 31 Z" stroke="white" stroke-width="1.6" fill="rgba(255,255,255,0.8)"/>
-      <ellipse cx="39" cy="31" rx="2" ry="3" fill="#0d2030"/>
-      <circle cx="40.5" cy="29.5" r="0.9" fill="white"/>
-      <!-- 鼻子（小三角） -->
-      <path d="M28 39 L30 42 L32 39 Z" fill="rgba(255,160,150,0.95)"/>
-      <!-- 嘴 -->
-      <path d="M27 42 Q30 46 33 42" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <!-- 鬍鬚 左 -->
-      <line x1="2" y1="37" x2="16" y2="39" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
-      <line x1="2" y1="42" x2="16" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
-      <!-- 鬍鬚 右 -->
-      <line x1="44" y1="39" x2="58" y2="37" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
-      <line x1="44" y1="42" x2="58" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
-    </svg>
-  </div>
+<!-- 浮動頭像按鈕 -->
+<div class="cat-mascot" id="cat-mascot">
+  <div class="cat-bubble">點我說話</div>
+  <div class="cat-body"></div>
 </div>
 
 </body>
