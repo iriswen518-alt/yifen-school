@@ -183,7 +183,10 @@
     font-size: 10px;
     opacity: 0.55;
     margin-left: 2px;
+    display: inline-block;
+    transition: transform 0.2s;
   }
+  .nav-tab.has-dropdown.dd-open::after { transform: rotate(180deg); opacity: 0.9; }
   /* ===== DROPDOWN ===== */
   .nav-dropdown {
     display: none;
@@ -1650,17 +1653,14 @@ function switchTabFilter(tabId, filter) {
   }, 30);
 }
 
-// Nav tab 點擊：有下拉選單的 tab 在手機上 toggle dropdown，桌面直接切換
+// Nav tab 點擊：has-dropdown 只開/關選單，選單項目才切頁
 document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.addEventListener('click', function(e) {
     if (tab.classList.contains('has-dropdown')) {
-      // 如果點到的是 nd-item，讓它自己的 onclick 處理
       if (e.target.classList.contains('nd-item')) return;
-      // 手機 touch：toggle dropdown
       const isOpen = tab.classList.contains('dd-open');
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('dd-open'));
       if (!isOpen) tab.classList.add('dd-open');
-      switchTab(tab.dataset.tab);
     } else {
       switchTab(tab.dataset.tab);
     }
