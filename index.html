@@ -759,7 +759,6 @@
   <div class="header-inner">
     <div class="header-left">
       <div class="site-title">
-        <div class="site-logo" style="font-size:26px; font-weight:900; font-family:'Georgia', serif; color:white; letter-spacing:0;">芬</div>
         <div>
           <h1>宜芬老師</h1>
           <p>高中國文教學資源</p>
@@ -805,10 +804,12 @@
 
     <div class="nav-tab has-dropdown" data-tab="g3">高三資源
       <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTab('g3')">學測攻略</div>
-        <div class="nd-item" onclick="switchTab('g3')">作文技巧</div>
-        <div class="nd-item" onclick="switchTab('g3')">歷屆試題</div>
-        <div class="nd-item" onclick="switchTab('g3')">衝刺計畫</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','all')">全部類型</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','gsat')">學測攻略</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','essay')">作文技巧</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','wen')">文言字詞</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','exam')">試題分析</div>
+        <div class="nd-item" onclick="switchTabFilter('g3','plan')">衝刺計畫</div>
       </div>
     </div>
 
@@ -1261,9 +1262,18 @@
       </div>
     </div>
 
-    <div class="grid-3">
+    <div class="chip-row">
+      <span class="chip red on" onclick="filterG('g3','all',this)">全部類型</span>
+      <span class="chip red" onclick="filterG('g3','gsat',this)">學測攻略</span>
+      <span class="chip red" onclick="filterG('g3','essay',this)">作文技巧</span>
+      <span class="chip red" onclick="filterG('g3','wen',this)">文言字詞</span>
+      <span class="chip red" onclick="filterG('g3','exam',this)">試題分析</span>
+      <span class="chip red" onclick="filterG('g3','plan',this)">衝刺計畫</span>
+    </div>
 
-      <div class="card">
+    <div class="grid-3" id="g3-grid">
+
+      <div class="card g3-card" data-cat="gsat">
         <div class="card-header">
           <div class="card-icon icon-red">🎯</div>
           <div>
@@ -1280,7 +1290,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g3-card" data-cat="essay">
         <div class="card-header">
           <div class="card-icon icon-gold">✍️</div>
           <div>
@@ -1297,7 +1307,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g3-card" data-cat="wen">
         <div class="card-header">
           <div class="card-icon icon-blue">📚</div>
           <div>
@@ -1314,7 +1324,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g3-card" data-cat="gsat">
         <div class="card-header">
           <div class="card-icon icon-purple">🧩</div>
           <div>
@@ -1331,7 +1341,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g3-card" data-cat="exam">
         <div class="card-header">
           <div class="card-icon icon-sage">📋</div>
           <div>
@@ -1348,7 +1358,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g3-card" data-cat="plan">
         <div class="card-header">
           <div class="card-icon icon-red">⏱️</div>
           <div>
@@ -1647,6 +1657,9 @@ function switchTabFilter(tabId, filter) {
     } else if (tabId === 'g2') {
       const el = document.querySelector('#tab-g2 .chip[onclick*="\''+filter+'\'"]');
       if (el) { document.querySelectorAll('#tab-g2 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG('g2', filter, el); }
+    } else if (tabId === 'g3') {
+      const el = document.querySelector('#tab-g3 .chip[onclick*="\''+filter+'\'"]');
+      if (el) { document.querySelectorAll('#tab-g3 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG('g3', filter, el); }
     }
   }, 30);
 }
@@ -1725,14 +1738,14 @@ document.addEventListener('click', e => { if (!e.target.closest('.search-wrap'))
 
 // ========== FILTER G1 ==========
 function filterG1(cat, el) {
-  document.querySelectorAll('#g1-grid .chip').forEach(c => c.classList.remove('on'));
+  document.querySelectorAll('#tab-g1 .chip').forEach(c => c.classList.remove('on'));
   el.classList.add('on');
   document.querySelectorAll('.g1-card').forEach(c => {
     c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
   });
 }
 function filterG(grade, cat, el) {
-  document.querySelectorAll(`#${grade}-grid .chip`).forEach(c => c.classList.remove('on'));
+  document.querySelectorAll(`#tab-${grade} .chip`).forEach(c => c.classList.remove('on'));
   el.classList.add('on');
   document.querySelectorAll(`.${grade}-card`).forEach(c => {
     c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
