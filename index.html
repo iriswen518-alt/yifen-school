@@ -2297,12 +2297,24 @@ input.addEventListener('input', function(){
 document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) results.classList.remove('show'); });
 
 // ========== FILTER G1 ==========
+// 設計規則：篩選後內容須與上方 chip 列同寬。
+// grid 欄數隨「可見卡片數」自動調整（1→1欄滿版、2→2欄、3↑→3欄），內容永遠填滿寬度。
+function fitGrid(gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  if (window.innerWidth <= 640) { grid.style.gridTemplateColumns = ''; return; } // 手機固定單欄，交給 CSS
+  const visible = [...grid.children].filter(c => c.style.display !== 'none').length;
+  const cols = Math.min(visible, 3) || 1;
+  grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+}
+window.addEventListener('resize', () => ['g1-grid','g2-grid','g3-grid'].forEach(fitGrid));
 function filterG1(cat, el) {
   document.querySelectorAll('#tab-g1 .chip').forEach(c => c.classList.remove('on'));
   el.classList.add('on');
   document.querySelectorAll('.g1-card').forEach(c => {
     c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
   });
+  fitGrid('g1-grid');
 }
 function filterG(grade, cat, el) {
   document.querySelectorAll(`#tab-${grade} .chip`).forEach(c => c.classList.remove('on'));
@@ -2310,6 +2322,7 @@ function filterG(grade, cat, el) {
   document.querySelectorAll(`.${grade}-card`).forEach(c => {
     c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
   });
+  fitGrid(`${grade}-grid`);
 }
 
 // ========== TOGGLE BLOCKS ==========
