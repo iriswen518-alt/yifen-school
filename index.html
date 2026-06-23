@@ -2161,17 +2161,41 @@ renderNotes();
 
 // ========== CAT MASCOT ==========
 const catMessages = [
-  '今天備課加油 🐾',
-  '喵～記得休息哦',
-  '有什麼想找的嗎？',
-  '學測加油！',
-  '貓咪為你守護 🐱',
-  '今天上課順利嗎？',
+  '「學而時習之，不亦說乎」——《論語》',
+  '「吾日三省吾身」：忠？信？習乎？',
+  '文言虛詞「之」：代詞、助詞、動詞，你分清了嗎？',
+  '「師者，所以傳道受業解惑也」——韓愈〈師說〉',
+  '「天下興亡，匹夫有責」——顧炎武',
+  '蘇軾〈赤壁賦〉：「逝者如斯，而未嘗往也」',
+  '作文開頭：先破題，再立意，切忌廢話連篇。',
+  '「不積跬步，無以至千里」——〈勸學〉荀子',
+  '〈醉翁亭記〉：醉翁之意不在酒，在乎山水之間也。',
+  '修辭：排比增氣勢，對偶顯工整，譬喻最生動。',
+  '學測作文 60 分，審題是第一關——題目每個字都有用。',
+  '「業精於勤，荒於嬉」——韓愈〈進學解〉',
+  '文言文翻譯口訣：留、刪、換、調、補、貫。',
+  '白居易〈琵琶行〉：「同是天涯淪落人，相逢何必曾相識。」',
+  '陶淵明〈桃花源記〉：避世烏托邦，還是現實批判？',
+  '「問渠那得清如許，為有源頭活水來」——朱熹',
+  '議論文三要素：論點、論據、論證，缺一不可。',
+  '〈出師表〉諸葛亮：「鞠躬盡瘁，死而後已」',
+  '「鳥宿池邊樹，僧敲月下門」——賈島推敲的故事',
+  '閱讀測驗技巧：先看題目，再讀文章，效率加倍。',
+  '「窮則獨善其身，達則兼善天下」——《孟子》',
+  '〈項脊軒志〉歸有光：以小見大，情感深沉。',
+  '實詞虛詞各有妙用，「而」字用法至少有七種！',
+  '「落霞與孤鶩齊飛，秋水共長天一色」——王勃〈滕王閣序〉',
+  '作文結尾：昇華主旨，回扣開頭，首尾呼應最有力。',
 ];
 let catIdx = 0;
+let catUsed = [];
 function triggerCat() {
   const bubble = document.querySelector('.cat-bubble');
-  bubble.textContent = catMessages[catIdx % catMessages.length];
+  if (catUsed.length === catMessages.length) catUsed = [];
+  let idx;
+  do { idx = Math.floor(Math.random() * catMessages.length); } while (catUsed.includes(idx));
+  catUsed.push(idx);
+  bubble.textContent = catMessages[idx];
   catIdx++;
   bubble.style.opacity = '1';
   bubble.style.transform = 'translateY(0)';
