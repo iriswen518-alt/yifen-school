@@ -2180,9 +2180,11 @@ function triggerCat() {
     bubble.style.transform = 'translateY(6px)';
   }, 2400);
 }
-const mascot = document.getElementById('cat-mascot');
-mascot.addEventListener('click', triggerCat);
-mascot.addEventListener('touchstart', function(e){ e.preventDefault(); triggerCat(); }, {passive: false});
+document.addEventListener('DOMContentLoaded', function() {
+  const mascot = document.getElementById('cat-mascot');
+  mascot.addEventListener('click', triggerCat);
+  mascot.addEventListener('touchstart', function(e){ e.preventDefault(); triggerCat(); }, {passive: false});
+});
 </script>
 
 <!-- 浮動貓咪吉祥物 -->
