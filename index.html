@@ -2209,7 +2209,7 @@ function triggerCat() {
 document.addEventListener('DOMContentLoaded', function() {
   const mascot = document.getElementById('cat-mascot');
   mascot.addEventListener('click', triggerCat);
-  mascot.addEventListener('touchstart', function(e){ e.preventDefault(); triggerCat(); }, {passive: false});
+  mascot.addEventListener('touchend', function(e){ e.preventDefault(); triggerCat(); });
 });
 </script>
 
