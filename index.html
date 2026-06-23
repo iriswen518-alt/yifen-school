@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>宜芬網站｜高中國文教學資源</title>
+<title>宜芬老師｜高中國文教學資源</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="宜芬老師">
+<meta name="theme-color" content="#1e3d52">
 <style>
   :root {
     --ink: #1a1a2e;
@@ -323,14 +328,18 @@
   .tag-db { background: var(--purple-pale); color: var(--purple); }
 
   /* ===== CHIP BUTTONS ===== */
+  /* RULE: Equal-width columns — use grid with equal 1fr columns so all buttons/fields
+     share the same width regardless of content length. This prevents jagged layouts.
+     For wrapping chips: grid-template-columns: repeat(auto-fill, minmax(min-size, 1fr))
+     ensures each row fills evenly. Never use flex for equal-width layouts. */
   .chip-row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 8px;
     margin-bottom: 16px;
   }
   .chip {
-    padding: 5px 14px;
+    padding: 5px 8px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
@@ -339,6 +348,7 @@
     transition: all 0.15s;
     letter-spacing: 0.5px;
     user-select: none;
+    text-align: center;
   }
   .chip.sage { border-color: var(--sage); color: var(--sage); }
   .chip.sage:hover, .chip.sage.on { background: var(--sage); color: white; }
@@ -665,12 +675,17 @@
   }
 
   /* ===== RESPONSIVE ===== */
+  /* RULE: Mobile overflow prevention — on narrow screens, all multi-column grids must
+     collapse to 1 or 2 columns. Never let content bleed past the viewport edge.
+     white-space:nowrap must always be paired with overflow-x:auto on its container. */
   @media (max-width: 640px) {
     .header-search { min-width: unset; width: 100%; }
     nav { top: 90px; }
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .cat-mascot { bottom: 16px; right: 16px; }
+    /* chip-row: collapse to 2 equal columns on very small screens */
+    .chip-row { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* ===== SEARCH RESULTS ===== */
