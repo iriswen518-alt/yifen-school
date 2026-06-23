@@ -333,22 +333,24 @@
      For wrapping chips: grid-template-columns: repeat(auto-fill, minmax(min-size, 1fr))
      ensures each row fills evenly. Never use flex for equal-width layouts. */
   .chip-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
     gap: 8px;
     margin-bottom: 16px;
   }
   .chip {
-    padding: 5px 8px;
+    flex: 1;
+    padding: 7px 4px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     border: 1.5px solid;
     cursor: pointer;
     transition: all 0.15s;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     user-select: none;
     text-align: center;
+    white-space: nowrap;
   }
   .chip.sage { border-color: var(--sage); color: var(--sage); }
   .chip.sage:hover, .chip.sage.on { background: var(--sage); color: white; }
@@ -684,8 +686,8 @@
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .cat-mascot { bottom: 16px; right: 16px; }
-    /* chip-row: collapse to 2 equal columns on very small screens */
-    .chip-row { grid-template-columns: repeat(2, 1fr); }
+    .chip-row { flex-wrap: wrap; }
+    .chip { flex: 1 1 calc(50% - 4px); min-width: 0; }
   }
 
   /* ===== SEARCH RESULTS ===== */
@@ -783,10 +785,10 @@
       <div class="quick-sep"></div>
       <div>
         <div class="label">快速連結</div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
-          <a href="https://dict.revised.moe.edu.tw" target="_blank" class="btn btn-sage" style="font-size:12px; padding:4px 10px;">教育部辭典</a>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; justify-content:center;">
+          <a href="https://dict.revised.moe.edu.tw" target="_blank" class="btn btn-sage" style="font-size:12px; padding:4px 10px;">國語辭典</a>
           <a href="https://www.ceec.edu.tw/examresource/exam" target="_blank" class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">學測試題</a>
-          <a href="https://cirn.moe.edu.tw" target="_blank" class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">課程研究院</a>
+          <a href="https://cirn.moe.edu.tw" target="_blank" class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">課程資源</a>
         </div>
       </div>
     </div>
@@ -927,12 +929,12 @@
     </div>
 
     <div class="chip-row">
-      <span class="chip sage on" onclick="filterG1('all',this)">全部</span>
-      <span class="chip sage" onclick="filterG1('wen',this)">📜 文言文</span>
-      <span class="chip sage" onclick="filterG1('xian',this)">✍️ 現代文學</span>
-      <span class="chip sage" onclick="filterG1('xiu',this)">🎨 修辭語法</span>
-      <span class="chip sage" onclick="filterG1('xie',this)">🖊️ 寫作</span>
-      <span class="chip sage" onclick="filterG1('link',this)">🔗 外部資源</span>
+      <span class="chip sage on" onclick="filterG1('all',this)">全部類型</span>
+      <span class="chip sage" onclick="filterG1('wen',this)">文言選篇</span>
+      <span class="chip sage" onclick="filterG1('xian',this)">現代文學</span>
+      <span class="chip sage" onclick="filterG1('xiu',this)">修辭語法</span>
+      <span class="chip sage" onclick="filterG1('xie',this)">寫作練習</span>
+      <span class="chip sage" onclick="filterG1('link',this)">外部資源</span>
     </div>
 
     <div class="grid-3" id="g1-grid">
@@ -1061,11 +1063,11 @@
     </div>
 
     <div class="chip-row">
-      <span class="chip blue on" onclick="filterG('g2','all',this)">全部</span>
-      <span class="chip blue" onclick="filterG('g2','wen',this)">📜 文言文</span>
-      <span class="chip blue" onclick="filterG('g2','yi',this)">💬 議論文</span>
-      <span class="chip blue" onclick="filterG('g2','xiao',this)">📖 小說</span>
-      <span class="chip blue" onclick="filterG('g2','wen-hua',this)">🏛️ 文化</span>
+      <span class="chip blue on" onclick="filterG('g2','all',this)">全部類型</span>
+      <span class="chip blue" onclick="filterG('g2','wen',this)">文言選篇</span>
+      <span class="chip blue" onclick="filterG('g2','yi',this)">議論選篇</span>
+      <span class="chip blue" onclick="filterG('g2','xiao',this)">小說選篇</span>
+      <span class="chip blue" onclick="filterG('g2','wen-hua',this)">文化思想</span>
     </div>
 
     <div class="grid-3" id="g2-grid">
@@ -1477,12 +1479,12 @@
         <h3>✍️ 作文出題輔助</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">選擇主題，快速生成作文題目方向</p>
         <div class="chip-row" id="essay-chips">
-          <span class="chip sage" onclick="pickEssayTheme('成長與蛻變',this)">成長與蛻變</span>
+          <span class="chip sage" onclick="pickEssayTheme('成長與蛻變',this)">成長蛻變</span>
           <span class="chip blue" onclick="pickEssayTheme('人與自然',this)">人與自然</span>
-          <span class="chip gold" onclick="pickEssayTheme('傳承與創新',this)">傳承與創新</span>
-          <span class="chip red" onclick="pickEssayTheme('困境與抉擇',this)">困境與抉擇</span>
-          <span class="chip purple" onclick="pickEssayTheme('記憶與時間',this)">記憶與時間</span>
-          <span class="chip sage" onclick="pickEssayTheme('科技與人性',this)">科技與人性</span>
+          <span class="chip gold" onclick="pickEssayTheme('傳承與創新',this)">傳承創新</span>
+          <span class="chip red" onclick="pickEssayTheme('困境與抉擇',this)">困境抉擇</span>
+          <span class="chip purple" onclick="pickEssayTheme('記憶與時間',this)">記憶時間</span>
+          <span class="chip sage" onclick="pickEssayTheme('科技與人性',this)">科技人性</span>
         </div>
         <div class="tool-output" id="essay-output">👆 點選主題後產生作文題目建議</div>
       </div>
@@ -1492,10 +1494,10 @@
         <h3>🖊️ 板書結構範本</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">常用板書結構，複製後自行填入</p>
         <div class="chip-row">
-          <span class="chip sage" onclick="showBoard('cause')">因果型</span>
-          <span class="chip blue" onclick="showBoard('compare')">比較型</span>
-          <span class="chip gold" onclick="showBoard('flow')">流程型</span>
-          <span class="chip red" onclick="showBoard('mind')">心智圖型</span>
+          <span class="chip sage" onclick="showBoard('cause')">因果分析</span>
+          <span class="chip blue" onclick="showBoard('compare')">比較對照</span>
+          <span class="chip gold" onclick="showBoard('flow')">流程步驟</span>
+          <span class="chip red" onclick="showBoard('mind')">心智導圖</span>
         </div>
         <div class="tool-output" id="board-output">👆 點選板書類型後顯示範本</div>
       </div>

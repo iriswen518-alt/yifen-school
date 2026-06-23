@@ -10,39 +10,32 @@
   <rect width="512" height="512" rx="110" fill="url(#bg)"/>
 
   <!-- 貓耳 左 -->
-  <path d="M118 248 L88 155 L194 215 Z" stroke="rgba(255,255,255,0.9)" stroke-width="10" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
+  <path d="M100 230 L68 120 L190 195 Z" stroke="rgba(255,255,255,0.9)" stroke-width="10" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
   <!-- 貓耳 右 -->
-  <path d="M394 248 L424 155 L318 215 Z" stroke="rgba(255,255,255,0.9)" stroke-width="10" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
+  <path d="M412 230 L444 120 L322 195 Z" stroke="rgba(255,255,255,0.9)" stroke-width="10" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
 
   <!-- 貓臉圓形 -->
-  <circle cx="256" cy="330" r="168" stroke="rgba(255,255,255,0.85)" stroke-width="9" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="256" cy="300" r="185" stroke="rgba(255,255,255,0.85)" stroke-width="9" fill="rgba(255,255,255,0.04)"/>
 
   <!-- 左眼（杏仁） -->
-  <path d="M164 315 Q196 278 228 315 Q196 350 164 315 Z" stroke="white" stroke-width="7" fill="rgba(255,255,255,0.88)"/>
-  <ellipse cx="196" cy="315" rx="14" ry="20" fill="#0d2030"/>
-  <circle cx="203" cy="306" r="5.5" fill="white"/>
+  <path d="M148 278 Q186 235 224 278 Q186 318 148 278 Z" stroke="white" stroke-width="8" fill="rgba(255,255,255,0.88)"/>
+  <ellipse cx="186" cy="278" rx="16" ry="23" fill="#0d2030"/>
+  <circle cx="195" cy="267" r="6.5" fill="white"/>
 
   <!-- 右眼（杏仁） -->
-  <path d="M284 315 Q316 278 348 315 Q316 350 284 315 Z" stroke="white" stroke-width="7" fill="rgba(255,255,255,0.88)"/>
-  <ellipse cx="316" cy="315" rx="14" ry="20" fill="#0d2030"/>
-  <circle cx="323" cy="306" r="5.5" fill="white"/>
+  <path d="M288 278 Q326 235 364 278 Q326 318 288 278 Z" stroke="white" stroke-width="8" fill="rgba(255,255,255,0.88)"/>
+  <ellipse cx="326" cy="278" rx="16" ry="23" fill="#0d2030"/>
+  <circle cx="335" cy="267" r="6.5" fill="white"/>
 
   <!-- 鼻子 -->
-  <path d="M242 362 L256 382 L270 362 Z" fill="rgba(255,155,145,0.95)"/>
+  <path d="M240 338 L256 360 L272 338 Z" fill="rgba(255,155,145,0.95)"/>
   <!-- 嘴 -->
-  <path d="M238 382 Q256 402 274 382" stroke="rgba(255,255,255,0.45)" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M234 360 Q256 388 278 360" stroke="rgba(255,255,255,0.45)" stroke-width="7" stroke-linecap="round" fill="none"/>
 
   <!-- 鬍鬚 左 -->
-  <line x1="50" y1="352" x2="186" y2="363" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
-  <line x1="50" y1="376" x2="186" y2="376" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="30" y1="315" x2="186" y2="328" stroke="rgba(255,255,255,0.38)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="30" y1="348" x2="186" y2="348" stroke="rgba(255,255,255,0.38)" stroke-width="5" stroke-linecap="round"/>
   <!-- 鬍鬚 右 -->
-  <line x1="326" y1="363" x2="462" y2="352" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
-  <line x1="326" y1="376" x2="462" y2="376" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
-
-  <!-- 芬 字 疊在貓臉上方 -->
-  <text x="256" y="210" font-family="Georgia, 'Times New Roman', serif"
-        font-size="172" font-weight="700"
-        fill="white" fill-opacity="0.95"
-        text-anchor="middle" dominant-baseline="middle"
-        letter-spacing="2">芬</text>
+  <line x1="326" y1="328" x2="482" y2="315" stroke="rgba(255,255,255,0.38)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="326" y1="348" x2="482" y2="348" stroke="rgba(255,255,255,0.38)" stroke-width="5" stroke-linecap="round"/>
 </svg>
