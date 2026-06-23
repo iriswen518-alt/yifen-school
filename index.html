@@ -2144,6 +2144,24 @@ function exportNotes() {
 }
 renderNotes();
 
+// ========== 無連結項目 → 自動 Google 搜尋 ==========
+(function(){
+  document.querySelectorAll('.link-list li').forEach(li => {
+    if (li.querySelector('a')) return; // 已有連結，跳過
+    const tag = li.querySelector('.link-tag');
+    const tagText = tag ? tag.textContent : '';
+    const rawText = li.textContent.replace(tagText, '').trim();
+    li.style.cursor = 'pointer';
+    li.style.transition = 'background 0.15s';
+    li.title = '點擊 Google 搜尋：' + rawText;
+    li.addEventListener('mouseenter', () => li.style.background = 'var(--sage-pale)');
+    li.addEventListener('mouseleave', () => li.style.background = '');
+    li.addEventListener('click', () => {
+      window.open('https://www.google.com/search?q=高中國文+' + encodeURIComponent(rawText), '_blank');
+    });
+  });
+})();
+
 // ========== CAT MASCOT ==========
 const catMessages = [
   '今天備課加油 🐾',
