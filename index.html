@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜芬網站｜高中國文教學資源</title>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --sage: #4a7c6f;
+    --sage-light: #6b9e92;
+    --sage-pale: #e8f4f1;
+    --gold: #c9943a;
+    --gold-pale: #fdf6e8;
+    --red: #c0392b;
+    --red-pale: #fdf0ee;
+    --blue: #2c5f8a;
+    --blue-pale: #eaf2f8;
+    --purple: #6c4a8a;
+    --purple-pale: #f3eef8;
+    --bg: #f8f7f4;
+    --card: #ffffff;
+    --border: #e2ddd6;
+    --text: #2d2d2d;
+    --muted: #7a7a7a;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif TC', 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 60%, #3d5a47 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0;
+    min-height: 90px;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    flex: 1;
+  }
+  .header-photo-wrap {
+    flex-shrink: 0;
+    position: relative;
+    width: 110px;
+    overflow: hidden;
+    align-self: stretch;
+  }
+  .header-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    opacity: 0.85;
+    filter: brightness(0.9) saturate(0.8);
+  }
+  .header-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(26,26,46,0.7) 0%, transparent 100%);
+  }
+  .site-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .site-logo {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+  }
+  .site-title h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .site-title p {
+    font-size: 12px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 24px;
+    padding: 8px 16px;
+    min-width: 240px;
+  }
+  .header-search input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    font-family: inherit;
+  }
+  .header-search input::placeholder { color: rgba(255,255,255,0.5); }
+  .header-search span { color: rgba(255,255,255,0.6); font-size: 16px; }
+
+  /* ===== NAV ===== */
+  nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 90px;
+    z-index: 90;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 14px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-tab:hover { color: var(--sage); background: var(--sage-pale); }
+  .nav-tab.active { color: var(--sage); border-bottom-color: var(--sage); }
+  .nav-badge {
+    background: var(--sage-pale);
+    color: var(--sage);
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  /* ===== MAIN ===== */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+
+  /* ===== SECTION ===== */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .section-title h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .section-title p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ===== GRID ===== */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card-title { font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+  .card-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* ===== LINK ROWS ===== */
+  .link-list { list-style: none; }
+  .link-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .link-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-list a {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+  .link-list a:hover { color: var(--sage); text-decoration: underline; }
+  .link-tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tag-free { background: #e8f5e9; color: #2e7d32; }
+  .tag-official { background: var(--blue-pale); color: var(--blue); }
+  .tag-pdf { background: var(--red-pale); color: var(--red); }
+  .tag-video { background: var(--gold-pale); color: var(--gold); }
+  .tag-db { background: var(--purple-pale); color: var(--purple); }
+
+  /* ===== CHIP BUTTONS ===== */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .chip {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1.5px solid;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+    user-select: none;
+  }
+  .chip.sage { border-color: var(--sage); color: var(--sage); }
+  .chip.sage:hover, .chip.sage.on { background: var(--sage); color: white; }
+  .chip.gold { border-color: var(--gold); color: var(--gold); }
+  .chip.gold:hover, .chip.gold.on { background: var(--gold); color: white; }
+  .chip.red { border-color: var(--red); color: var(--red); }
+  .chip.red:hover, .chip.red.on { background: var(--red); color: white; }
+  .chip.blue { border-color: var(--blue); color: var(--blue); }
+  .chip.blue:hover, .chip.blue.on { background: var(--blue); color: white; }
+  .chip.purple { border-color: var(--purple); color: var(--purple); }
+  .chip.purple:hover, .chip.purple.on { background: var(--purple); color: white; }
+
+  /* ===== HOME STATS ===== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-card .num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== CALENDAR STRIP ===== */
+  .quick-bar {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow);
+  }
+  .quick-bar .label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 1px; }
+  .quick-bar .val { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .quick-sep { width: 1px; height: 32px; background: var(--border); }
+
+  /* ===== NOTES AREA ===== */
+  .notes-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .notes-toolbar input {
+    flex: 1;
+    min-width: 160px;
+    padding: 7px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+  }
+  .notes-toolbar input:focus { border-color: var(--sage); }
+  .btn {
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-sage { background: var(--sage); color: white; }
+  .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+  .btn-red { background: var(--red); color: white; }
+
+  .notes-list { display: flex; flex-direction: column; gap: 8px; }
+  .note-item {
+    background: var(--gold-pale);
+    border: 1px solid #e6d5b8;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .note-item .note-body { flex: 1; font-size: 13px; line-height: 1.6; }
+  .note-item .note-meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  .note-item .note-tag-label {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 8px;
+    background: var(--sage-pale);
+    color: var(--sage);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .note-del {
+    background: none; border: none; color: #ccc; cursor: pointer;
+    font-size: 16px; line-height: 1; padding: 0; flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .note-del:hover { color: var(--red); }
+  .notes-empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 32px;
+    font-size: 14px;
+    background: white;
+    border-radius: var(--radius);
+    border: 1.5px dashed var(--border);
+  }
+
+  /* ===== EXAM TABLE ===== */
+  .exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .exam-table th {
+    background: var(--ink);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 13px;
+  }
+  .exam-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .exam-table tr:last-child td { border-bottom: none; }
+  .exam-table tr:hover td { background: var(--sage-pale); }
+  .exam-table a { color: var(--blue); text-decoration: none; }
+  .exam-table a:hover { text-decoration: underline; }
+
+  /* ===== TOOL CARDS ===== */
+  .tool-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    box-shadow: var(--shadow);
+  }
+  .tool-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tool-card textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    line-height: 1.7;
+  }
+  .tool-card textarea:focus { border-color: var(--sage); }
+  .tool-output {
+    background: var(--sage-pale);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.8;
+    min-height: 60px;
+    white-space: pre-wrap;
+    color: var(--ink);
+    margin-top: 10px;
+    border: 1px solid #c5ddd8;
+  }
+
+  /* ===== ACCENTS ===== */
+  .accent-sage { background: var(--sage-pale); }
+  .accent-gold { background: var(--gold-pale); }
+  .accent-red { background: var(--red-pale); }
+  .accent-blue { background: var(--blue-pale); }
+  .accent-purple { background: var(--purple-pale); }
+
+  .icon-sage { background: var(--sage-pale); }
+  .icon-gold { background: var(--gold-pale); }
+  .icon-red { background: var(--red-pale); }
+  .icon-blue { background: var(--blue-pale); }
+  .icon-purple { background: var(--purple-pale); }
+
+  /* ===== PROGRESS BAR ===== */
+  .prog-bar { height: 6px; background: var(--border); border-radius: 3px; margin: 8px 0; overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 3px; background: var(--sage); transition: width 0.4s; }
+
+  /* ===== UNIT BLOCK ===== */
+  .unit-block {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .unit-block-header {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .unit-block-header:hover { background: var(--sage-pale); }
+  .unit-block-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .unit-block-body {
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+  .unit-block-body.open { display: block; }
+  .toggle-arrow { font-size: 13px; color: var(--muted); transition: transform 0.2s; }
+  .toggle-arrow.open { transform: rotate(90deg); }
+
+  /* ===== TIMELINE ===== */
+  .timeline { border-left: 2px solid var(--sage-pale); padding-left: 20px; margin: 8px 0; }
+  .tl-item { position: relative; padding: 8px 0; }
+  .tl-dot {
+    position: absolute;
+    left: -25px;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+  .tl-title { font-size: 13px; font-weight: 600; }
+  .tl-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    header { padding: 20px 16px 16px; }
+    .header-search { min-width: unset; width: 100%; }
+    nav { top: 140px; }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== SEARCH RESULTS ===== */
+  #search-results {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 360px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border: 1px solid var(--border);
+    z-index: 200;
+    display: none;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  #search-results.show { display: block; }
+  .sr-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sr-item:hover { background: var(--sage-pale); }
+  .sr-item:last-child { border-bottom: none; }
+  .sr-cat { font-size: 10px; color: var(--muted); background: var(--border); padding: 1px 6px; border-radius: 6px; }
+  .search-wrap { position: relative; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="header-photo-wrap">
+      <img src="yifen.jpg" alt="宜芬老師">
+    </div>
+    <div class="header-left">
+      <div class="site-title">
+        <div class="site-logo">📖</div>
+        <div>
+          <h1>宜芬老師的教學資源站</h1>
+          <p>高中國文教學資源彙整｜備課 × 上課 × 考試</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; padding:0 24px;">
+      <div class="search-wrap">
+        <div class="header-search">
+          <span>🔍</span>
+          <input type="text" id="search-input" placeholder="搜尋課文、資源、工具…" autocomplete="off">
+        </div>
+        <div id="search-results"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-tab active" data-tab="home">🏠 首頁</div>
+    <div class="nav-tab" data-tab="g1">📗 高一 <span class="nav-badge">12冊</span></div>
+    <div class="nav-tab" data-tab="g2">📘 高二 <span class="nav-badge">12冊</span></div>
+    <div class="nav-tab" data-tab="g3">📕 高三 <span class="nav-badge">學測</span></div>
+    <div class="nav-tab" data-tab="exam">📝 考試資源</div>
+    <div class="nav-tab" data-tab="tools">🛠️ 備課工具</div>
+    <div class="nav-tab" data-tab="notes">📌 我的筆記</div>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+  <!-- ===== HOME ===== -->
+  <div class="section active" id="tab-home">
+    <div class="quick-bar">
+      <div>
+        <div class="label">今天日期</div>
+        <div class="val" id="today-date">—</div>
+      </div>
+      <div class="quick-sep"></div>
+      <div>
+        <div class="label">學期</div>
+        <div class="val" id="semester-label">—</div>
+      </div>
+      <div class="quick-sep"></div>
+      <div>
+        <div class="label">我的筆記</div>
+        <div class="val" id="notes-count">0 則</div>
+      </div>
+      <div class="quick-sep"></div>
+      <div>
+        <div class="label">快速連結</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+          <a href="https://dict.revised.moe.edu.tw" target="_blank" class="btn btn-sage" style="font-size:12px; padding:4px 10px;">教育部辭典</a>
+          <a href="https://www.ceec.edu.tw/examresource/exam" target="_blank" class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">學測試題</a>
+          <a href="https://cirn.moe.edu.tw" target="_blank" class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">課程研究院</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="num" style="color:var(--sage)">6</div>
+        <div class="label">大主題單元</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--gold)">40+</div>
+        <div class="label">外部資源連結</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--red)">30+</div>
+        <div class="label">歷屆學測試題</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:var(--blue)">5</div>
+        <div class="label">備課工具</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- 快速導覽 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-sage">🗺️</div>
+          <div>
+            <div class="card-title">快速導覽</div>
+            <div class="card-sub">點擊直達各分區</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="#" onclick="switchTab('g1')">📗 高一資源 — 課文・修辭・習作</a></li>
+          <li><a href="#" onclick="switchTab('g2')">📘 高二資源 — 文言文・議論文・小說</a></li>
+          <li><a href="#" onclick="switchTab('g3')">📕 高三資源 — 學測衝刺・作文技巧</a></li>
+          <li><a href="#" onclick="switchTab('exam')">📝 考試資源 — 段考・歷屆試題</a></li>
+          <li><a href="#" onclick="switchTab('tools')">🛠️ 備課工具 — 分析框架・板書範本</a></li>
+          <li><a href="#" onclick="switchTab('notes')">📌 我的筆記 — 私人備課重點</a></li>
+        </ul>
+      </div>
+
+      <!-- 常用網站 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-blue">⭐</div>
+          <div>
+            <div class="card-title">必備外部網站</div>
+            <div class="card-sub">每日備課常用</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>
+            <a href="https://dict.revised.moe.edu.tw" target="_blank">📚 教育部重編國語辭典</a>
+            <span class="link-tag tag-official">官方</span>
+          </li>
+          <li>
+            <a href="https://dict.variants.moe.edu.tw" target="_blank">🖊️ 異體字字典</a>
+            <span class="link-tag tag-official">官方</span>
+          </li>
+          <li>
+            <a href="https://ctext.org/zh" target="_blank">📜 中國哲學書電子化計劃</a>
+            <span class="link-tag tag-free">免費</span>
+          </li>
+          <li>
+            <a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">📝 大考中心歷屆試題</a>
+            <span class="link-tag tag-official">官方</span>
+          </li>
+          <li>
+            <a href="https://cirn.moe.edu.tw" target="_blank">🏫 十二年課綱課程研究院</a>
+            <span class="link-tag tag-official">官方</span>
+          </li>
+          <li>
+            <a href="https://wordcraft.mlc.edu.tw" target="_blank">✍️ 文字組合練習工具</a>
+            <span class="link-tag tag-free">免費</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 學校行事曆提醒 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-gold">📅</div>
+          <div>
+            <div class="card-title">學期進度提醒</div>
+            <div class="card-sub">114 學年度</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">第一學期開學</div>
+            <div class="tl-desc">2025年9月1日</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">期中考</div>
+            <div class="tl-desc">2025年10月中旬（視學校調整）</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">期末考</div>
+            <div class="tl-desc">2026年1月中旬</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">學測</div>
+            <div class="tl-desc">2026年1月下旬</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">第二學期開學</div>
+            <div class="tl-desc">2026年2月中旬</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-title">指考/分科測驗</div>
+            <div class="tl-desc">2026年7月</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 最近更新 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-purple">🆕</div>
+          <div>
+            <div class="card-title">使用說明</div>
+            <div class="card-sub">如何用這個網站</div>
+          </div>
+        </div>
+        <ul class="link-list" style="font-size:14px;">
+          <li><a href="#" onclick="switchTab('notes')">📌 備課筆記存在「我的筆記」，自動儲存到瀏覽器</a></li>
+          <li><a href="#" onclick="switchTab('tools')">🛠️ 「備課工具」有課文分析框架、作文出題輔助</a></li>
+          <li><a href="#" onclick="switchTab('exam')">📝 歷屆學測試題、段考常見題型都在「考試資源」</a></li>
+          <li><a href="javascript:void(0)" onclick="document.getElementById('search-input').focus()">🔍 上方搜尋框可快速找課文或資源</a></li>
+        </ul>
+        <div style="margin-top:14px; padding:12px; background:var(--sage-pale); border-radius:8px; font-size:12px; color:var(--sage); line-height:1.7;">
+          💡 <strong>提示：</strong>本站資料儲存在瀏覽器本機，換電腦需重新建立筆記。建議書籤收藏本頁。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 高一 ===== -->
+  <div class="section" id="tab-g1">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--sage-pale)">📗</div>
+        <div>
+          <h2>高一資源</h2>
+          <p>語言基礎 × 現代文學 × 文言啟蒙</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip sage on" onclick="filterG1('all',this)">全部</span>
+      <span class="chip sage" onclick="filterG1('wen',this)">📜 文言文</span>
+      <span class="chip sage" onclick="filterG1('xian',this)">✍️ 現代文學</span>
+      <span class="chip sage" onclick="filterG1('xiu',this)">🎨 修辭語法</span>
+      <span class="chip sage" onclick="filterG1('xie',this)">🖊️ 寫作</span>
+      <span class="chip sage" onclick="filterG1('link',this)">🔗 外部資源</span>
+    </div>
+
+    <div class="grid-3" id="g1-grid">
+
+      <!-- 文言文基礎 -->
+      <div class="card g1-card" data-cat="wen">
+        <div class="card-header">
+          <div class="card-icon icon-gold">📜</div>
+          <div>
+            <div class="card-title">文言文基礎篇目</div>
+            <div class="card-sub">先秦到唐宋代表作</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://ctext.org/analects/zh" target="_blank">論語選（孔子）</a><span class="link-tag tag-free">原典</span></li>
+          <li><a href="https://ctext.org/mengzi/zh" target="_blank">孟子選（梁惠王章）</a><span class="link-tag tag-free">原典</span></li>
+          <li><a href="https://ctext.org/laozi/zh" target="_blank">老子（道德經）節選</a><span class="link-tag tag-free">原典</span></li>
+          <li><a href="https://ctext.org/text.pl?node=8888&if=zh" target="_blank">荀子・勸學篇</a><span class="link-tag tag-free">原典</span></li>
+          <li><a href="https://ctext.org/shiji/zh" target="_blank">史記選讀</a><span class="link-tag tag-free">原典</span></li>
+        </ul>
+      </div>
+
+      <!-- 現代詩 -->
+      <div class="card g1-card" data-cat="xian">
+        <div class="card-header">
+          <div class="card-icon icon-sage">🌿</div>
+          <div>
+            <div class="card-title">現代詩選</div>
+            <div class="card-sub">余光中・鄭愁予・楊牧</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://paper.udn.com/udnpaper/PIC0004/389700/web/" target="_blank">余光中詩精選賞析</a><span class="link-tag tag-free">賞析</span></li>
+          <li><a href="https://www.reading543.com.tw" target="_blank">閱讀543現代詩資源</a><span class="link-tag tag-free">教學</span></li>
+          <li>鄭愁予《錯誤》課文導讀<span class="link-tag tag-pdf">講義</span></li>
+          <li>楊牧《有人問我公理和正義》<span class="link-tag tag-pdf">分析</span></li>
+          <li><a href="https://www.youtube.com/results?search_query=%E9%99%B3%E9%BB%8E%E6%98%8E+%E7%8F%BE%E4%BB%A3%E8%A9%A9%E6%95%99%E5%AD%B8" target="_blank">現代詩教學影片(YouTube)</a><span class="link-tag tag-video">影片</span></li>
+        </ul>
+      </div>
+
+      <!-- 散文 -->
+      <div class="card g1-card" data-cat="xian">
+        <div class="card-header">
+          <div class="card-icon icon-blue">🌊</div>
+          <div>
+            <div class="card-title">現代散文</div>
+            <div class="card-sub">琦君・林文月・余光中</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>琦君《春酒》課文精析<span class="link-tag tag-pdf">講義</span></li>
+          <li>林文月《讀中文系的人》<span class="link-tag tag-pdf">講義</span></li>
+          <li>余光中《聽聽那冷雨》賞析<span class="link-tag tag-free">賞析</span></li>
+          <li>朱自清《背影》教學設計<span class="link-tag tag-pdf">教案</span></li>
+          <li><a href="https://ws.moe.edu.tw/Download.ashx?u=C099358C81D4876C7535E5BCBB58A6CDB5C7161D" target="_blank">部定必修選文清單</a><span class="link-tag tag-official">課綱</span></li>
+        </ul>
+      </div>
+
+      <!-- 修辭語法 -->
+      <div class="card g1-card" data-cat="xiu">
+        <div class="card-header">
+          <div class="card-icon icon-red">🎨</div>
+          <div>
+            <div class="card-title">修辭法教學</div>
+            <div class="card-sub">九大修辭 + 例句練習</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>比喻・擬人・誇張 教學PPT<span class="link-tag tag-pdf">PPT</span></li>
+          <li>排比・對偶・映襯 例句庫<span class="link-tag tag-pdf">講義</span></li>
+          <li>設問・借代・象徵 練習卷<span class="link-tag tag-pdf">評量</span></li>
+          <li><a href="https://www.csjh.ntpc.edu.tw/userfiles/files/" target="_blank">修辭法綜合複習卷</a><span class="link-tag tag-pdf">評量</span></li>
+          <li>文法：主謂賓補 辨析<span class="link-tag tag-pdf">講義</span></li>
+        </ul>
+      </div>
+
+      <!-- 寫作 -->
+      <div class="card g1-card" data-cat="xie">
+        <div class="card-header">
+          <div class="card-icon icon-purple">🖊️</div>
+          <div>
+            <div class="card-title">高一作文訓練</div>
+            <div class="card-sub">敘述文 → 抒情文入門</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>記敘文六要素教學<span class="link-tag tag-pdf">講義</span></li>
+          <li>抒情散文寫作步驟<span class="link-tag tag-pdf">教案</span></li>
+          <li>開頭、結尾技巧範例<span class="link-tag tag-pdf">範例</span></li>
+          <li>作文評分標準說明<span class="link-tag tag-official">評量</span></li>
+          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0K000000000000000011" target="_blank">大考作文評分細則</a><span class="link-tag tag-official">官方</span></li>
+        </ul>
+      </div>
+
+      <!-- 外部資源 -->
+      <div class="card g1-card" data-cat="link">
+        <div class="card-header">
+          <div class="card-icon icon-sage">🔗</div>
+          <div>
+            <div class="card-title">高一必備外部資源</div>
+            <div class="card-sub">工具 + 資料庫</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">教育部重編國語辭典</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://ctext.org/zh" target="_blank">中國哲學書電子化計劃</a><span class="link-tag tag-free">資料庫</span></li>
+          <li><a href="https://teldap.tw" target="_blank">台灣文獻叢刊資料庫</a><span class="link-tag tag-db">資料庫</span></li>
+          <li><a href="https://www.youtube.com/c/公視影音" target="_blank">公視台灣文學影音</a><span class="link-tag tag-video">影片</span></li>
+          <li><a href="https://cirn.moe.edu.tw/Module/index.aspx?sid=11" target="_blank">課綱素材・國語文</a><span class="link-tag tag-official">官方</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 高二 ===== -->
+  <div class="section" id="tab-g2">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--blue-pale)">📘</div>
+        <div>
+          <h2>高二資源</h2>
+          <p>進階文言文 × 議論文 × 小說與文化</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip blue on" onclick="filterG('g2','all',this)">全部</span>
+      <span class="chip blue" onclick="filterG('g2','wen',this)">📜 文言文</span>
+      <span class="chip blue" onclick="filterG('g2','yi',this)">💬 議論文</span>
+      <span class="chip blue" onclick="filterG('g2','xiao',this)">📖 小說</span>
+      <span class="chip blue" onclick="filterG('g2','wen-hua',this)">🏛️ 文化</span>
+    </div>
+
+    <div class="grid-3" id="g2-grid">
+
+      <div class="card g2-card" data-cat="wen">
+        <div class="card-header">
+          <div class="card-icon icon-gold">📜</div>
+          <div>
+            <div class="card-title">進階文言文</div>
+            <div class="card-sub">唐宋八大家・韓柳蘇</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://ctext.org/wiki.pl?if=zh&chapter=248775" target="_blank">韓愈《師說》</a><span class="link-tag tag-free">原典</span></li>
+          <li><a href="https://ctext.org/wiki.pl?if=gb&chapter=559558" target="_blank">柳宗元《捕蛇者說》</a><span class="link-tag tag-free">原典</span></li>
+          <li>歐陽修《醉翁亭記》翻譯注釋<span class="link-tag tag-pdf">講義</span></li>
+          <li>蘇軾《赤壁賦》全文導讀<span class="link-tag tag-pdf">講義</span></li>
+          <li>文言文翻譯技巧：留刪換<span class="link-tag tag-pdf">技巧</span></li>
+        </ul>
+      </div>
+
+      <div class="card g2-card" data-cat="yi">
+        <div class="card-header">
+          <div class="card-icon icon-sage">💬</div>
+          <div>
+            <div class="card-title">議論文教學</div>
+            <div class="card-sub">論點・論據・論證</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>議論文三要素教學PPT<span class="link-tag tag-pdf">PPT</span></li>
+          <li>舉例論證 vs. 引用論證<span class="link-tag tag-pdf">講義</span></li>
+          <li>反駁技巧（歸謬法）<span class="link-tag tag-pdf">講義</span></li>
+          <li>胡適《差不多先生傳》<span class="link-tag tag-pdf">分析</span></li>
+          <li>魯迅雜文：針砭時弊<span class="link-tag tag-pdf">分析</span></li>
+        </ul>
+      </div>
+
+      <div class="card g2-card" data-cat="xiao">
+        <div class="card-header">
+          <div class="card-icon icon-blue">📖</div>
+          <div>
+            <div class="card-title">小說教學</div>
+            <div class="card-sub">人物・情節・主題</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>小說六要素教學框架<span class="link-tag tag-pdf">講義</span></li>
+          <li>白先勇《永遠的尹雪艷》<span class="link-tag tag-pdf">分析</span></li>
+          <li>黃春明《看海的日子》<span class="link-tag tag-pdf">分析</span></li>
+          <li>陳映真短篇小說選讀<span class="link-tag tag-free">選讀</span></li>
+          <li>小說敘事視角辨析<span class="link-tag tag-pdf">講義</span></li>
+        </ul>
+      </div>
+
+      <div class="card g2-card" data-cat="wen-hua">
+        <div class="card-header">
+          <div class="card-icon icon-red">🏛️</div>
+          <div>
+            <div class="card-title">文化與思想</div>
+            <div class="card-sub">儒道佛・台灣文化</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>儒道比較思想圖表<span class="link-tag tag-pdf">圖表</span></li>
+          <li><a href="https://nrch.culture.tw" target="_blank">國家文化記憶庫</a><span class="link-tag tag-official">資料庫</span></li>
+          <li>台灣文學史概說<span class="link-tag tag-pdf">講義</span></li>
+          <li><a href="https://tln.nmtl.gov.tw" target="_blank">台灣文學館線上資源</a><span class="link-tag tag-official">官方</span></li>
+          <li>漢字演變：甲骨金篆隸<span class="link-tag tag-pdf">圖解</span></li>
+        </ul>
+      </div>
+
+      <div class="card g2-card" data-cat="wen">
+        <div class="card-header">
+          <div class="card-icon icon-purple">🎭</div>
+          <div>
+            <div class="card-title">詩詞精讀</div>
+            <div class="card-sub">唐詩・宋詞・元曲</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>李白・杜甫對比教學<span class="link-tag tag-pdf">教案</span></li>
+          <li>蘇軾詞《水調歌頭》<span class="link-tag tag-pdf">賞析</span></li>
+          <li>李清照詞精析<span class="link-tag tag-pdf">賞析</span></li>
+          <li><a href="https://www.zdic.net" target="_blank">漢典（聲韻查詢）</a><span class="link-tag tag-free">工具</span></li>
+          <li>平仄格律入門教學<span class="link-tag tag-pdf">講義</span></li>
+        </ul>
+      </div>
+
+      <div class="card g2-card" data-cat="yi">
+        <div class="card-header">
+          <div class="card-icon icon-gold">✍️</div>
+          <div>
+            <div class="card-title">高二作文訓練</div>
+            <div class="card-sub">議論文進階</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>引論・本論・結論架構<span class="link-tag tag-pdf">講義</span></li>
+          <li>學測作文題目整理（近10年）<span class="link-tag tag-pdf">題目</span></li>
+          <li>學生作文優良範文集<span class="link-tag tag-pdf">範文</span></li>
+          <li>作文批改評語範本<span class="link-tag tag-pdf">評語</span></li>
+          <li><a href="https://www.ceec.edu.tw" target="_blank">大考中心作文規定</a><span class="link-tag tag-official">官方</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 高三 ===== -->
+  <div class="section" id="tab-g3">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--red-pale)">📕</div>
+        <div>
+          <h2>高三資源</h2>
+          <p>學測衝刺 × 作文滿分 × 分科測驗</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">🎯</div>
+          <div>
+            <div class="card-title">學測國文複習</div>
+            <div class="card-sub">各大題得分攻略</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>第一大題：綜合測驗（詞義語法）<span class="link-tag tag-pdf">攻略</span></li>
+          <li>第二大題：文意選填<span class="link-tag tag-pdf">攻略</span></li>
+          <li>第三大題：篇章結構<span class="link-tag tag-pdf">攻略</span></li>
+          <li>第四大題：閱讀測驗<span class="link-tag tag-pdf">攻略</span></li>
+          <li>第五大題：作文（60分）<span class="link-tag tag-pdf">攻略</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-gold">✍️</div>
+          <div>
+            <div class="card-title">作文滿分技巧</div>
+            <div class="card-sub">審題→立意→布局→修辭</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>審題四步驟（精準破題）<span class="link-tag tag-pdf">技巧</span></li>
+          <li>開頭10種模式練習<span class="link-tag tag-pdf">範例</span></li>
+          <li>結尾昇華法×3<span class="link-tag tag-pdf">範例</span></li>
+          <li>佳句素材庫（依主題分類）<span class="link-tag tag-pdf">素材</span></li>
+          <li>評分委員評語分析（歷屆）<span class="link-tag tag-pdf">分析</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-blue">📚</div>
+          <div>
+            <div class="card-title">文言文字詞彙整</div>
+            <div class="card-sub">考前必背 300 詞</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>虛詞用法：之乎者也<span class="link-tag tag-pdf">整理</span></li>
+          <li>實詞一字多義彙整<span class="link-tag tag-pdf">整理</span></li>
+          <li>古今字義對照表<span class="link-tag tag-pdf">整理</span></li>
+          <li>通假字總整理<span class="link-tag tag-pdf">整理</span></li>
+          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">線上字義查詢（教部辭典）</a><span class="link-tag tag-official">工具</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-purple">🧩</div>
+          <div>
+            <div class="card-title">閱讀測驗策略</div>
+            <div class="card-sub">快速讀懂長篇文章</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>首段定主旨法<span class="link-tag tag-pdf">策略</span></li>
+          <li>選項排除技巧×5<span class="link-tag tag-pdf">策略</span></li>
+          <li>科普文 vs 文學文讀法<span class="link-tag tag-pdf">策略</span></li>
+          <li>跨文本整合練習卷<span class="link-tag tag-pdf">評量</span></li>
+          <li>閱讀速度訓練方法<span class="link-tag tag-pdf">訓練</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-sage">📋</div>
+          <div>
+            <div class="card-title">歷屆試題分析</div>
+            <div class="card-sub">111～113 學測</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">113 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
+          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">112 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
+          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">111 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
+          <li>近5年高頻考點統計<span class="link-tag tag-pdf">分析</span></li>
+          <li>失分最多題型解析<span class="link-tag tag-pdf">分析</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">⏱️</div>
+          <div>
+            <div class="card-title">衝刺計畫表</div>
+            <div class="card-sub">考前8週滾動計畫</div>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li>第8週：全範圍弱點盤點<span class="link-tag tag-pdf">計畫</span></li>
+          <li>第6-7週：文言文強化<span class="link-tag tag-pdf">計畫</span></li>
+          <li>第4-5週：閱讀測驗刷題<span class="link-tag tag-pdf">計畫</span></li>
+          <li>第2-3週：作文每週一篇<span class="link-tag tag-pdf">計畫</span></li>
+          <li>第1週：模擬考+檢討<span class="link-tag tag-pdf">計畫</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 考試資源 ===== -->
+  <div class="section" id="tab-exam">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--gold-pale)">📝</div>
+        <div>
+          <h2>考試資源</h2>
+          <p>段考 × 學測 × 模擬考 × 評量工具</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 段考命題 -->
+    <div class="unit-block">
+      <div class="unit-block-header" onclick="toggleBlock(this)">
+        <div class="unit-block-title">
+          <span>📋</span> 段考命題資源
+        </div>
+        <span class="toggle-arrow open">▶</span>
+      </div>
+      <div class="unit-block-body open">
+        <div class="grid-2" style="margin-top:16px;">
+          <div>
+            <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">選擇題命題工具</p>
+            <ul class="link-list">
+              <li><a href="https://kahoot.com" target="_blank">Kahoot! 出互動選擇題</a><span class="link-tag tag-free">免費</span></li>
+              <li><a href="https://quizlet.com" target="_blank">Quizlet 字詞記憶卡</a><span class="link-tag tag-free">免費</span></li>
+              <li><a href="https://forms.google.com" target="_blank">Google 表單線上考卷</a><span class="link-tag tag-free">免費</span></li>
+              <li><a href="https://nearpod.com" target="_blank">Nearpod 互動測驗</a><span class="link-tag tag-free">免費</span></li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">常見段考題型</p>
+            <ul class="link-list">
+              <li>字音字形題（形近字）<span class="link-tag tag-pdf">題型</span></li>
+              <li>成語典故題<span class="link-tag tag-pdf">題型</span></li>
+              <li>修辭辨識題<span class="link-tag tag-pdf">題型</span></li>
+              <li>文言文翻譯填空<span class="link-tag tag-pdf">題型</span></li>
+              <li>現代文閱讀測驗<span class="link-tag tag-pdf">題型</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 歷屆學測 -->
+    <div class="unit-block">
+      <div class="unit-block-header" onclick="toggleBlock(this)">
+        <div class="unit-block-title">
+          <span>🎓</span> 歷屆學測試題（大考中心官方）
+        </div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="unit-block-body">
+        <table class="exam-table" style="margin-top:16px;">
+          <thead>
+            <tr>
+              <th>年度</th>
+              <th>試題</th>
+              <th>解析</th>
+              <th>作文題目</th>
+              <th>平均分</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>113</strong> (2024)</td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
+              <td>——（待整理）</td>
+              <td>——</td>
+            </tr>
+            <tr>
+              <td><strong>112</strong> (2023)</td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
+              <td>——（待整理）</td>
+              <td>——</td>
+            </tr>
+            <tr>
+              <td><strong>111</strong> (2022)</td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
+              <td>——（待整理）</td>
+              <td>——</td>
+            </tr>
+            <tr>
+              <td><strong>110</strong> (2021)</td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
+              <td>——（待整理）</td>
+              <td>——</td>
+            </tr>
+            <tr>
+              <td><strong>109</strong> (2020)</td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
+              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
+              <td>——（待整理）</td>
+              <td>——</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px; color:var(--muted); margin-top:10px;">* 點擊連結後至「國文（含作文）」下載。歷屆更多年份可至大考中心官方下載。</p>
+      </div>
+    </div>
+
+    <!-- 評量設計 -->
+    <div class="unit-block">
+      <div class="unit-block-header" onclick="toggleBlock(this)">
+        <div class="unit-block-title">
+          <span>⚖️</span> 評量設計與成績管理
+        </div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="unit-block-body">
+        <div class="grid-3" style="margin-top:16px;">
+          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
+            <div class="card-title" style="margin-bottom:10px;">📊 評量工具</div>
+            <ul class="link-list">
+              <li><a href="https://classtime.com" target="_blank">ClassTime 即時測驗</a><span class="link-tag tag-free">免費</span></li>
+              <li><a href="https://www.surveycake.com" target="_blank">SurveyCake 問卷</a><span class="link-tag tag-free">免費</span></li>
+              <li><a href="https://padlet.com" target="_blank">Padlet 開放作答</a><span class="link-tag tag-free">免費</span></li>
+            </ul>
+          </div>
+          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
+            <div class="card-title" style="margin-bottom:10px;">📝 批改輔助</div>
+            <ul class="link-list">
+              <li>作文批改常用評語範本<span class="link-tag tag-pdf">範本</span></li>
+              <li>四等第評分說明（1-6級）<span class="link-tag tag-pdf">說明</span></li>
+              <li>同儕互評表格<span class="link-tag tag-pdf">表格</span></li>
+            </ul>
+          </div>
+          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
+            <div class="card-title" style="margin-bottom:10px;">📈 成績記錄</div>
+            <ul class="link-list">
+              <li><a href="https://docs.google.com/spreadsheets" target="_blank">Google Sheets 成績表</a><span class="link-tag tag-free">免費</span></li>
+              <li>段考分析Excel範本<span class="link-tag tag-pdf">範本</span></li>
+              <li>個別學生弱點追蹤表<span class="link-tag tag-pdf">表格</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== 備課工具 ===== -->
+  <div class="section" id="tab-tools">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--purple-pale)">🛠️</div>
+        <div>
+          <h2>備課工具</h2>
+          <p>課文分析框架 × 板書生成 × 出題輔助</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- 課文分析框架 -->
+      <div class="tool-card">
+        <h3>🧭 課文分析框架生成器</h3>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">輸入課文名稱，產生備課分析框架</p>
+        <input type="text" id="tool-text-input" style="width:100%; padding:8px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; outline:none; margin-bottom:10px; font-family:inherit;" placeholder="例：師說、背影、錯誤…">
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <select id="tool-genre" style="flex:1; padding:7px 10px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; outline:none; font-family:inherit;">
+            <option value="wen">文言文</option>
+            <option value="san">現代散文</option>
+            <option value="shi">詩</option>
+            <option value="yi">議論文</option>
+            <option value="xiao">小說</option>
+          </select>
+          <button class="btn btn-sage" onclick="genFramework()">產生框架</button>
+        </div>
+        <div class="tool-output" id="framework-output">👈 輸入課文名稱後點擊「產生框架」</div>
+      </div>
+
+      <!-- 作文出題輔助 -->
+      <div class="tool-card">
+        <h3>✍️ 作文出題輔助</h3>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">選擇主題，快速生成作文題目方向</p>
+        <div class="chip-row" id="essay-chips">
+          <span class="chip sage" onclick="pickEssayTheme('成長與蛻變',this)">成長與蛻變</span>
+          <span class="chip blue" onclick="pickEssayTheme('人與自然',this)">人與自然</span>
+          <span class="chip gold" onclick="pickEssayTheme('傳承與創新',this)">傳承與創新</span>
+          <span class="chip red" onclick="pickEssayTheme('困境與抉擇',this)">困境與抉擇</span>
+          <span class="chip purple" onclick="pickEssayTheme('記憶與時間',this)">記憶與時間</span>
+          <span class="chip sage" onclick="pickEssayTheme('科技與人性',this)">科技與人性</span>
+        </div>
+        <div class="tool-output" id="essay-output">👆 點選主題後產生作文題目建議</div>
+      </div>
+
+      <!-- 板書設計 -->
+      <div class="tool-card">
+        <h3>🖊️ 板書結構範本</h3>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">常用板書結構，複製後自行填入</p>
+        <div class="chip-row">
+          <span class="chip sage" onclick="showBoard('cause')">因果型</span>
+          <span class="chip blue" onclick="showBoard('compare')">比較型</span>
+          <span class="chip gold" onclick="showBoard('flow')">流程型</span>
+          <span class="chip red" onclick="showBoard('mind')">心智圖型</span>
+        </div>
+        <div class="tool-output" id="board-output">👆 點選板書類型後顯示範本</div>
+      </div>
+
+      <!-- 常用素材 -->
+      <div class="tool-card">
+        <h3>📚 備課素材快查</h3>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">常用字詞・成語・典故快速查詢</p>
+        <ul class="link-list">
+          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">🔠 重編國語辭典（字義/注音）</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://dict.idioms.moe.edu.tw" target="_blank">📖 成語典（典故來源）</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://www.zdic.net" target="_blank">🎵 漢典（聲韻/說文）</a><span class="link-tag tag-free">免費</span></li>
+          <li><a href="https://ctext.org/zh" target="_blank">📜 哲學書電子化計劃</a><span class="link-tag tag-free">免費</span></li>
+          <li><a href="https://tln.nmtl.gov.tw" target="_blank">🏛️ 台灣文學館數位典藏</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://nrch.culture.tw" target="_blank">🖼️ 國家文化記憶庫</a><span class="link-tag tag-official">官方</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 我的筆記 ===== -->
+  <div class="section" id="tab-notes">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--gold-pale)">📌</div>
+        <div>
+          <h2>我的備課筆記</h2>
+          <p>私人記錄，儲存在瀏覽器本機，重新整理後保留</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="notes-toolbar">
+        <select id="note-tag" style="padding:7px 10px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; outline:none; font-family:inherit;">
+          <option value="高一">高一</option>
+          <option value="高二">高二</option>
+          <option value="高三">高三</option>
+          <option value="考試">考試</option>
+          <option value="作文">作文</option>
+          <option value="其他">其他</option>
+        </select>
+        <input type="text" id="note-input" placeholder="輸入備課筆記、待辦、靈感…" onkeydown="if(event.key==='Enter')addNote()">
+        <button class="btn btn-sage" onclick="addNote()">＋ 新增</button>
+        <button class="btn btn-ghost" onclick="exportNotes()">⬇ 匯出</button>
+        <button class="btn btn-red" onclick="clearAllNotes()" style="font-size:12px; padding:7px 10px;">清空</button>
+      </div>
+      <div id="notes-list" class="notes-list">
+        <div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄 📝</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ========== TABS ==========
+function switchTab(id, fromSearch) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelector('[data-tab="'+id+'"]').classList.add('active');
+  if (!fromSearch) window.scrollTo(0,0);
+  return false;
+}
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+// ========== DATE ==========
+(function(){
+  const now = new Date();
+  const d = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}`;
+  const weeks = ['日','一','二','三','四','五','六'];
+  document.getElementById('today-date').textContent = d + '（' + weeks[now.getDay()] + '）';
+  const m = now.getMonth()+1;
+  const sem = (m >= 8 || m <= 1) ? '第一學期' : '第二學期';
+  const year = m >= 8 ? now.getFullYear()-1911 : now.getFullYear()-1912;
+  document.getElementById('semester-label').textContent = `${year} 學年度 ${sem}`;
+})();
+
+// ========== SEARCH DATA ==========
+const searchData = [
+  {title:'論語選', cat:'高一文言文', tab:'g1'},
+  {title:'孟子選', cat:'高一文言文', tab:'g1'},
+  {title:'師說 韓愈', cat:'高二文言文', tab:'g2'},
+  {title:'蘇軾赤壁賦', cat:'高二詩詞', tab:'g2'},
+  {title:'現代詩 余光中', cat:'高一現代文學', tab:'g1'},
+  {title:'琦君春酒', cat:'高一散文', tab:'g1'},
+  {title:'議論文三要素', cat:'高二議論文', tab:'g2'},
+  {title:'學測試題', cat:'考試資源', tab:'exam'},
+  {title:'歷屆學測', cat:'考試資源', tab:'exam'},
+  {title:'段考命題', cat:'考試資源', tab:'exam'},
+  {title:'作文滿分技巧', cat:'高三', tab:'g3'},
+  {title:'課文分析框架', cat:'備課工具', tab:'tools'},
+  {title:'成語典', cat:'備課工具', tab:'tools'},
+  {title:'修辭法', cat:'高一修辭', tab:'g1'},
+  {title:'備課筆記', cat:'筆記', tab:'notes'},
+  {title:'白先勇', cat:'高二小說', tab:'g2'},
+  {title:'黃春明', cat:'高二小說', tab:'g2'},
+  {title:'學測作文題目', cat:'高三', tab:'g3'},
+  {title:'閱讀測驗策略', cat:'高三', tab:'g3'},
+  {title:'文言文翻譯技巧', cat:'高二文言文', tab:'g2'},
+];
+
+const input = document.getElementById('search-input');
+const results = document.getElementById('search-results');
+input.addEventListener('input', function(){
+  const q = this.value.trim();
+  if (!q) { results.classList.remove('show'); return; }
+  const hits = searchData.filter(d => d.title.includes(q) || d.cat.includes(q)).slice(0, 8);
+  if (!hits.length) { results.innerHTML = '<div class="sr-item" style="color:var(--muted)">找不到相關結果</div>'; results.classList.add('show'); return; }
+  results.innerHTML = hits.map(h => `<div class="sr-item" onclick="switchTab('${h.tab}',true); results.classList.remove('show'); input.value=''; "><span>🔍 ${h.title}</span><span class="sr-cat">${h.cat}</span></div>`).join('');
+  results.classList.add('show');
+});
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) results.classList.remove('show'); });
+
+// ========== FILTER G1 ==========
+function filterG1(cat, el) {
+  document.querySelectorAll('#g1-grid .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.g1-card').forEach(c => {
+    c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
+  });
+}
+function filterG(grade, cat, el) {
+  document.querySelectorAll(`#${grade}-grid .chip`).forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll(`.${grade}-card`).forEach(c => {
+    c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
+  });
+}
+
+// ========== TOGGLE BLOCKS ==========
+function toggleBlock(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.toggle-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ========== TOOL: FRAMEWORK ==========
+const frameworks = {
+  wen: (t) => `【${t}】文言文備課分析框架
+━━━━━━━━━━━━━━━━━━
+一、作者生平與時代背景
+   • 作者簡介（朝代、字號、文學地位）
+   • 成文背景與動機
+
+二、文體與結構
+   • 文體分類（說/記/序/賦/傳…）
+   • 段落架構（起承轉合）
+
+三、字詞注釋重點
+   • 難讀字、通假字
+   • 重要虛詞（之、乎、者、也）
+   • 古今義差異
+
+四、修辭與手法
+   • 主要修辭（對偶/排比/借代…）
+   • 論證或描寫技法
+
+五、主旨與思想
+   • 核心主題句
+   • 文化思想脈絡
+
+六、課堂討論問題（3題）
+   Q1: 作者在文中表達了什麼立場？
+   Q2: 哪些句子最能代表主旨？為什麼？
+   Q3: 這篇文章對現代人有何啟示？`,
+  san: (t) => `【${t}】現代散文備課分析框架
+━━━━━━━━━━━━━━━━━━
+一、作者與創作脈絡
+   • 作者生平簡介
+   • 本文創作時代背景
+
+二、文章結構
+   • 開篇策略（以物寓情/直入主題…）
+   • 中段展開方式
+   • 結尾昇華技法
+
+三、感官意象
+   • 視覺、聽覺、觸覺意象
+   • 意象群及其象徵意涵
+
+四、情感與主旨
+   • 敘述者情感脈絡
+   • 核心主題（親情/鄉愁/生命…）
+
+五、寫作技巧
+   • 人稱使用（第一/二/三人稱）
+   • 敘述視角與時間結構
+
+六、延伸討論（3題）
+   Q1: 文章用了哪些意象？表達什麼情感？
+   Q2: 開頭和結尾如何呼應？
+   Q3: 如果你是作者，你會如何改寫結尾？`,
+  shi: (t) => `【${t}】詩歌備課分析框架
+━━━━━━━━━━━━━━━━━━
+一、詩人介紹
+   • 生平背景與詩風
+   • 此詩創作時間與動機
+
+二、形式分析
+   • 古體/近體/現代詩
+   • 韻腳與節奏
+
+三、意象解析
+   • 核心意象（逐行分析）
+   • 意象群整體意涵
+
+四、情感層次
+   • 字面意義 → 深層情感
+   • 情緒轉折點
+
+五、名句賞析
+   • 最精彩的2-3句解析
+   • 修辭手法說明
+
+六、討論題
+   Q1: 詩中的意象如何表達詩人的心情？
+   Q2: 最讓你印象深刻的是哪個句子？為何？
+   Q3: 這首詩和你的生活有什麼連結？`,
+  yi: (t) => `【${t}】議論文備課分析框架
+━━━━━━━━━━━━━━━━━━
+一、論點（主旨）
+   • 文章中心論點（中心句）
+   • 分論點一、二、三
+
+二、論據分析
+   • 舉例論證（哪些例子？真實/虛構）
+   • 引用論證（引用了誰的話？）
+   • 對比論證（有無正反對比？）
+
+三、論證結構
+   • 論證方式（層進/並列/對比）
+   • 邏輯嚴密性評估
+
+四、駁論分析（如有）
+   • 反方觀點是什麼？
+   • 作者如何反駁？
+
+五、語言特色
+   • 用字風格（理性/感性/幽默…）
+   • 句式特點（長短句/排比）
+
+六、辯論題
+   Q1: 文章的論點你同意嗎？理由？
+   Q2: 作者的論據夠充分嗎？
+   Q3: 如果你是辯手，如何反駁作者的觀點？`,
+  xiao: (t) => `【${t}】小說備課分析框架
+━━━━━━━━━━━━━━━━━━
+一、人物分析
+   • 主角性格特質（至少3點）
+   • 配角功能（對比/輔佐/象徵）
+   • 人物描寫方式（外貌/語言/動作）
+
+二、情節結構
+   • 開端 → 發展 → 高潮 → 結局
+   • 伏筆與照應
+   • 轉折點分析
+
+三、時間與空間
+   • 敘事時序（順/倒/插敘）
+   • 場景設定與氛圍
+
+四、敘事視角
+   • 第一人稱/第三人稱全知/有限視角
+   • 視角帶來的效果
+
+五、主題意涵
+   • 表層主題
+   • 深層社會/人性意涵
+
+六、討論題
+   Q1: 主角做了什麼選擇？你如何評價？
+   Q2: 結局是否合理？如果改寫你會怎麼做？
+   Q3: 這篇小說反映了什麼社會現象？`
+};
+
+function genFramework() {
+  const t = document.getElementById('tool-text-input').value.trim() || '（課文名稱）';
+  const g = document.getElementById('tool-genre').value;
+  document.getElementById('framework-output').textContent = frameworks[g](t);
+}
+
+// ========== TOOL: ESSAY ==========
+const essayData = {
+  '成長與蛻變': `【成長與蛻變】作文出題建議
+──────────────────
+✦ 題目一（敘述導向）
+  「那一刻，我長大了」
+  →  記敘一個讓你覺得自己不再是孩子的瞬間
+
+✦ 題目二（引文型）
+  「人只有在摔跤之後，才真正學會走路。」
+  以此為題，寫你的感悟
+
+✦ 題目三（圖表題）
+  請根據蝴蝶破繭而出的圖像，
+  闡述「改變需要磨練」的道理
+
+✦ 跨課文整合
+  結合《背影》、《春酒》等課文，
+  探討「親情與成長的關係」
+
+✦ 審題提醒給學生
+  • 要有具體「事件」，不能只談大道理
+  • 蛻變前後的「對比」要清楚`,
+  '人與自然': `【人與自然】作文出題建議
+──────────────────
+✦ 題目一（抒情導向）
+  「與自然對話」
+  → 記敘一次讓你感受到自然之美/力量的經歷
+
+✦ 題目二（引文型）
+  「天地不仁，以萬物為芻狗。」（老子）
+  以此為題，寫你對人類與自然關係的思考
+
+✦ 題目三（議論型）
+  「人類是地球的客人，還是主人？」
+  陳述你的立場並加以論證
+
+✦ 跨課文整合
+  結合《聽聽那冷雨》《伐木》等課文，
+  分析人與自然的多種關係
+
+✦ 審題提醒給學生
+  • 現代詩意象可作佳句素材
+  • 可談環境議題但要有個人觀點`,
+  '傳承與創新': `【傳承與創新】作文出題建議
+──────────────────
+✦ 題目一（敘述/議論）
+  「保留還是改變？」
+  → 從生活中一個傳統出發，思考應如何面對
+
+✦ 題目二（名言型）
+  「江山代有才人出，各領風騷數百年。」
+  以此發揮，談文化的傳承與創新
+
+✦ 題目三（情境型）
+  假設你是某一傳統技藝的傳人，
+  面對數位時代，你將如何選擇？
+
+✦ 跨課文整合
+  結合儒家經典、台灣文學，
+  探討文化保存的意義
+
+✦ 審題提醒給學生
+  • 要有正反兩面思考
+  • 舉具體例子（民俗/藝術/語言）`,
+  '困境與抉擇': `【困境與抉擇】作文出題建議
+──────────────────
+✦ 題目一（敘述型）
+  「那個兩難的時刻」
+  → 記敘一次你面臨艱難選擇的經驗
+
+✦ 題目二（引文型）
+  「正確的選擇不一定是容易的選擇。」
+  以此為題，從課文或生活出發
+
+✦ 題目三（議論型）
+  「在道德與現實之間，如何做出抉擇？」
+
+✦ 跨課文整合
+  結合《捕蛇者說》《史記》人物，
+  分析古人面對困境的不同態度
+
+✦ 審題提醒給學生
+  • 抉擇的過程比結果更重要（要寫出「掙扎」）
+  • 避免一開始就說「選擇了正確的路」`,
+  '記憶與時間': `【記憶與時間】作文出題建議
+──────────────────
+✦ 題目一（抒情型）
+  「那件事，我永遠記得」
+  → 從一個具體場景出發，寫時間帶走什麼留下什麼
+
+✦ 題目二（引文型）
+  「時光不能倒流，但記憶可以永恆。」
+  以此為題，寫你的思考
+
+✦ 題目三（哲理型）
+  「人為什麼需要記憶？」
+  由個人推及社會/民族
+
+✦ 跨課文整合
+  結合《春酒》《背影》等散文，
+  分析記憶如何形塑一個人的認同
+
+✦ 審題提醒給學生
+  • 避免流水帳，選一個「關鍵時刻」深挖
+  • 時間流逝要有具體感受（氣味/聲音/色彩）`,
+  '科技與人性': `【科技與人性】作文出題建議
+──────────────────
+✦ 題目一（議論型）
+  「AI 讓人類變聰明，還是變懶？」
+  陳述立場並以具體例子論證
+
+✦ 題目二（情境型）
+  若有一天，機器人能替代所有人類工作，
+  你認為人類的價值在哪裡？
+
+✦ 題目三（反思型）
+  「我最後一次放下手機，真正看著對方的眼睛，
+  是什麼時候？」
+  從這個問題出發，寫一篇文章
+
+✦ 跨課文整合
+  結合當代散文/議論文，
+  探討科技時代的人際關係
+
+✦ 審題提醒給學生
+  • 不要只批評科技，要有平衡觀點
+  • 最好有親身體驗的具體場景`
+};
+
+function pickEssayTheme(theme, el) {
+  document.querySelectorAll('#essay-chips .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('essay-output').textContent = essayData[theme] || '（暫無資料）';
+}
+
+// ========== TOOL: BOARD ==========
+const boardData = {
+  cause: `【因果型板書】
+┌─────────────────────────────────┐
+│  原因（Why）      ➜   結果（What）  │
+├────────────────┬────────────────┤
+│ 1. ____________│ 1. ___________│
+│ 2. ____________│ 2. ___________│
+│ 3. ____________│ 3. ___________│
+├────────────────┴────────────────┤
+│  結論 / 啟示：_____________________│
+└─────────────────────────────────┘
+使用時機：古文背景分析、人物行為動機`,
+  compare: `【比較型板書】
+┌────────────────┬────────────────┐
+│    甲（A）      │    乙（B）      │
+├────────────────┼────────────────┤
+│ ______________ │ ______________ │
+│ ______________ │ ______________ │
+│ ______________ │ ______________ │
+├────────────────┴────────────────┤
+│  相同點：__________________________│
+│  相異點：__________________________│
+└─────────────────────────────────┘
+使用時機：作者比較、文體比較、人物比較`,
+  flow: `【流程型板書】
+┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐
+│  開端  │ ➜ │  發展  │ ➜ │  高潮  │ ➜ │  結局  │
+│______│   │______│   │______│   │______│
+└──────┘   └──────┘   └──────┘   └──────┘
+          ↓
+┌─────────────────────────────────┐
+│  主旨 / 核心意涵：_________________│
+└─────────────────────────────────┘
+使用時機：小說情節分析、歷史事件`,
+  mind: `【心智圖型板書】
+              ┌─ 人物 ──────────┐
+              │                   │
+      ┌─ 背景─┤                   ▼
+      │       └─ 時代 ──────課文名稱
+      │                   │
+  主旨──────────────────┤
+      │                   │
+      │       ┌─ 修辭 ──────────┤
+      └─ 手法─┤                   │
+              └─ 結構 ──────────┘
+                    ↓
+            核心主題 / 啟示
+使用時機：整課總整理、複習課`
+};
+
+function showBoard(type) {
+  document.getElementById('board-output').textContent = boardData[type] || '（暫無）';
+}
+
+// ========== NOTES ==========
+function loadNotes() {
+  return JSON.parse(localStorage.getItem('yifen_notes') || '[]');
+}
+function saveNotes(notes) {
+  localStorage.setItem('yifen_notes', JSON.stringify(notes));
+  document.getElementById('notes-count').textContent = notes.length + ' 則';
+}
+function renderNotes() {
+  const notes = loadNotes();
+  const list = document.getElementById('notes-list');
+  document.getElementById('notes-count').textContent = notes.length + ' 則';
+  if (!notes.length) {
+    list.innerHTML = '<div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄 📝</div>';
+    return;
+  }
+  list.innerHTML = notes.map((n, i) => `
+    <div class="note-item">
+      <div class="note-body">
+        <span class="note-tag-label">${n.tag}</span>
+        ${n.text.replace(/\n/g, '<br>')}
+        <div class="note-meta">${n.time}</div>
+      </div>
+      <button class="note-del" onclick="delNote(${i})">✕</button>
+    </div>
+  `).join('');
+}
+function addNote() {
+  const input = document.getElementById('note-input');
+  const tag = document.getElementById('note-tag').value;
+  const text = input.value.trim();
+  if (!text) return;
+  const notes = loadNotes();
+  const now = new Date();
+  notes.unshift({ text, tag, time: `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}` });
+  saveNotes(notes);
+  input.value = '';
+  renderNotes();
+}
+function delNote(i) {
+  const notes = loadNotes();
+  notes.splice(i, 1);
+  saveNotes(notes);
+  renderNotes();
+}
+function clearAllNotes() {
+  if (!confirm('確定清空所有筆記？此操作無法復原。')) return;
+  localStorage.removeItem('yifen_notes');
+  renderNotes();
+}
+function exportNotes() {
+  const notes = loadNotes();
+  if (!notes.length) { alert('沒有筆記可以匯出'); return; }
+  const txt = notes.map(n => `[${n.tag}] ${n.time}\n${n.text}`).join('\n\n---\n\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(txt);
+  a.download = '宜芬備課筆記.txt';
+  a.click();
+}
+renderNotes();
+</script>
+
+</body>
+</html>
