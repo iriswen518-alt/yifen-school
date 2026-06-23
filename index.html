@@ -710,6 +710,54 @@
     .chip { flex: 1 1 calc(50% - 4px); min-width: 0; }
   }
 
+  /* ===== 考試資源 ===== */
+  .exam-year-card {
+    background: #fafbfa;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .exam-year-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    background: var(--blue);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .exam-topic { font-size: 13.5px; line-height: 1.7; color: #4a4a4a; margin: 4px 0 8px; }
+  .exam-note {
+    font-size: 13px; line-height: 1.7; color: #5a4a2a;
+    background: var(--gold-pale); border-radius: 8px; padding: 10px 14px; margin-top: 10px;
+  }
+  .exam-note-mini { font-size: 11.5px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+  /* 答案格 */
+  .ak-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+  .ak-cell {
+    display: flex; flex-direction: column; align-items: center;
+    border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: white;
+  }
+  .ak-num { font-size: 11px; color: var(--muted); background: var(--sage-pale); width: 100%; text-align: center; padding: 2px 0; }
+  .ak-ans { font-size: 14px; font-weight: 700; color: var(--blue); padding: 4px 0; }
+  /* 選擇題解析 */
+  .mc-q { border-top: 1px dashed var(--border); padding: 14px 0; }
+  .mc-q:first-of-type { border-top: none; }
+  .mc-q-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .mc-q-no { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .mc-q-tag { font-size: 11px; color: var(--sage); background: var(--sage-pale); padding: 2px 10px; border-radius: 12px; }
+  .mc-stem { font-size: 13.5px; line-height: 1.75; color: #2d2d2d; margin: 4px 0 8px; }
+  .mc-opts { list-style: none; padding-left: 0; margin: 0 0 8px; }
+  .mc-opts li { font-size: 13px; line-height: 1.7; color: #4a4a4a; padding: 2px 0; }
+  .mc-ans { font-size: 13.5px; font-weight: 700; color: var(--red); margin-bottom: 6px; }
+  .mc-ans-label { background: var(--red-pale); color: var(--red); padding: 1px 10px; border-radius: 12px; font-size: 12px; }
+  .mc-exp { font-size: 13px; line-height: 1.75; color: #444; background: var(--blue-pale); border-radius: 8px; padding: 10px 14px; }
+  @media (max-width: 640px) {
+    .ak-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
   /* ===== LESSON BODY 課程內容 ===== */
   .lesson-body { padding: 4px 2px 2px; }
   .lesson-section { margin-bottom: 16px; }
@@ -1797,139 +1845,172 @@
         <div class="section-icon" style="background:var(--gold-pale)">📝</div>
         <div>
           <h2>考試資源</h2>
-          <p>段考 × 學測 × 模擬考 × 評量工具</p>
+          <p>學測國寫題目 × 選擇題答案 × 精選試題解析 × 段考命題</p>
         </div>
       </div>
     </div>
 
-    <!-- 段考命題 -->
+    <!-- 歷屆學測國寫題目 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title">
-          <span>📋</span> 段考命題資源
-        </div>
+        <div class="unit-block-title"><span>✍️</span> 歷屆學測國寫題目（114～115）</div>
         <span class="toggle-arrow open">▶</span>
       </div>
       <div class="unit-block-body open">
-        <div class="grid-2" style="margin-top:16px;">
-          <div>
-            <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">選擇題命題工具</p>
-            <ul class="link-list">
-              <li><a href="https://kahoot.com" target="_blank">Kahoot! 出互動選擇題</a><span class="link-tag tag-free">免費</span></li>
-              <li><a href="https://quizlet.com" target="_blank">Quizlet 字詞記憶卡</a><span class="link-tag tag-free">免費</span></li>
-              <li><a href="https://forms.google.com" target="_blank">Google 表單線上考卷</a><span class="link-tag tag-free">免費</span></li>
-              <li><a href="https://nearpod.com" target="_blank">Nearpod 互動測驗</a><span class="link-tag tag-free">免費</span></li>
-            </ul>
+        
+        <div class="exam-year-card">
+          <div class="exam-year-tag">114 學年度 國寫</div>
+          <div class="lesson-section">
+            <div class="lesson-label">第一大題・知性的統整判斷能力</div>
+            <p class="exam-topic">以「擬社會互動」為題,引霍頓和沃荷1956年概念,探討粉絲與網紅、明星、政治人物的單向情感連結(改寫自泛科學〈「擬社會互動」的本質與其引發的社會問題〉)。</p>
+            <ul class="lesson-list"><li>問題(一):依據上文,請說明粉絲與公眾人物的「擬社會互動」有哪些特徵?文長限80字以內(至多4行)。(占4分)</li><li>問題(二):當代公眾人物與社會大眾透過臉書、IG等社群媒體,發展出各種樣態的擬社會互動。請就你的觀察,寫一篇短文,闡述擬社會互動的正、負面影響。文長限400字以內(至多19行)。(占21分)</li></ul>
           </div>
-          <div>
-            <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">常見段考題型</p>
-            <ul class="link-list">
-              <li>字音字形題（形近字）<span class="link-tag tag-pdf">題型</span></li>
-              <li>成語典故題<span class="link-tag tag-pdf">題型</span></li>
-              <li>修辭辨識題<span class="link-tag tag-pdf">題型</span></li>
-              <li>文言文翻譯填空<span class="link-tag tag-pdf">題型</span></li>
-              <li>現代文閱讀測驗<span class="link-tag tag-pdf">題型</span></li>
-            </ul>
+          <div class="lesson-section">
+            <div class="lesson-label">第二大題・情意的感受抒發能力</div>
+            <p class="exam-topic">以「52赫茲鯨魚」為引子,述其音頻特殊、同類聽不到牠的聲音,卻成為各類創作題材,引出對自身獨特性的想像與抒發。</p>
+            <ul class="lesson-list"><li>許多人因為52赫茲鯨魚,說了屬於自己的故事。你心中也有自己獨特的52赫茲嗎?請以「關於52赫茲,我想說的是……」為題,抒發想像,作文一篇,文長不限。</li></ul>
           </div>
+          <div class="exam-note"><strong>命題觀察：</strong>知性題延續媒體素養與社群現象,要求先擷取文本特徵(短答)再延伸正反論述;情意題以動物寓言投射自我,命題開放、重想像與獨特性。可訓練學生擷取訊息與借物抒情。</div>
+        </div>
+        <div class="exam-year-card">
+          <div class="exam-year-tag">115 學年度 國寫</div>
+          <div class="lesson-section">
+            <div class="lesson-label">第一大題・知性的統整判斷能力</div>
+            <p class="exam-topic">以韓劇《愛的迫降》女主角拒吃同行小豬卻可吃魚的情節,引列維納斯「臉」的倫理哲學,探討共感與倫理責任(改寫自黃宗慧、黃宗潔《就算牠沒有臉》)。</p>
+            <ul class="lesson-list"><li>問題(一):依據上文,女主角何以拒吃同行小豬,卻可接受吃從河裡捕來的魚?請說明理由。文長限80字以內(至多4行)。(占4分)</li><li>問題(二):「無臉」,可以指沒有表情、情緒的臉或印象,有時是我們藉以逃避關懷和責任的托詞與作法,由此合理化對他人的無視,或對動物的殘忍,抑或有其他原因及考慮。相對的,人們也可能積極回應「臉」的召喚,因而挺身承擔倫理責任。請就上文對「臉」的說明,舉出生活見聞中選擇逃避或積極承擔的事例,就如何做出選擇,表達你的看法與省思。文長限400字以內(至多19行)。(占21分)</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">第二大題・情意的感受抒發能力</div>
+            <p class="exam-topic">引幾米圖文共構作品:甲圖「最想和你頭碰頭說說話/我也是」呈現渴望連結,乙圖翻轉為「冷嘲熱諷/當成耳邊風」呈現隔閡(改寫自幾米《超級沒用的大人》、《但願有一天你會懂》)。</p>
+            <ul class="lesson-list"><li>在你的成長過程中,面對身旁熟悉的親人、師長、同學、朋友,或許也有如同圖文乙的經驗,讓你們在相處時裹足不前,無法坦然表達?請以「隔在我們之間的種種」為題,寫一篇文章,內容須描述是什麼原因造成彼此的隔閡?你怎樣看待彼此的阻隔或心結?試著換位思考,揣摩對方的想法,並提出自己的回應。(占25分)</li></ul>
+          </div>
+          <div class="exam-note"><strong>命題觀察：</strong>知性題引入哲學家列維納斯「臉」的倫理觀,要求文本理解(短答)＋舉例論辯與省思,層次更深;情意題首度結合幾米圖文(圖像翻轉)引導換位思考。宜練習圖文判讀、哲思轉化與真情敘事。</div>
         </div>
       </div>
     </div>
 
-    <!-- 歷屆學測 -->
+    <!-- 歷屆學測選擇題參考答案 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title">
-          <span>🎓</span> 歷屆學測試題（大考中心官方）
-        </div>
+        <div class="unit-block-title"><span>✅</span> 歷屆學測選擇題參考答案（111～115）</div>
         <span class="toggle-arrow">▶</span>
       </div>
       <div class="unit-block-body">
-        <table class="exam-table" style="margin-top:16px;">
-          <thead>
-            <tr>
-              <th>年度</th>
-              <th>試題</th>
-              <th>解析</th>
-              <th>作文題目</th>
-              <th>平均分</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>113</strong> (2024)</td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
-              <td>——（待整理）</td>
-              <td>——</td>
-            </tr>
-            <tr>
-              <td><strong>112</strong> (2023)</td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
-              <td>——（待整理）</td>
-              <td>——</td>
-            </tr>
-            <tr>
-              <td><strong>111</strong> (2022)</td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
-              <td>——（待整理）</td>
-              <td>——</td>
-            </tr>
-            <tr>
-              <td><strong>110</strong> (2021)</td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
-              <td>——（待整理）</td>
-              <td>——</td>
-            </tr>
-            <tr>
-              <td><strong>109</strong> (2020)</td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">下載試題</a></td>
-              <td><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">解析</a></td>
-              <td>——（待整理）</td>
-              <td>——</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:12px; color:var(--muted); margin-top:10px;">* 點擊連結後至「國文（含作文）」下載。歷屆更多年份可至大考中心官方下載。</p>
+        
+        <div class="exam-year-card">
+          <div class="exam-year-tag">115 學年度 國綜選擇題參考答案</div>
+          <div class="ak-grid"><div class="ak-cell"><span class="ak-num">1</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">2</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">3</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">4</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">5</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">6</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">7</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">8</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">9</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">10</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">11</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">12</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">13</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">14</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">15</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">16</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">17</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">18</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">19</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">20</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">21</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">22</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">23</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">24</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">25</span><span class="ak-ans">BE</span></div><div class="ak-cell"><span class="ak-num">26</span><span class="ak-ans">ABD</span></div><div class="ak-cell"><span class="ak-num">27</span><span class="ak-ans">ABD</span></div><div class="ak-cell"><span class="ak-num">28</span><span class="ak-ans">ACDE</span></div><div class="ak-cell"><span class="ak-num">29</span><span class="ak-ans">CD</span></div><div class="ak-cell"><span class="ak-num">30</span><span class="ak-ans">CD</span></div><div class="ak-cell"><span class="ak-num">31</span><span class="ak-ans">ABE</span></div><div class="ak-cell"><span class="ak-num">35</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">36</span><span class="ak-ans">A</span></div></div>
+          <p class="exam-note-mini">＊未列題號為非選擇題；多選題答案以英文字母並列（如 ABD）。資料來源：大考中心官方參考答案。</p>
+        </div>
+        <div class="exam-year-card">
+          <div class="exam-year-tag">114 學年度 國綜選擇題參考答案</div>
+          <div class="ak-grid"><div class="ak-cell"><span class="ak-num">1</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">2</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">3</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">4</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">5</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">6</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">7</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">8</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">9</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">10</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">11</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">12</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">13</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">14</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">15</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">16</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">17</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">18</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">19</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">20</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">21</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">22</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">23</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">24</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">25</span><span class="ak-ans">CE</span></div><div class="ak-cell"><span class="ak-num">26</span><span class="ak-ans">AE</span></div><div class="ak-cell"><span class="ak-num">27</span><span class="ak-ans">CE</span></div><div class="ak-cell"><span class="ak-num">28</span><span class="ak-ans">BD</span></div><div class="ak-cell"><span class="ak-num">29</span><span class="ak-ans">AE</span></div><div class="ak-cell"><span class="ak-num">30</span><span class="ak-ans">ABD</span></div><div class="ak-cell"><span class="ak-num">31</span><span class="ak-ans">BDE</span></div><div class="ak-cell"><span class="ak-num">32</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">33</span><span class="ak-ans">D</span></div></div>
+          <p class="exam-note-mini">＊未列題號為非選擇題；多選題答案以英文字母並列（如 ABD）。資料來源：大考中心官方參考答案。</p>
+        </div>
+        <div class="exam-year-card">
+          <div class="exam-year-tag">113 學年度 國綜選擇題參考答案</div>
+          <div class="ak-grid"><div class="ak-cell"><span class="ak-num">1</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">2</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">3</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">4</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">5</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">6</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">7</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">8</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">9</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">10</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">11</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">12</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">13</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">14</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">15</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">16</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">17</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">18</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">19</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">20</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">21</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">22</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">23</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">24</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">25</span><span class="ak-ans">ABC</span></div><div class="ak-cell"><span class="ak-num">26</span><span class="ak-ans">ACE</span></div><div class="ak-cell"><span class="ak-num">27</span><span class="ak-ans">BE</span></div><div class="ak-cell"><span class="ak-num">28</span><span class="ak-ans">ADE</span></div><div class="ak-cell"><span class="ak-num">29</span><span class="ak-ans">BCE</span></div><div class="ak-cell"><span class="ak-num">30</span><span class="ak-ans">AE</span></div><div class="ak-cell"><span class="ak-num">31</span><span class="ak-ans">CE</span></div><div class="ak-cell"><span class="ak-num">34</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">35</span><span class="ak-ans">D</span></div></div>
+          <p class="exam-note-mini">＊未列題號為非選擇題；多選題答案以英文字母並列（如 ABD）。資料來源：大考中心官方參考答案。</p>
+        </div>
+        <div class="exam-year-card">
+          <div class="exam-year-tag">111 學年度 國綜選擇題參考答案</div>
+          <div class="ak-grid"><div class="ak-cell"><span class="ak-num">1</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">2</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">3</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">4</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">5</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">6</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">7</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">8</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">9</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">10</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">11</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">12</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">13</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">14</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">15</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">16</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">17</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">18</span><span class="ak-ans">A</span></div><div class="ak-cell"><span class="ak-num">19</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">20</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">21</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">22</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">23</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">24</span><span class="ak-ans">D</span></div><div class="ak-cell"><span class="ak-num">25</span><span class="ak-ans">C</span></div><div class="ak-cell"><span class="ak-num">26</span><span class="ak-ans">BD</span></div><div class="ak-cell"><span class="ak-num">27</span><span class="ak-ans">ADE</span></div><div class="ak-cell"><span class="ak-num">28</span><span class="ak-ans">CE</span></div><div class="ak-cell"><span class="ak-num">29</span><span class="ak-ans">ABC</span></div><div class="ak-cell"><span class="ak-num">30</span><span class="ak-ans">ABD</span></div><div class="ak-cell"><span class="ak-num">31</span><span class="ak-ans">CE</span></div><div class="ak-cell"><span class="ak-num">32</span><span class="ak-ans">AB</span></div><div class="ak-cell"><span class="ak-num">33</span><span class="ak-ans">B</span></div><div class="ak-cell"><span class="ak-num">37</span><span class="ak-ans">B</span></div></div>
+          <p class="exam-note-mini">＊未列題號為非選擇題；多選題答案以英文字母並列（如 ABD）。資料來源：大考中心官方參考答案。</p>
+        </div>
       </div>
     </div>
 
-    <!-- 評量設計 -->
+    <!-- 精選試題解析 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title">
-          <span>⚖️</span> 評量設計與成績管理
-        </div>
+        <div class="unit-block-title"><span>🔍</span> 學測國綜精選試題解析（114～115）</div>
         <span class="toggle-arrow">▶</span>
       </div>
       <div class="unit-block-body">
-        <div class="grid-3" style="margin-top:16px;">
-          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
-            <div class="card-title" style="margin-bottom:10px;">📊 評量工具</div>
-            <ul class="link-list">
-              <li><a href="https://classtime.com" target="_blank">ClassTime 即時測驗</a><span class="link-tag tag-free">免費</span></li>
-              <li><a href="https://www.surveycake.com" target="_blank">SurveyCake 問卷</a><span class="link-tag tag-free">免費</span></li>
-              <li><a href="https://padlet.com" target="_blank">Padlet 開放作答</a><span class="link-tag tag-free">免費</span></li>
-            </ul>
-          </div>
-          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
-            <div class="card-title" style="margin-bottom:10px;">📝 批改輔助</div>
-            <ul class="link-list">
-              <li>作文批改常用評語範本<span class="link-tag tag-pdf">範本</span></li>
-              <li>四等第評分說明（1-6級）<span class="link-tag tag-pdf">說明</span></li>
-              <li>同儕互評表格<span class="link-tag tag-pdf">表格</span></li>
-            </ul>
-          </div>
-          <div class="card" style="box-shadow:none; border:1.5px dashed var(--border);">
-            <div class="card-title" style="margin-bottom:10px;">📈 成績記錄</div>
-            <ul class="link-list">
-              <li><a href="https://docs.google.com/spreadsheets" target="_blank">Google Sheets 成績表</a><span class="link-tag tag-free">免費</span></li>
-              <li>段考分析Excel範本<span class="link-tag tag-pdf">範本</span></li>
-              <li>個別學生弱點追蹤表<span class="link-tag tag-pdf">表格</span></li>
-            </ul>
-          </div>
+        
+        <div class="exam-year-card">
+          <div class="exam-year-tag">114 學年度 國綜・精選試題解析</div>
+          
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 1 題</span><span class="mc-q-tag">字音字形</span></div>
+              <p class="mc-stem">下列「」內的字，讀音前後相同的是：</p>
+              <ul class="mc-opts"><li>(A)「�yu」出寶貨／吾生須「臾」</li><li>(B)切而「啗」之／「諂」詞令色</li><li>(C)「迤」邐而行／外「弛」內張</li><li>(D)若分「畛」域／暴「殄」天物</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> A</div>
+              <div class="mc-exp"><strong>詳解：</strong>(A)「舁」與「臾」皆讀ㄩˊ，音同，正確。(B)「啗」讀ㄉㄢˋ（吃），「諂」讀ㄔㄢˇ，不同。(C)「迤」讀ㄧˇ，「弛」讀ㄔˊ，不同。(D)「畛」讀ㄓㄣˇ，「殄」讀ㄊㄧㄢˇ（滅絕），不同。故選A。此題考形近、易混字的正確讀音辨析。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 5 題</span><span class="mc-q-tag">文言閱讀（語意填空）</span></div>
+              <p class="mc-stem">王安石〈材論〉：「吾聞之，六國合從，而辯說之材出；劉、項並世，而籌畫戰鬥之徒起；唐太宗欲治，而謨謀諫諍之佐來。此數輩者，方此數君未出之時，蓋未嘗有也。____。天下之廣，人物之眾，而曰果無材可用者，吾不信也。」處應填入使文意連貫的文句。</p>
+              <ul class="mc-opts"><li>(A)人君苟欲之，斯至矣</li><li>(B)古之人，於材有以教育成就之</li><li>(C)人之有異能於其身，猶錐之在囊</li><li>(D)後之在位者，蓋未嘗求其說而試之以實也</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> A</div>
+              <div class="mc-exp"><strong>詳解：</strong>前文列舉合縱、楚漢、唐太宗三例，說明「君主有需求，人才便應運而生」，故空格須承接此意，得出結論「人君苟欲之，斯至矣」（君主只要想要人才，人才就來），與後文「豈無材可用」相呼應，故選A。(B)談教育成就，(C)「錐處囊中」喻才能必顯，(D)責後世在位者不求才，皆與「君欲則才至」的論證脈絡不貼合。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 15 題</span><span class="mc-q-tag">修辭與意象理解（現代文閱讀）</span></div>
+              <p class="mc-stem">田曉菲《赤壁之戟》解讀杜牧〈赤壁〉：「折戟沉沙鐵未銷，自將磨洗認前朝。東風不與周郎便，銅雀春深鎖二喬。」文中指出：杜牧磨洗折戟非為傷敵，而是辨認前朝，戟由「武」的工具變成「文」的載體；末句以鐵鎖囚禁二喬呼應首句未銷之「鐵」。下列最符合本文對該詩意象解讀的是：</p>
+              <ul class="mc-opts"><li>(A)「戟」被賦予殺敵之外的作用，呈現了文武交疊的影像</li><li>(B)「鐵未銷」暗示戰事慘烈，並隱喻赤壁之戰的影響深鉅</li><li>(C)「東風」喻生命的復甦，意謂二喬在銅雀臺享受新生活</li><li>(D)「銅雀」指銅雀臺，藉空間的閉鎖以暗示政治權力轉移</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> A</div>
+              <div class="mc-exp"><strong>詳解：</strong>本文明言折戟由「武」的工具轉為辨認前朝的「文」的載體，正是文武交疊，故(A)正確。(B)文中「鐵未銷」是為呼應末句囚禁二喬的鐵鎖，非暗示戰事慘烈或影響深鉅。(C)詩意為周瑜若無東風之助則二喬將被擄禁，「東風」是偶然助力而非生命復甦，二喬亦非享受新生活。(D)銅雀臺象徵受挫與禁錮，文中未談政治權力轉移。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 26 題</span><span class="mc-q-tag">詞語成語運用（多選）</span></div>
+              <p class="mc-stem">下列文句畫底線的詞語，運用適當的是：</p>
+              <ul class="mc-opts"><li>(A)邱老師腹笥甚廣，上課引經據典，學生感佩不已</li><li>(B)在民眾熱情擁戴下，他滿懷箕山之志，決定參選市長</li><li>(C)臺北的冬天又濕又冷，如果沒有電暖器，肯定席不暇暖</li><li>(D)連假時車潮湧入熱門觀光景點，遊客摩頂放踵，寸步難行</li><li>(E)企業主管應拿出吐哺握髮的態度，積極攬才，打造國際競爭力</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> AE</div>
+              <div class="mc-exp"><strong>詳解：</strong>(A)「腹笥甚廣」喻學問淵博、藏書豐富，用於形容博學老師恰當。(E)「吐哺握髮」典出周公禮賢下士、急於招攬人才，用於主管積極攬才恰當。(B)「箕山之志」指隱居避世之志，與「參選市長」矛盾。(C)「席不暇暖」形容奔走忙碌無暇安坐，與「天冷需電暖器」無關。(D)「摩頂放踵」典出墨子摩禿頭頂、走破腳跟，形容捨身為人不辭勞苦，非形容人潮擁擠。故選AE。</div>
+            </div>
+        </div>
+        <div class="exam-year-card">
+          <div class="exam-year-tag">115 學年度 國綜・精選試題解析</div>
+          
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 1 題</span><span class="mc-q-tag">字音字形</span></div>
+              <p class="mc-stem">下列各組「」內的字，讀音前後相同的是：</p>
+              <ul class="mc-opts"><li>(A)取枕「攲」臥／風光「旖」旎</li><li>(B)略「諳」水性／「喑」啞難言</li><li>(C)「枇」杷甘美／「毗」鄰而居</li><li>(D)燎原莫「遏」／登門拜「謁」</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> C</div>
+              <div class="mc-exp"><strong>詳解：</strong>(C)「枇」杷之枇與「毗」鄰之毗皆讀ㄆㄧˊ，前後相同，正確。(A)攲讀ㄑㄧ（傾斜），旖讀ㄧˇ，不同。(B)諳讀ㄢ（熟悉），喑讀ㄧㄣ（啞、不能出聲），不同。(D)遏讀ㄜˋ（阻止），謁讀ㄧㄝˋ（進見），不同。本題考形近或義近字的辨音，須逐一查證聲韻而非望形生音。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 13 題</span><span class="mc-q-tag">文言閱讀（引文佐證）</span></div>
+              <p class="mc-stem">余英時〈俠與中國文化〉指出：中國古代的「士」一方面承擔建立維持政治文化秩序的任務，另一方面又發展出不肯屈服於權威、持「道」以議政的批判傳統。畫線處強調此「不屈服於權威、持道議政」的批判精神。問：如果想為畫線處提供文獻佐證，最適合引用的是：</p>
+              <ul class="mc-opts"><li>(A)桀紂之失天下也，失其民也，失其民者，失其心也</li><li>(B)殘賊之人，謂之一夫，聞誅一夫紂矣，未聞弒君也</li><li>(C)天行有常，不為堯存，不為桀亡，應之以治則吉，應之以亂則凶</li><li>(D)紂之不善，不如是之甚也，是以君子惡居下流，天下之惡皆歸焉</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> B</div>
+              <div class="mc-exp"><strong>詳解：</strong>畫線處要佐證的是「不屈服於權威、持道批判」的精神。(B)孟子言誅殘賊暴君只是誅「一夫」而非弒君，正是不畏君權、以道議政的最強表態，最契合，正確。(A)言得民心者得天下，重點在民本而非批判君權。(C)荀子言天道有常、治亂在人事，與批判權威無關。(D)子貢之語在說君子當避居下流以免惡名歸己，與議政批判精神不合。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 22 題</span><span class="mc-q-tag">詩歌鑑賞（文意理解）</span></div>
+              <p class="mc-stem">杜甫〈觀打魚歌〉（節錄）：「綿州江水之東津，魴魚鱍鱍色勝銀。漁人漾舟沉大網，截江一擁數百鱗……饔子左右揮霜刀，鱠飛金盤白雪高。徐州禿尾不足憶，漢陰槎頭遠遁逃。魴魚肥美知第一，既飽歡娛亦蕭瑟。君不見朝來割素鬐，咫尺波濤永相失。」問：下列關於甲詩的解讀，最適當的是：</p>
+              <ul class="mc-opts"><li>(A)「色勝銀」、「數百鱗」凸顯魴魚帶來可觀的收入</li><li>(B)「徐州」、「漢陰」襯托出「綿州」廚師的刀工佳</li><li>(C)「既飽歡娛亦蕭瑟」指出口腹之慾滿足後終難免悵然</li><li>(D)「咫尺波濤永相失」感嘆竭澤而漁將造成長遠的損失</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> C</div>
+              <div class="mc-exp"><strong>詳解：</strong>(C)正確：飽食歡娛之後而生「蕭瑟」，正是杜甫由口腹之樂轉入對戕害生命的悵然反省，呼應全詩戒殺之旨。(A)「色勝銀」「數百鱗」寫魚之鮮美與漁獲之多，非言收入。(B)「徐州禿尾」「漢陰槎頭」是以他處名魚反襯綿州魴魚之美（伴說、陪襯），非讚廚師刀工。(D)「咫尺波濤永相失」嘆魚一經剖割便永離江水、傷其失命，非言竭澤而漁的長遠損失。</div>
+            </div>
+            <div class="mc-q">
+              <div class="mc-q-head"><span class="mc-q-no">第 28 題</span><span class="mc-q-tag">國學常識（韻文與聲音）</span></div>
+              <p class="mc-stem">（多選）文學除了以視覺接收，也會以聽覺感受。關於文學的聲音表現，敘述適當的是：</p>
+              <ul class="mc-opts"><li>(A)元代雜劇中註明曲牌的文字可合樂而歌，穿插其間的口白不用押韻</li><li>(B)詞在宋代可合樂而歌，僅注重押韻；後世轉以誦讀為主，才講求平仄</li><li>(C)四言詩音節多為「二/二」，如「蒹葭/蒼蒼，白露/為霜」；五言詩音節多為「二/三」，如「飄飄/何所似，天地/一沙鷗」</li><li>(D)駢文雖以誦讀為主，但注重平仄相諧，如張李德和〈畫菊自序〉「人為/萬物之靈，志有/萬端之異」，前後句的二、四、六字平仄相對</li><li>(E)新月派的新詩講求韻律，有時會押「行內韻」（一句內有兩個同韻字），如徐志摩〈再別康橋〉「是夕陽中的新娘」、「夏蟲也為我沉默」</li></ul>
+              <div class="mc-ans"><span class="mc-ans-label">答案</span> ACDE</div>
+              <div class="mc-exp"><strong>詳解：</strong>(A)雜劇曲牌部分合樂歌唱、須依曲牌押韻，賓白（口白）為說白故不押韻，正確。(C)四言節奏多「二二」、五言多「二三」，所舉例證正確。(D)駢文雖主誦讀仍重平仄相諧、上下句二四六字平仄相對，正確。(E)新月派重格律，徐志摩此例「娘」「默」屬行內押韻技巧，正確。(B)錯誤：詞合樂而歌時平仄與押韻並重（倚聲填詞須協律），並非「僅注重押韻、後世才講平仄」，故為唯一不當選項。</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 段考命題參考 -->
+    <div class="unit-block">
+      <div class="unit-block-header" onclick="toggleBlock(this)">
+        <div class="unit-block-title"><span>📋</span> 段考常見題型參考</div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="unit-block-body">
+        <div class="exam-year-card">
+          <div class="exam-year-tag">五大常見段考題型</div>
+          <ul class="lesson-list">
+            <li><strong>字音字形題：</strong>多考形近字、音近字辨析（如「啗ㄉㄢˋ／諂ㄔㄢˇ」），可整理形聲字偏旁規律供學生記憶。</li>
+            <li><strong>成語典故題：</strong>著重望文生義的陷阱（如「摩頂放踵」是捨身為人，非形容人潮），宜以「典故來源＋誤用例句」對照教學。</li>
+            <li><strong>修辭辨識題：</strong>常考譬喻、轉化、借代、映襯的判別，可用課文例句製作辨識題組。</li>
+            <li><strong>文言文翻譯填空：</strong>測驗虛詞與句式理解，建議結合「留刪換調補對」六字訣訓練。</li>
+            <li><strong>現代文閱讀測驗：</strong>取材跨領域文本，著重訊息擷取、文意統整與觀點推論。</li>
+          </ul>
         </div>
       </div>
     </div>
