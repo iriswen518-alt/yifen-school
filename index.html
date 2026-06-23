@@ -607,13 +607,72 @@
   .tl-title { font-size: 13px; font-weight: 600; }
   .tl-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
+  /* ===== CAT MASCOT ===== */
+  .cat-mascot {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    cursor: pointer;
+    user-select: none;
+    animation: cat-float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+    transition: transform 0.2s;
+  }
+  .cat-mascot:hover { transform: scale(1.15) rotate(-5deg); }
+  .cat-mascot:hover .cat-bubble { opacity: 1; transform: translateY(0); }
+  @keyframes cat-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .cat-body {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #4a7c6f, #2c5f8a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 16px rgba(74,124,111,0.4);
+    border: 2.5px solid rgba(255,255,255,0.3);
+  }
+  .cat-bubble {
+    position: absolute;
+    bottom: 66px;
+    right: 0;
+    background: white;
+    border-radius: 12px 12px 4px 12px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--ink);
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== CAT PAW DIVIDER ===== */
+  .paw-divider {
+    text-align: center;
+    color: var(--sage-light);
+    font-size: 16px;
+    letter-spacing: 8px;
+    margin: 6px 0 20px;
+    opacity: 0.5;
+  }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 640px) {
-    header { padding: 20px 16px 16px; }
     .header-search { min-width: unset; width: 100%; }
-    nav { top: 140px; }
+    nav { top: 90px; }
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-mascot { bottom: 16px; right: 16px; }
   }
 
   /* ===== SEARCH RESULTS ===== */
@@ -658,7 +717,10 @@
   <div class="header-inner">
     <div class="header-left">
       <div class="site-title">
-        <div class="site-logo">📖</div>
+        <div class="site-logo" style="font-size:18px; font-weight:800; letter-spacing:0; font-family:serif; display:flex; flex-direction:column; align-items:center; line-height:1.1; gap:1px;">
+          <span style="font-size:13px;">🐱</span>
+          <span>芬</span>
+        </div>
         <div>
           <h1>宜芬老師的教學資源站</h1>
           <p>高中國文教學資源彙整</p>
@@ -678,13 +740,13 @@
 <!-- ===== NAV ===== -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-tab active" data-tab="home">🏠 首頁</div>
+    <div class="nav-tab active" data-tab="home">🐾 首頁</div>
     <div class="nav-tab" data-tab="g1">📗 高一 <span class="nav-badge">12冊</span></div>
     <div class="nav-tab" data-tab="g2">📘 高二 <span class="nav-badge">12冊</span></div>
     <div class="nav-tab" data-tab="g3">📕 高三 <span class="nav-badge">學測</span></div>
     <div class="nav-tab" data-tab="exam">📝 考試資源</div>
     <div class="nav-tab" data-tab="tools">🛠️ 備課工具</div>
-    <div class="nav-tab" data-tab="notes">📌 我的筆記</div>
+    <div class="nav-tab" data-tab="notes">😸 我的筆記</div>
   </div>
 </nav>
 
@@ -1980,7 +2042,35 @@ function exportNotes() {
   a.click();
 }
 renderNotes();
+
+// ========== CAT MASCOT ==========
+const catMessages = [
+  '今天備課加油 🐾',
+  '喵～記得休息哦',
+  '有什麼想找的嗎？',
+  '學測加油！',
+  '貓咪為你守護 🐱',
+  '今天上課順利嗎？',
+];
+let catIdx = 0;
+document.querySelector('.cat-body').addEventListener('click', function(){
+  const bubble = document.querySelector('.cat-bubble');
+  bubble.textContent = catMessages[catIdx % catMessages.length];
+  catIdx++;
+  bubble.style.opacity = '1';
+  bubble.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    bubble.style.opacity = '0';
+    bubble.style.transform = 'translateY(6px)';
+  }, 2400);
+});
 </script>
+
+<!-- 浮動貓咪吉祥物 -->
+<div class="cat-mascot">
+  <div class="cat-bubble">點我說話 🐱</div>
+  <div class="cat-body">🐱</div>
+</div>
 
 </body>
 </html>
