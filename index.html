@@ -153,40 +153,65 @@
   .nav-inner {
     max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    overflow: visible;
-    gap: 0;
-  }
-  .nav-tab {
     position: relative;
-    padding: 14px 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
+    padding: 8px 20px;
+  }
+  /* 單一下拉式選單按鈕 */
+  .nav-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: var(--sage-pale);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--sage);
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
     letter-spacing: 1px;
+    cursor: pointer;
     user-select: none;
+    transition: background 0.15s;
+  }
+  .nav-menu-btn:hover { background: #dcebe6; }
+  .nav-menu-btn svg { width: 18px; height: 18px; }
+  .nav-menu-arrow { font-size: 11px; opacity: 0.7; transition: transform 0.2s; margin-left: 2px; }
+  .nav-menu-btn.open .nav-menu-arrow { transform: rotate(180deg); }
+  /* 下拉清單 */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 20px;
+    min-width: 220px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.14);
+    padding: 6px;
+    z-index: 300;
+  }
+  .nav-menu.show { display: block; }
+  .nav-menu-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s, color 0.12s;
   }
-  .nav-tab:hover { color: var(--sage); background: var(--sage-pale); }
-  .nav-tab.active { color: var(--sage); border-bottom-color: var(--sage); }
-  .nav-tab.has-dropdown::after {
-    content: '▾';
-    font-size: 10px;
-    opacity: 0.55;
-    margin-left: 2px;
-    display: inline-block;
-    transition: transform 0.2s;
-  }
-  .nav-tab.has-dropdown.dd-open::after { transform: rotate(180deg); opacity: 0.9; }
-  .nav-icon { width: 16px; height: 16px; flex: 0 0 16px; color: currentColor; }
+  .nav-menu-item svg { width: 18px; height: 18px; flex: 0 0 18px; color: var(--muted); }
+  .nav-menu-item:hover { background: var(--sage-pale); color: var(--sage); }
+  .nav-menu-item:hover svg { color: var(--sage); }
+  .nav-menu-item.active { background: var(--sage-pale); color: var(--sage); }
+  .nav-menu-item.active svg { color: var(--sage); }
   /* ===== 底部固定分頁列（手機）===== */
   .bottom-nav { display: none; }
   @media (max-width: 640px) {
@@ -220,35 +245,6 @@
     body { padding-bottom: 60px; }
     .cat-mascot { bottom: 72px; }
   }
-  /* ===== DROPDOWN ===== */
-  .nav-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 3px);
-    left: 0;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.13);
-    min-width: 110px;
-    z-index: 300;
-    padding: 4px 0;
-    overflow: hidden;
-  }
-  .nav-tab:hover .nav-dropdown,
-  .nav-tab.dd-open .nav-dropdown { display: block; }
-  .nd-item {
-    padding: 9px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--text);
-    letter-spacing: 1px;
-    transition: background 0.1s, color 0.1s;
-    text-align: left;
-  }
-  .nd-item:hover { background: var(--sage-pale); color: var(--sage); font-weight: 600; }
-
   /* ===== MAIN ===== */
   main {
     max-width: 1100px;
@@ -730,18 +726,12 @@
   /* RULE: Mobile overflow prevention — on narrow screens, all multi-column grids must
      collapse to 1 or 2 columns. Never let content bleed past the viewport edge.
      white-space:nowrap must always be paired with overflow-x:auto on its container. */
-  /* 平板：導覽列 4 欄等寬 */
-  @media (max-width: 860px) {
-    .nav-inner { grid-template-columns: repeat(4, 1fr); }
-  }
   @media (max-width: 640px) {
     .header-search { min-width: unset; width: 100%; }
     nav { top: 90px; }
-    .nav-inner { grid-template-columns: repeat(4, 1fr); }
-    .nav-tab { padding: 12px 4px; font-size: 13px; letter-spacing: 0; }
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .cat-mascot { bottom: 16px; right: 16px; }
+    .cat-mascot { bottom: 72px; right: 16px; }
     .chip-row { flex-wrap: wrap; }
     .chip { flex: 1 1 calc(50% - 4px); min-width: 0; }
   }
@@ -886,63 +876,23 @@
   </div>
 </header>
 
-<!-- ===== NAV ===== -->
+<!-- ===== NAV（單一下拉式選單）===== -->
 <nav>
   <div class="nav-inner">
-
-    <div class="nav-tab active" data-tab="home"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/></svg><span class="nav-label">教學首頁</span></div>
-
-    <div class="nav-tab has-dropdown" data-tab="g1"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span class="nav-label">高一資源</span>
-      <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTabFilter('g1','all')">全部類型</div>
-        <div class="nd-item" onclick="switchTabFilter('g1','wen')">文言選篇</div>
-        <div class="nd-item" onclick="switchTabFilter('g1','xian')">現代文學</div>
-        <div class="nd-item" onclick="switchTabFilter('g1','xiu')">修辭語法</div>
-        <div class="nd-item" onclick="switchTabFilter('g1','xie')">寫作練習</div>
-        <div class="nd-item" onclick="switchTabFilter('g1','link')">外部資源</div>
-      </div>
+    <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNavMenu(event)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <span id="nav-current">教學首頁</span>
+      <span class="nav-menu-arrow">▾</span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a class="nav-menu-item active" data-tab="home" onclick="navGo('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/></svg><span>教學首頁</span></a>
+      <a class="nav-menu-item" data-tab="g1" onclick="navGo('g1','all')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高一資源</span></a>
+      <a class="nav-menu-item" data-tab="g2" onclick="navGo('g2','all')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高二資源</span></a>
+      <a class="nav-menu-item" data-tab="g3" onclick="navGo('g3','all')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高三資源</span></a>
+      <a class="nav-menu-item" data-tab="exam" onclick="navGo('exam')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 12l2 2 4-4"/></svg><span>考試資源</span></a>
+      <a class="nav-menu-item" data-tab="tools" onclick="navGo('tools')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-4-4-7 7-1 5z"/><path d="M14 6l4 4"/></svg><span>備課工具</span></a>
+      <a class="nav-menu-item" data-tab="notes" onclick="navGo('notes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>我的筆記</span></a>
     </div>
-
-    <div class="nav-tab has-dropdown" data-tab="g2"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span class="nav-label">高二資源</span>
-      <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTabFilter('g2','all')">全部類型</div>
-        <div class="nd-item" onclick="switchTabFilter('g2','wen')">文言選篇</div>
-        <div class="nd-item" onclick="switchTabFilter('g2','yi')">議論選篇</div>
-        <div class="nd-item" onclick="switchTabFilter('g2','xiao')">小說選篇</div>
-        <div class="nd-item" onclick="switchTabFilter('g2','wen-hua')">文化思想</div>
-      </div>
-    </div>
-
-    <div class="nav-tab has-dropdown" data-tab="g3"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span class="nav-label">高三資源</span>
-      <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTabFilter('g3','all')">全部類型</div>
-        <div class="nd-item" onclick="switchTabFilter('g3','gsat')">學測攻略</div>
-        <div class="nd-item" onclick="switchTabFilter('g3','essay')">作文技巧</div>
-        <div class="nd-item" onclick="switchTabFilter('g3','wen')">文言字詞</div>
-        <div class="nd-item" onclick="switchTabFilter('g3','exam')">試題分析</div>
-        <div class="nd-item" onclick="switchTabFilter('g3','plan')">衝刺計畫</div>
-      </div>
-    </div>
-
-    <div class="nav-tab has-dropdown" data-tab="exam"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 12l2 2 4-4"/></svg><span class="nav-label">考試資源</span>
-      <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTab('exam')">段考命題</div>
-        <div class="nd-item" onclick="switchTab('exam')">學測試題</div>
-        <div class="nd-item" onclick="switchTab('exam')">評量設計</div>
-      </div>
-    </div>
-
-    <div class="nav-tab has-dropdown" data-tab="tools"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-4-4-7 7-1 5z"/><path d="M14 6l4 4"/></svg><span class="nav-label">備課工具</span>
-      <div class="nav-dropdown">
-        <div class="nd-item" onclick="switchTab('tools')">課文分析</div>
-        <div class="nd-item" onclick="switchTab('tools')">作文出題</div>
-        <div class="nd-item" onclick="switchTab('tools')">板書設計</div>
-        <div class="nd-item" onclick="switchTab('tools')">備課素材</div>
-      </div>
-    </div>
-
-    <div class="nav-tab" data-tab="notes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span class="nav-label">我的筆記</span></div>
-
   </div>
 </nav>
 
@@ -2199,12 +2149,15 @@
 
 <script>
 // ========== TABS ==========
+const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', tools:'備課工具', notes:'我的筆記' };
 function switchTab(id, fromSearch) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => { t.classList.remove('active'); t.classList.remove('dd-open'); });
+  document.querySelectorAll('.nav-menu-item').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   document.querySelectorAll('[data-tab="'+id+'"]').forEach(t => t.classList.add('active'));
+  const cur = document.getElementById('nav-current');
+  if (cur && TAB_NAMES[id]) cur.textContent = TAB_NAMES[id];
   if (!fromSearch) window.scrollTo(0,0);
   return false;
 }
@@ -2226,25 +2179,24 @@ function switchTabFilter(tabId, filter) {
   }, 30);
 }
 
-// Nav tab 點擊：has-dropdown 只開/關選單，選單項目才切頁
-document.querySelectorAll('.nav-tab').forEach(tab => {
-  tab.addEventListener('click', function(e) {
-    if (tab.classList.contains('has-dropdown')) {
-      if (e.target.classList.contains('nd-item')) return;
-      const isOpen = tab.classList.contains('dd-open');
-      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('dd-open'));
-      if (!isOpen) tab.classList.add('dd-open');
-    } else {
-      switchTab(tab.dataset.tab);
-    }
-  });
-});
-
-// 點外面關閉 dropdown
+// 單一下拉式選單：開關
+function toggleNavMenu(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('nav-menu').classList.toggle('show');
+  document.getElementById('nav-menu-btn').classList.toggle('open');
+}
+function closeNavMenu() {
+  document.getElementById('nav-menu').classList.remove('show');
+  document.getElementById('nav-menu-btn').classList.remove('open');
+}
+// 選單項目點擊：切換分頁（grade 帶 all 篩選），關閉選單
+function navGo(tab, filter) {
+  if (filter) { switchTabFilter(tab, filter); } else { switchTab(tab); }
+  closeNavMenu();
+}
+// 點選單以外處關閉
 document.addEventListener('click', e => {
-  if (!e.target.closest('.nav-tab')) {
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('dd-open'));
-  }
+  if (!e.target.closest('.nav-inner')) closeNavMenu();
 });
 
 // ========== DATE ==========
