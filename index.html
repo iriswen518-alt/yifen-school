@@ -64,7 +64,7 @@
     width: 320px;
     background-image: url('yifen.jpg');
     background-size: auto 180%;
-    background-position: 40% 12%;
+    background-position: 65% 12%;
     z-index: 1;
     opacity: 0.72;
     filter: brightness(0.82) saturate(0.85);
@@ -95,9 +95,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 4px;
     flex: 0 0 auto;
-    max-width: 52%;
+  }
+  .search-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .site-title {
     display: flex;
@@ -754,6 +759,8 @@
           <p>高中國文教學資源</p>
         </div>
       </div>
+    </div>
+    <div class="search-center">
       <div class="search-wrap">
         <div class="header-search">
           <span>🔍</span>
