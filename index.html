@@ -626,16 +626,14 @@
     50% { transform: translateY(-8px); }
   }
   .cat-body {
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, #4a7c6f, #2c5f8a);
+    width: 62px;
+    height: 62px;
+    background: linear-gradient(145deg, #2d5a4e, #1e3f5c);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    box-shadow: 0 4px 16px rgba(74,124,111,0.4);
-    border: 2.5px solid rgba(255,255,255,0.3);
+    box-shadow: 0 6px 20px rgba(45,90,78,0.5), 0 0 0 2px rgba(255,255,255,0.15);
   }
   .cat-bubble {
     position: absolute;
@@ -717,10 +715,7 @@
   <div class="header-inner">
     <div class="header-left">
       <div class="site-title">
-        <div class="site-logo" style="font-size:18px; font-weight:800; letter-spacing:0; font-family:serif; display:flex; flex-direction:column; align-items:center; line-height:1.1; gap:1px;">
-          <span style="font-size:13px;">🐱</span>
-          <span>芬</span>
-        </div>
+        <div class="site-logo" style="font-size:26px; font-weight:900; font-family:'Georgia', serif; color:white; letter-spacing:0;">芬</div>
         <div>
           <h1>宜芬老師的教學資源站</h1>
           <p>高中國文教學資源彙整</p>
@@ -2069,7 +2064,34 @@ document.querySelector('.cat-body').addEventListener('click', function(){
 <!-- 浮動貓咪吉祥物 -->
 <div class="cat-mascot">
   <div class="cat-bubble">點我說話 🐱</div>
-  <div class="cat-body">🐱</div>
+  <div class="cat-body">
+    <svg width="38" height="42" viewBox="0 0 80 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 左耳 -->
+      <path d="M18 36 L8 10 L32 26 Z" stroke="white" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
+      <!-- 右耳 -->
+      <path d="M62 36 L72 10 L48 26 Z" stroke="white" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.08)"/>
+      <!-- 頭 -->
+      <ellipse cx="40" cy="46" rx="28" ry="26" stroke="white" stroke-width="2.5" fill="rgba(255,255,255,0.06)"/>
+      <!-- 左眼 (杏仁形) -->
+      <path d="M26 42 Q30 37 34 42 Q30 46 26 42 Z" stroke="white" stroke-width="1.8" fill="rgba(255,255,255,0.7)"/>
+      <ellipse cx="30" cy="42" rx="1.5" ry="2.5" fill="#1a2e38"/>
+      <!-- 右眼 -->
+      <path d="M46 42 Q50 37 54 42 Q50 46 46 42 Z" stroke="white" stroke-width="1.8" fill="rgba(255,255,255,0.7)"/>
+      <ellipse cx="50" cy="42" rx="1.5" ry="2.5" fill="#1a2e38"/>
+      <!-- 鼻子 -->
+      <path d="M38 52 L40 55 L42 52 Z" fill="rgba(255,180,180,0.85)" stroke="none"/>
+      <!-- 嘴 -->
+      <path d="M37 55 Q40 59 43 55" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <!-- 鬍鬚左 -->
+      <line x1="2" y1="49" x2="22" y2="51" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="2" y1="55" x2="22" y2="55" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- 鬍鬚右 -->
+      <line x1="58" y1="51" x2="78" y2="49" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="58" y1="55" x2="78" y2="55" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- 尾巴弧線 -->
+      <path d="M65 70 Q82 58 76 42 Q72 34 63 40" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
 </div>
 
 </body>
