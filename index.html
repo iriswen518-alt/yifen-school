@@ -704,6 +704,38 @@
     .chip { flex: 1 1 calc(50% - 4px); min-width: 0; }
   }
 
+  /* ===== LESSON BODY 課程內容 ===== */
+  .lesson-body { padding: 4px 2px 2px; }
+  .lesson-section { margin-bottom: 16px; }
+  .lesson-section:last-child { margin-bottom: 4px; }
+  .lesson-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sage);
+    background: var(--sage-pale);
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .lesson-list { padding-left: 20px; margin: 0; }
+  .lesson-list li { font-size: 13.5px; line-height: 1.75; margin: 6px 0; color: #3a3a3a; }
+  .lesson-list.tips li { color: #4a5a52; }
+  .lesson-examples { display: flex; flex-direction: column; gap: 10px; }
+  .ex-item {
+    background: #fafbfa;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .ex-label { display: block; font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .ex-text { display: block; font-size: 13px; line-height: 1.7; color: #4a4a4a; white-space: pre-wrap; }
+  .lesson-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .lesson-table td { border: 1px solid var(--border); padding: 7px 10px; vertical-align: top; line-height: 1.6; }
+  .lesson-table td:first-child { background: var(--sage-pale); white-space: nowrap; width: 1%; color: var(--ink); }
+
   /* ===== SEARCH RESULTS ===== */
   #search-results {
     position: absolute;
@@ -1001,7 +1033,6 @@
 
     <div class="grid-3" id="g1-grid">
 
-      <!-- 文言文基礎 -->
       <div class="card g1-card" data-cat="wen">
         <div class="card-header">
           <div class="card-icon icon-gold">📜</div>
@@ -1010,16 +1041,40 @@
             <div class="card-sub">先秦到唐宋代表作</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://ctext.org/analects/zh" target="_blank">論語選（孔子）</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://ctext.org/mengzi/zh" target="_blank">孟子選（梁惠王章）</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://ctext.org/laozi/zh" target="_blank">老子（道德經）節選</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://ctext.org/text.pl?node=8888&if=zh" target="_blank">荀子・勸學篇</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://ctext.org/shiji/zh" target="_blank">史記選讀</a><span class="link-tag tag-free">原典</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>先秦諸子各有其核心主張：儒家（孔孟）重仁義禮，道家（老莊）崇自然無為，荀子則強調禮法並重、人性本惡，各家思想相互辯證，構成中國文化底蘊。</li><li>《論語》以語錄體記孔子言行，句式簡短卻意涵深遠；《孟子》善用比喻與辯論，氣勢充沛；兩者同屬儒家經典，文風卻大異其趣，須引導學生比較品味。</li><li>《史記》為紀傳體通史，司馬遷藉「列傳」書寫歷史人物性格，以文學筆法呈現史實；〈鴻門宴〉、〈廉頗藺相如列傳〉等篇是人物刻劃的典範，宜著重人物分析。</li><li>老子《道德經》語言凝練、多用對比（如「曲則全，枉則直」），文意玄奧；教學時宜先釋義再引申哲理，避免學生停留於字面而錯失深層思辨訓練。</li><li>唐宋散文以韓愈、柳宗元「古文運動」為分水嶺，主張文以載道、反對駢文華而不實；宋代歐陽脩、蘇軾則融情於理，形成「情理兼備」的散文美學，是高中必讀文體演變脈絡。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">《論語‧為政》——學思並重</span><span class="ex-text">「學而不思則罔，思而不學則殆。」
+
+【分析要點】
+此句以對偶句型呈現「學」與「思」的辯證關係：只學習不思考，知識無法內化（罔，迷惘）；只思考不學習，則流於空想（殆，危殆）。
+課堂切入：請學生舉現代生活例子——如刷短影音（只看不思）vs. 空想創業不讀商業知識（只思不學）——讓古訓與當代情境接軌。</span></div><div class="ex-item"><span class="ex-label">《孟子‧梁惠王上》——以喻說理</span><span class="ex-text">「五十步笑百步，則何如？」（原文節錄）
+
+梁惠王問政，孟子以戰場比喻回應：兩個逃兵，一個跑五十步、一個跑百步，前者嘲笑後者，實質卻同樣是逃兵。
+
+【分析要點】
+孟子辯論術的核心在於「引君入彀」——先讓對方承認前提，再回扣論點，令對方無法反駁。
+課堂切入：此篇可訓練學生「比喻論證」的寫作技巧，要求學生仿寫一段以比喻批評某社會現象的短文。</span></div><div class="ex-item"><span class="ex-label">《史記‧廉頗藺相如列傳》——人物對比</span><span class="ex-text">「相如雖駑，獨畏廉將軍哉？顧吾念之，強秦之所以不敢加兵於趙者，徒以吾兩人在也。」
+
+【分析要點】
+藺相如以「國家利益高於個人榮辱」為由，主動迴避廉頗的挑釁，展現顧全大局的格局。
+課堂切入：請學生對比廉頗「不服氣」到「負荊請罪」的心理轉變，分析司馬遷如何透過對話與行動刻劃人物性格，而非直接評論。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>語錄體</strong></td><td>以問答、片段語錄形式記述言行的文體，《論語》為代表，句式短而意旨深，不構成連貫論述，需讀者自行融會貫通。</td></tr><tr><td><strong>紀傳體</strong></td><td>以人物傳記為中心的史書體例，由司馬遷《史記》創立，分本紀、世家、列傳等，兼具史學與文學價值。</td></tr><tr><td><strong>比喻論證</strong></td><td>先秦諸子常用的說理技巧，以具體易懂的比喻引導讀者接受抽象主張，《孟子》最為擅長，如「五十步笑百步」。</td></tr><tr><td><strong>古文運動</strong></td><td>唐代韓愈、柳宗元發起的文學改革，主張以先秦兩漢散文為典範，反對講求聲律對仗的駢文，強調「文以載道」。</td></tr><tr><td><strong>無為</strong></td><td>道家（老子）核心概念，並非消極不作為，而是順應自然規律、不強行干預，與儒家積極入世的仁政主張形成對比。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【比較閱讀法】將同一主題的不同文本並列教學，例如孔子談「仁」（《論語》）vs. 孟子談「仁政」（《孟子》），讓學生填寫比較表（主張/論證方式/文風），再進行小組辯論「哪一家更能解決現代社會問題」，有效提升思辨與閱讀理解能力。</li><li>【句型仿寫練習】每學完一篇文言文，挑選其特色句型（如《老子》的對比句、《史記》的對話描寫）要求學生當堂仿寫兩句，題目設定為貼近生活情境（如描寫同學間的矛盾）。仿寫後互評，老師統一講評，兼顧文言語感與表達能力訓練。</li><li>【人物法庭情境劇】針對《史記》人物篇（如〈鴻門宴〉），將班級分組扮演項羽、劉邦、范增、張良等角色，以「歷史法庭」形式讓各方陳詞，辯論鴻門宴中誰的決策最佳。此活動強迫學生精讀原文、提取論據，比單純背誦更能深化文本理解。</li></ul>
+          </div>
+        </div>
       </div>
 
-      <!-- 現代詩 -->
       <div class="card g1-card" data-cat="xian">
         <div class="card-header">
           <div class="card-icon icon-sage">🌿</div>
@@ -1028,67 +1083,163 @@
             <div class="card-sub">余光中・鄭愁予・楊牧</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://paper.udn.com/udnpaper/PIC0004/389700/web/" target="_blank">余光中詩精選賞析</a><span class="link-tag tag-free">賞析</span></li>
-          <li><a href="https://www.reading543.com.tw" target="_blank">閱讀543現代詩資源</a><span class="link-tag tag-free">教學</span></li>
-          <li><a href="https://www.ehanlin.com.tw/app/keyword/%E9%AB%98%E4%B8%AD/%E5%9C%8B%E6%96%87/%E9%84%AD%E6%84%81%E4%BA%88.html" target="_blank">鄭愁予《錯誤》課文導讀</a><span class="link-tag tag-free">翰林</span></li>
-          <li><a href="https://db.nmtl.gov.tw/site4/s6/writerinfo?id=1968" target="_blank">楊牧《有人問我公理和正義》</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://www.youtube.com/results?search_query=%E9%99%B3%E9%BB%8E%E6%98%8E+%E7%8F%BE%E4%BB%A3%E8%A9%A9%E6%95%99%E5%AD%B8" target="_blank">現代詩教學影片(YouTube)</a><span class="link-tag tag-video">影片</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>現代詩的意象經營：詩人透過具體可感的物象（如余光中《鄉愁》的郵票、船票、墳墓、海峽）層層遞進，將抽象的離愁轉化為視覺化符號，是現代詩最核心的表現手法。</li><li>空間與時間的交疊：余光中以「小時候／長大後／後來／而現在」四個時間切片對照四種空間隔閡，展現個人成長與家國分離的雙重敘事，時空結構即情感結構。</li><li>鄭愁予《錯誤》的戲劇性反諷：全詩以「美麗的錯誤」作結，遊子誤以為是歸人，等待者盼而不得，形成期待與落空的張力；反諷手法使情感更為含蓄而深沉。</li><li>楊牧詩的知識分子精神：楊牧融合古典意象與西方現代詩學，在作品中追問公理與正義、人的尊嚴與存在意義，展現台灣現代詩走向成熟的思辨向度。</li><li>現代詩的音樂性與節奏感：三位詩人均重視詩行的節奏安排，余光中善用排比複疊，鄭愁予以馬蹄聲意象帶出聽覺節拍，楊牧則以長句呼應思考的綿延，各有其音樂美學。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">余光中《鄉愁》— 四段平行結構示例</span><span class="ex-text">小時候，
+鄉愁是一枚小小的郵票，
+我在這頭，母親在那頭。
+
+長大後，
+鄉愁是一張窄窄的船票，
+我在這頭，新娘在那頭。
+
+後來啊，
+鄉愁是一方矮矮的墳墓，
+我在外頭，母親在裡頭。
+
+而現在，
+鄉愁是一灣淺淺的海峽，
+我在這頭，大陸在那頭。
+
+【賞析重點】四段以「小小／窄窄／矮矮／淺淺」疊音詞修飾意象，看似輕描淡寫，實則以「輕」反襯「重」。情感從個人私愁（母子、夫妻）擴展至家國之愁，最後一段以「大陸」點題，完成情感升華。</span></div><div class="ex-item"><span class="ex-label">鄭愁予《錯誤》— 核心詩節與反諷結構</span><span class="ex-text">我打江南走過，
+那等在季節裡的容顏如蓮花的開落。
+
+東風不來，三月的柳絮不飛，
+你底心如小小的寂寞的城，
+恰若青石的街道向晚，
+跫音不響，三月的春帷不揭，
+你底心是小小的窗扉緊掩。
+
+我達達的馬蹄是美麗的錯誤，
+我不是歸人，是個過客……
+
+【賞析重點】全詩視角分裂：前段以等待者角度描繪封閉、寂靜的內心世界（城、窗扉緊掩），末段才揭露遊子身分。「達達的馬蹄聲」令等待者誤以為歸人歸來，「美麗的錯誤」是全詩主旨——美麗指聲音帶來的短暫希望，錯誤指終究落空的真相。</span></div><div class="ex-item"><span class="ex-label">楊牧《公理與正義》— 知識分子的追問姿態</span><span class="ex-text">【代表詩句與精神】
+楊牧在詩集《有人》（1986）中多次追問：在歷史的暴力與壓迫面前，詩人能做什麼？他寫道「我欲面對一切破碎，尋找意義」，以知識分子的自覺承擔詩的倫理責任。
+
+【課堂操作建議文本片段】
+可選取楊牧〈有人問我公理和正義的問題〉引言段落，引導學生討論：詩人為何選擇以詩回應社會不公？詩歌作為一種語言行動，與新聞報導或政治演說有何不同？
+
+【賞析重點】楊牧詩語密度高，句式迂迴，意象來自古典與西方雙重傳統。教師宜先帶領學生逐句拆解，再討論整體意旨，避免學生只抓字面意思。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>意象（Image）</strong></td><td>詩人選取具體可感的事物（視覺、聽覺、觸覺等）來承載抽象情感或觀念，是現代詩最基本的構成單位。如《鄉愁》中的「郵票」即是意象。</td></tr><tr><td><strong>反諷（Irony）</strong></td><td>言語或情境的表面意義與真實意涵相反或相悖，以製造張力。《錯誤》中「美麗的錯誤」即為情境反諷——帶來希望的聲音，卻指向落空的現實。</td></tr><tr><td><strong>平行結構（Parallelism）</strong></td><td>以相同或相似的句式重複出現，強化節奏感與情感累積效果。余光中《鄉愁》四段均以「○時候／鄉愁是……／我在這頭，○在那頭」構成平行。</td></tr><tr><td><strong>疊音詞（Reduplication）</strong></td><td>以相同音節重疊構成的詞，如「小小」「窄窄」「矮矮」，在詩中能製造輕柔、婉約的音樂感，並以「小」字暗示詩人刻意壓抑情緒的節制美學。</td></tr><tr><td><strong>知識分子詩學（Intellectual Poetics）</strong></td><td>詩人以詩歌回應社會議題、追問倫理與正義，不只表達個人抒情，更承擔公共責任。楊牧是台灣現代詩此一傳統的重要代表。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【意象接力活動】課堂分組，每組選定一種情感（如思念、孤獨、憤怒），仿照余光中《鄉愁》的「情感＋是＋具體物象」句式，各寫四行平行詩句，再全班分享比較。此活動讓學生親身體會意象轉化的難度與樂趣，也鍛鍊類比思維。</li><li>【視角翻轉討論】針對《錯誤》一詩，先播放或朗讀全詩，再問學生：「如果你是那個等待的人，聽到馬蹄聲時心情如何？知道是過客後又如何？」引導學生從敘述視角切入詩意，再進一步討論「美麗的錯誤」在生活中有無類似經驗，增強情感共鳴與文本連結。</li><li>【三詩人風格比較表】教師製作一張比較表，列出余光中、鄭愁予、楊牧在「題材偏向」「意象來源」「語言風格」「情感基調」四欄的異同，帶領學生填寫後討論。此活動能幫助學生建立文學史的橫向視野，也為作文中的「分析比較」訓練奠定基礎。</li></ul>
+          </div>
+        </div>
       </div>
 
-      <!-- 散文 -->
       <div class="card g1-card" data-cat="xian">
         <div class="card-header">
           <div class="card-icon icon-blue">🌊</div>
           <div>
             <div class="card-title">現代散文</div>
-            <div class="card-sub">琦君・林文月・余光中</div>
+            <div class="card-sub">琦君・林文月・朱自清</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://tln.nmtl.gov.tw/ch/m2/nmtl_w1_m2_c_6.aspx?Sid=110&k=%E7%90%A6%E5%90%9B" target="_blank">琦君《春酒》作家資料</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://pedia.cloud.edu.tw/Entry/WikiContent?title=%E6%9E%97%E6%96%87%E6%9C%88" target="_blank">林文月《讀中文系的人》</a><span class="link-tag tag-official">教育雲百科</span></li>
-          <li><a href="https://tln.nmtl.gov.tw/ch/M12/nmtl_w1_m12_s1_c_1.aspx?sid=149" target="_blank">余光中《聽聽那冷雨》文學地景</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://zh.wikisource.org/zh-hant/%E8%83%8C%E5%BD%B1" target="_blank">朱自清《背影》全文</a><span class="link-tag tag-free">維基文庫</span></li>
-          <li><a href="https://ws.moe.edu.tw/Download.ashx?u=C099358C81D4876C7535E5BCBB58A6CDB5C7161D" target="_blank">部定必修選文清單</a><span class="link-tag tag-official">課綱</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>散文的抒情性：現代散文以第一人稱為主，透過細膩的情感描寫與個人經驗，傳達作者對人生、親情與時代的感悟，讀者可清晰感受作者的主體意識。</li><li>記憶與鄉愁的書寫策略：琦君《春酒》以童年記憶重構失落的故鄉，運用嗅覺、味覺等感官細節喚起情感，是「以物寄情」的典範手法。</li><li>父子情感的迂迴表達：朱自清《背影》刻意避開直接抒情，以父親翻越月台的具體動作為焦點，讓讀者從「看見」中體會深層的親情，示範「含蓄節制」的寫作美學。</li><li>學科反思與散文議論性：林文月《讀中文系的人》以第一人稱自述切入，兼具個人經驗與學術反省，展現現代散文融入知性思辨的可能，適合討論散文的多元面向。</li><li>文體風格比較：三位作者分屬不同時代與地域背景（中國大陸／台灣），比較其語言風格（朱自清典雅清秀、琦君溫婉質樸、林文月沉靜知性），有助理解現代散文的流變脈絡。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">朱自清《背影》——動作描寫的情感力量</span><span class="ex-text">「他用兩手攀著上面，兩腳再向上縮；他肥胖的身子向左微傾，顯出努力的樣子，這時我看見他的背影，我的眼淚很快地流下來了。」
+
+【分析重點】作者以「攀、縮、傾」三個動詞，精確呈現父親笨重卻竭力的身姿，動作本身即是情感的載體；「我的眼淚很快地流下來」是全文情感的爆發點，說明含蓄鋪陳之後直接揭示，節制與釋放形成對比張力。</span></div><div class="ex-item"><span class="ex-label">琦君《春酒》——感官記憶與鄉愁</span><span class="ex-text">「一壺春酒，一份深情。味道不同了，人也不是原來的人了。」（課文改寫摘要）
+
+原文中琦君描述母親釀酒時加入各種藥材的氣味、自己偷喝酒的甜蜜感受，最後以「究竟不是地道家鄉味啊」作結。
+
+【分析重點】文章以「酒」為線索，串連童年、母親、故鄉三個主題。嗅覺與味覺的細節描寫，使抽象的鄉愁具象化。結尾的一聲嘆息，點出「回不去」的時間悲劇，是「以物托情」的典範示範。</span></div><div class="ex-item"><span class="ex-label">林文月《讀中文系的人》——知性反省與自我定位</span><span class="ex-text">「讀中文系的人，不一定能寫一手好文章；但讀了中文系之後，應當對自己的語文能力有更嚴格的要求。」（文意摘要）
+
+【分析重點】林文月以自身求學經驗為核心，兼顧議論與敘述，展現散文的「知性」向度。課堂可引導學生討論：作者認為「讀書」與「能力」之間的關係是什麼？這種對學科的反思態度，與純粹抒情散文有何不同？</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>以物寄情</strong></td><td>藉由描寫具體事物（食物、景象、動作）來承載並傳遞情感，避免直白說教，是散文常見的間接抒情手法。</td></tr><tr><td><strong>含蓄節制</strong></td><td>情感不直接傾瀉，而是透過精選的細節或克制的語言讓讀者自行感受，朱自清《背影》為此手法的代表。</td></tr><tr><td><strong>感官記憶</strong></td><td>以視覺、聽覺、嗅覺、味覺、觸覺等具體感受作為書寫素材，喚起讀者共鳴，是琦君散文中最常見的情感觸媒。</td></tr><tr><td><strong>知性散文</strong></td><td>融入思辨、學術反省或議論成分的散文類型，有別於純粹抒情，林文月的作品是台灣知性散文的代表。</td></tr><tr><td><strong>鄉愁書寫</strong></td><td>以失落的故鄉、童年或過去為主題，透過記憶重構表達對時間流逝與根源斷裂的感傷，是台灣五六十年代散文的重要主題。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【情感還原活動】朗讀《背影》「翻越月台」段落前，先讓學生閉眼想像一個「父母為你做過的一件小事」，寫下三個動詞描述那個動作。朗讀後對照朱自清的三個動詞（攀、縮、傾），討論「選字」如何決定情感強度，幫助學生從創作角度理解散文技巧。</li><li>【跨文本比較討論】設計三欄比較表，讓學生閱讀《春酒》與《背影》後，分別填入「主題」、「敘述視角」、「最打動你的一個細節」。接著加入林文月文章，討論：三篇散文的「情感基調」有何不同？哪一篇更接近你自己書寫散文的方式？此活動訓練比較閱讀能力，同時引導寫作方向。</li><li>【仿寫練習（以物寄情）】參考《春酒》的「感官記憶法」，請學生選擇一種食物或氣味，寫一段150字短文：先描述感官細節，再點出與某位家人或記憶的連結，最後以一句話道出情感。批改時聚焦「細節是否具體」與「情感是否自然流露」，避免過於說教的結尾。</li></ul>
+          </div>
+        </div>
       </div>
 
-      <!-- 修辭語法 -->
       <div class="card g1-card" data-cat="xiu">
         <div class="card-header">
           <div class="card-icon icon-red">🎨</div>
           <div>
             <div class="card-title">修辭法教學</div>
-            <div class="card-sub">九大修辭 + 例句練習</div>
+            <div class="card-sub">九大修辭＋例句練習</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://www.ehanlin.com.tw/app/keyword/%E9%AB%98%E4%B8%AD/%E5%9C%8B%E6%96%87/%E8%AD%AC%E5%96%BB.html" target="_blank">比喻・擬人・誇張 教學說明</a><span class="link-tag tag-free">翰林</span></li>
-          <li><a href="https://www.ehanlin.com.tw/app/keyword/%E9%AB%98%E4%B8%AD/%E5%9C%8B%E6%96%87/%E5%B0%8D%E5%81%B6.html" target="_blank">排比・對偶・映襯 例句庫</a><span class="link-tag tag-free">翰林</span></li>
-          <li><a href="https://www.ehanlin.com.tw/app/keyword/%E9%AB%98%E4%B8%AD/%E5%9C%8B%E6%96%87/%E9%8C%AF%E7%B6%9C.html" target="_blank">設問・借代・象徵 辭格說明</a><span class="link-tag tag-free">翰林</span></li>
-          <li><a href="https://www.csjh.ntpc.edu.tw/userfiles/files/" target="_blank">修辭法綜合複習卷</a><span class="link-tag tag-pdf">評量</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">文法：主謂賓補 辨析</a><span class="link-tag tag-official">國語文學科中心</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>修辭法是運用語言技巧以增強表達效果的方法，九大修辭涵蓋比喻、擬人、誇張、排比、對偶、映襯、設問、借代、象徵，各有不同的語言功能與美學效果。</li><li>比喻與象徵的核心差異：比喻是明確以甲物喻乙物（需有本體、喻詞、喻體），象徵則是以具體事物暗示抽象概念，不直接點明，讀者需從脈絡體會。</li><li>排比與對偶的區別：排比以三個或三個以上結構相似的句子並列，強調氣勢；對偶僅需兩句，著重字數相等、詞性相對、意義相關，講求工整之美。</li><li>映襯（又稱對比）是以兩種相反或相對的事物並列，藉由強烈反差突出各自特色，常用於強調道德判斷或情感落差，例如貧富、冷暖、明暗對比。</li><li>設問分為「疑問」（有問有答，自問自答）與「反問」（有問無答，以問代答）兩類，前者引起讀者思考，後者強化語氣，兩者皆非真正發問。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">比喻與擬人——朱自清《荷塘月色》改編練習</span><span class="ex-text">【原句】葉子出水很高，像亭亭的舞女的裙。（明喻：本體「葉子」，喻詞「像」，喻體「舞女的裙」）
+【擬人改寫】葉子驕傲地伸展腰身，亭亭立於水面，像在等待掌聲。
+【課堂任務】請同學指出兩句各用了哪種修辭，並說明效果有何不同。</span></div><div class="ex-item"><span class="ex-label">排比與對偶——課堂對照示範</span><span class="ex-text">【排比例句】我們要有山的穩重，有水的靈活，有風的自由，有火的熱情。（四個「有……的……」並列，氣勢層層遞進）
+【對偶例句】春蠶到死絲方盡，蠟炬成灰淚始乾。（李商隱《無題》，兩句字數相等，詞性相對：春蠶／蠟炬，到死／成灰，絲方盡／淚始乾）
+【辨別重點】排比三句以上、重複結構；對偶僅兩句、講究詞性工整。</span></div><div class="ex-item"><span class="ex-label">借代與象徵——進階辨析例句</span><span class="ex-text">【借代例句】「滿城盡帶黃金甲」——以「黃金甲」代指軍隊士兵，以特徵代本體。
+【象徵例句】余光中《鄉愁》以「郵票」象徵對母親的思念，「船票」象徵青年離鄉的漂泊，「墳墓」象徵生死阻隔，「海峽」象徵兩岸分離，層層遞進，象徵意涵由個人到家國。
+【課堂任務】請同學說明借代與象徵最根本的差異：借代是語言層面的替換（有明確對應），象徵是意義層面的暗示（需靠上下文理解）。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>本體／喻體／喻詞</strong></td><td>比喻三要素：本體是被比較的對象，喻體是用來比較的事物，喻詞是連接兩者的詞語（如「像、如、似、宛如、好比」）。明喻三者俱全；隱喻省略喻詞；借喻省略本體與喻詞。</td></tr><tr><td><strong>擬人</strong></td><td>將非人類的事物（動植物、自然現象、抽象概念等）賦予人的行為、情感或語言，使描寫更生動親切，拉近讀者與描寫對象的距離。</td></tr><tr><td><strong>映襯（對比）</strong></td><td>將兩種性質相反或差異明顯的事物並列對照，藉由強烈反差突顯各自特點，以增強表達的力度與說服力。</td></tr><tr><td><strong>借代</strong></td><td>不直接說出本體名稱，改以與本體相關的事物（特徵、材料、工具、處所等）來代替，要求借體與本體有明確的關聯性，讀者可直接對應還原。</td></tr><tr><td><strong>象徵</strong></td><td>以具體可感的事物暗示抽象的概念、情感或思想，象徵意涵不直接點明，需透過作品整體脈絡與文化背景加以理解，是文學層面的深層技法。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【修辭辨識三步驟教學法】引導學生先問「這句話有沒有比較？」（比喻/映襯）→「有沒有人格化？」（擬人）→「有沒有誇大？」（誇張），逐步縮小範圍，建立系統性辨識流程，避免死背定義卻無法應用。</li><li>【仿寫練習強化記憶】每學完一種修辭，立即請學生用同一修辭仿寫一句描述「校園生活」或「四季景色」的句子，並請兩位同學互評是否符合該修辭定義，錯誤處由全班討論修正，讓學生從輸出中發現盲點。</li><li>【九宮格整理表考前複習】製作一張「修辭法九宮格」，每格包含：修辭名稱、核心定義（一句話）、經典例句、易混淆修辭，讓學生在考前一週自己填寫空白版本，完成後與板書對照，作為自我檢核工具。</li></ul>
+          </div>
+        </div>
       </div>
 
-      <!-- 寫作 -->
       <div class="card g1-card" data-cat="xie">
         <div class="card-header">
           <div class="card-icon icon-purple">🖊️</div>
           <div>
             <div class="card-title">高一作文訓練</div>
-            <div class="card-sub">敘述文 → 抒情文入門</div>
+            <div class="card-sub">記敘文→抒情文入門</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">記敘文六要素教學</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">抒情散文寫作步驟</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0O088660248459885780" target="_blank">開頭、結尾技巧範例</a><span class="link-tag tag-official">113學測佳作</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">作文評分標準說明</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0K000000000000000011" target="_blank">大考作文評分細則</a><span class="link-tag tag-official">官方</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>記敘文六要素（時間、地點、人物、事件起因、經過、結果）是記敘文的骨架，六要素完整才能讓讀者清楚理解事件全貌，是高一作文訓練的基本功。</li><li>從記敘到抒情的關鍵在於「借景抒情」與「融情於事」：作者透過描寫具體的人事物，將情感自然融入敘述之中，避免直白說「我很感動」而改以場景帶出感受。</li><li>開頭技巧包含設問法（以疑問引導讀者）、警語法（直接點出主旨）、描寫法（以場景氛圍開篇），好的開頭能在150字內抓住閱卷老師目光，奠定全文基調。</li><li>結尾技巧以「首尾呼應」與「昇華主旨」最常用：前者回扣開頭的意象或問句，形成完整迴環；後者在個人情感之上提出普遍的人生體悟，使文章層次提升。</li><li>台灣高中作文評分標準通常分為：題旨（30分）、結構（25分）、文詞（25分）、字體（20分）；題旨切題且有個人觀點者得高分，照套公式而缺乏真情實感者易失分。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">示範開頭：描寫法帶入抒情氣氛</span><span class="ex-text">「那個下午，陽光像融化的奶油，厚厚地鋪在外婆的老舊木椅上。椅子空了，但我總覺得那抹陽光還在等人。」
+
+——此段以「陽光」和「空椅子」兩個具體意象，不直說「外婆過世」或「我很悲傷」，卻讓讀者感受到失落與思念，是記敘轉抒情的示範句。</span></div><div class="ex-item"><span class="ex-label">示範結尾：首尾呼應＋昇華主旨</span><span class="ex-text">【開頭】：「父親的手，粗糙得像砂紙，卻是我童年最溫暖的依靠。」
+【結尾】：「如今我也長出了自己的繭，才明白，那雙磨損的手，不是歲月的傷，是愛最實在的形狀。」
+
+——結尾回扣「手」的意象，並將個人親情體驗昇華為「愛的本質」，層次提升，符合高分作文的結構要求。</span></div><div class="ex-item"><span class="ex-label">六要素練習：一段文字拆解示範</span><span class="ex-text">原句：「去年夏天（時間），在學校操場（地點），我（人物）因為不小心說錯話（起因），與好友大吵一架（經過），兩人冷戰了整整一個月（結果）。」
+
+教學重點：讓學生先用一句話列出六要素，再擴充為300字記敘文，最後加入內心獨白或景物描寫，完成向抒情文的轉化。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>記敘文六要素</strong></td><td>構成一篇記敘文的六個基本元素：時間、地點、人物、事件起因、事件經過、事件結果，六者齊備才能讓讀者完整理解事件。</td></tr><tr><td><strong>借景抒情</strong></td><td>藉由描寫自然景物或生活場景，間接表達作者內心情感的寫作手法，情感不直說而由景物烘托而出。</td></tr><tr><td><strong>首尾呼應</strong></td><td>文章結尾回扣開頭所用的意象、問句或關鍵詞，形成結構上的完整迴環，使全文渾然一體、主旨更突出。</td></tr><tr><td><strong>昇華主旨</strong></td><td>在文章結尾將個人的具體經歷或情感，提升至普遍性的人生道理或價值觀，使文章層次由「個人」擴展至「普世」。</td></tr><tr><td><strong>融情於事</strong></td><td>將情感自然融入事件敘述之中的寫作方式，不單獨抽出來議論，而是讓讀者在閱讀事件過程中自然體會作者的情感。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【課堂活動：六要素速寫訓練】請學生以「一件讓你後悔的小事」為題，限時5分鐘用六要素框架寫出事件骨架，再交換同學作品互相核查是否六要素齊全，最後由老師挑選2~3份示範點評，強調「要素完整」比「文辭華麗」更優先。</li><li>【情感轉化練習：從直白到含蓄】先讓學生寫出「直白版」（如：我很感激媽媽）→再引導改寫為「場景版」（描寫媽媽幫你整理書包的動作細節），透過對比兩版本，讓學生具體感受「融情於事」的效果，此技巧可大幅提升文詞得分。</li><li>【評分角色扮演：學生當閱卷老師】提供3篇程度不同的匿名範文（優/中/待改），讓小組依照題旨、結構、文詞三面向討論給分並說明理由，最後與老師標準對照。透過「當評分者」的視角，學生更能內化評分標準，比單純講解評分規則效果更佳。</li></ul>
+          </div>
+        </div>
       </div>
 
       <!-- 外部資源 -->
@@ -1103,11 +1254,12 @@
         <ul class="link-list">
           <li><a href="https://dict.revised.moe.edu.tw" target="_blank">教育部重編國語辭典</a><span class="link-tag tag-official">官方</span></li>
           <li><a href="https://ctext.org/zh" target="_blank">中國哲學書電子化計劃</a><span class="link-tag tag-free">資料庫</span></li>
-          <li><a href="https://teldap.tw" target="_blank">台灣文獻叢刊資料庫</a><span class="link-tag tag-db">資料庫</span></li>
-          <li><a href="https://www.youtube.com/c/公視影音" target="_blank">公視台灣文學影音</a><span class="link-tag tag-video">影片</span></li>
+          <li><a href="https://terms.naer.edu.tw" target="_blank">國家教育研究院雙語詞彙</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://stv.naer.edu.tw" target="_blank">教育部愛學網影音</a><span class="link-tag tag-video">影片</span></li>
           <li><a href="https://cirn.moe.edu.tw/Module/index.aspx?sid=11" target="_blank">課綱素材・國語文</a><span class="link-tag tag-official">官方</span></li>
         </ul>
       </div>
+
 
     </div>
   </div>
@@ -1142,13 +1294,30 @@
             <div class="card-sub">唐宋八大家・韓柳蘇</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://ctext.org/wiki.pl?if=zh&chapter=248775" target="_blank">韓愈《師說》</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://ctext.org/wiki.pl?if=gb&chapter=559558" target="_blank">柳宗元《捕蛇者說》</a><span class="link-tag tag-free">原典</span></li>
-          <li><a href="https://zh.wikisource.org/wiki/%E9%86%89%E7%BF%81%E4%BA%AD%E8%A8%98" target="_blank">歐陽修《醉翁亭記》全文注釋</a><span class="link-tag tag-free">維基文庫</span></li>
-          <li><a href="https://zh.wikisource.org/wiki/%E5%89%8D%E8%B5%A4%E5%A3%81%E8%B3%A6" target="_blank">蘇軾《前赤壁賦》全文</a><span class="link-tag tag-free">維基文庫</span></li>
-          <li><a href="https://stv.naer.edu.tw/watch/282713" target="_blank">文言文翻譯技巧：留刪換</a><span class="link-tag tag-official">愛學網教學影片</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>韓愈〈師說〉核心論點：「師者，所以傳道、受業、解惑也」，反駁唐代「恥學於師」的風氣，強調學問傳承不論年齡貴賤，建立儒家師道尊嚴的論述基礎。</li><li>柳宗元〈捕蛇者說〉以對比手法呈現「苛政猛於虎」的社會批判：捕毒蛇之危險遠不及苛稅之殘酷，寓政論於敘事，是古文運動「文以載道」的典範作品。</li><li>歐陽修〈醉翁亭記〉以「也」字貫穿全文，節奏整齊而富音樂感；「醉翁之意不在酒，在乎山水之間也」揭示仕途失意中寄情山水的曠達人生態度。</li><li>蘇軾〈前赤壁賦〉融合主客問答的賦體形式，透過水月意象探討「變與不變」的哲學命題，展現北宋儒釋道三家思想的融合與個人逆境中的超然心境。</li><li>唐宋古文運動的共同旨趣：韓愈、柳宗元倡導「文以載道」，歐陽修、蘇軾繼承並發展，以散文取代駢文，追求質樸自然的文風，反映士大夫的社會責任意識。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">〈師說〉核心論句——師道的定義與批判</span><span class="ex-text">「古之學者必有師。師者，所以傳道、受業、解惑也。人非生而知之者，孰能無惑？惑而不從師，其為惑也，終不解矣。」
+
+教學切入點：引導學生分析韓愈如何用邏輯三段論（有疑→須師→不師則疑不解）建立師道必要性，再對比「今之眾人，其下聖人也遠矣，而恥學於師」，凸顯諷刺效果。</span></div><div class="ex-item"><span class="ex-label">〈前赤壁賦〉水月哲思——主客辯證段落</span><span class="ex-text">「客亦知夫水與月乎？逝者如斯，而未嘗往也；盈虛者如彼，而卒莫消長也。蓋將自其變者而觀之，則天地曾不能以一瞬；自其不變者而觀之，則物與我皆無盡也，而又何羨乎？」
+
+教學切入點：讓學生找出「變」與「不變」兩組對立意象，討論蘇軾如何用辯證思維化解貶謫之悲，並連結佛道思想中「無常即永恆」的觀念。</span></div><div class="ex-item"><span class="ex-label">〈醉翁亭記〉疊字「也」的音韻結構</span><span class="ex-text">「環滁皆山也。其西南諸峰，林壑尤美，望之蔚然而深秀者，琅琊也。山行六七里，漸聞水聲潺潺而瀉出於兩峰之間者，釀泉也。峰迴路轉，有亭翼然臨於泉上者，醉翁亭也。」
+
+教學切入點：統計本文「也」字出現次數（全文約21個），體會其節奏如音樂般的迴環感；再對照「醉翁之意不在酒」一句，引導學生思考歐陽修「與民同樂」的政治理想與個人放懷的雙重意涵。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>古文運動</strong></td><td>唐代韓愈、柳宗元發起，主張以先秦兩漢散文（古文）取代南北朝盛行的駢儷文，強調「文以載道」，北宋歐陽修繼承並推廣，形成唐宋散文的主流風格。</td></tr><tr><td><strong>文以載道</strong></td><td>古文運動的核心主張，認為文章的根本目的在於承載儒家之「道」（倫理、政治、教化），反對以辭藻華麗為目標的形式主義寫法。</td></tr><tr><td><strong>賦體（文賦）</strong></td><td>介於詩與散文之間的文學體裁，蘇軾〈前赤壁賦〉屬「文賦」，保留主客問答與鋪排描寫，但句式較自由，不必嚴格押韻，融入散文的議論性。</td></tr><tr><td><strong>對比（映襯）手法</strong></td><td>將兩種相反或相異的事物並列，以強化主題。如柳宗元〈捕蛇者說〉中「蛇之毒」對比「賦之苦」，韓愈〈師說〉中「古之學者」對比「今之眾人」，皆用以突出批判立場。</td></tr><tr><td><strong>主客問答</strong></td><td>〈前赤壁賦〉採用的敘述框架，「主」代表作者超然曠達的一面，「客」代表悲觀憂傷的情緒，兩者辯論後由主說服客，象徵蘇軾內心的自我療癒與思想整合過程。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【對比閱讀法】將四篇文章的「作者處境」製成對照表（韓愈諫佛被貶、柳宗元永州謫居、歐陽修滁州外放、蘇軾黃州流放），先讓學生討論：人在逆境中如何回應？再帶入各篇文章的情志表達，幫助學生理解「文如其人」的概念，並培養知人論世的閱讀能力。</li><li>【主題式段落分析】針對〈師說〉，讓學生圈出文中三組對比（古之學者vs.今之眾人、士大夫之族vs.巫醫樂師百工之人、孔子vs.世俗），以表格整理後口頭報告，訓練文言文的「論證結構分析」，同時呼應議論文寫作教學。</li><li>【仿寫創作活動】學習〈醉翁亭記〉的「也」字句式或〈前赤壁賦〉的主客問答形式，讓學生以「現代場景」仿寫一段：例如「圖書館之記」或「考前心語」，要求保留原文句式骨架但替換現代情境，藉由輸出加深對句式與情志的內化理解。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g2-card" data-cat="yi">
@@ -1159,13 +1328,44 @@
             <div class="card-sub">論點・論據・論證</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">議論文三要素教學</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">舉例論證 vs. 引用論證</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">反駁技巧（歸謬法）</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://zh.wikisource.org/wiki/%E5%B7%AE%E4%B8%8D%E5%A4%9A%E5%85%88%E7%94%9F%E5%82%B3" target="_blank">胡適《差不多先生傳》全文</a><span class="link-tag tag-free">維基文庫</span></li>
-          <li><a href="https://zh.wikisource.org/zh-hant/Author:%E9%AD%AF%E8%BF%85" target="_blank">魯迅雜文：針砭時弊</a><span class="link-tag tag-free">維基文庫著作集</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>議論文三要素：論點（作者主張）、論據（支撐主張的材料）、論證（連結論點與論據的推理過程），三者缺一不可，共同構成完整論述結構。</li><li>論點須明確、可辯駁：好的論點不是陳述事實，而是提出一個有人可能不同意的主張，例如「差不多精神是阻礙中國現代化的根源」而非「胡適是作家」。</li><li>論據分兩大類：事實論據（歷史事件、統計數據、具體案例）與理論論據（名言、公認原則、科學定律），兩者搭配使用可增強說服力。</li><li>論證方法包含：舉例論證（以具體事例說明）、引用論證（引用權威言論佐證）、對比論證（正反對照凸顯主張）、歸謬法（假設對方立場成立，推導出荒謬結論以反駁）。</li><li>歸謬法（Reductio ad Absurdum）是批判性思考的重要工具：先承認對方前提，再沿其邏輯推演至不合理結果，從而推翻對方論點，魯迅雜文中大量運用此法進行社會批判。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">胡適〈差不多先生傳〉——論點與諷刺論證示範</span><span class="ex-text">【原文片段】「你們中國人最大的毛病是什麼？差不多。差不多先生說：『凡事只要差不多就好了，何必太認真呢？』」
+
+【教學分析】
+論點：「差不多」的心態是中國社會的積弊，應被根除。
+論據：差不多先生一生中數個「差不多」的荒誕事例（白糖/紅糖不差、牛/馬不差），最終因「差不多」誤看庸醫而身亡。
+論證方式：舉例論證＋諷刺性對比論證。作者以荒謬的「差不多邏輯」累積到極端後果，使讀者自然認同論點。
+課堂提問：「作者為何要讓差不多先生死？若他只是生病沒死，論證力道有何不同？」</span></div><div class="ex-item"><span class="ex-label">歸謬法操作示範——以學生日常情境仿寫</span><span class="ex-text">【教師示範段落】
+甲方論點：「反正大家都在滑手機，上課滑也沒關係。」
+
+歸謬法反駁：「若『大家都做就合理』成立，則歷史上大家都支持奴隸制，奴隸制便是合理的；大家都不洗手，不洗手便是衛生的。顯然這個標準站不住腳，因此『大家都滑手機』無法成為上課滑手機合理的論據。」
+
+【說明】歸謬法步驟：①接受對方前提→②沿前提推演→③得出荒謬結論→④點明前提本身有誤。
+此示範段落貼近學生生活，易於模仿練習。</span></div><div class="ex-item"><span class="ex-label">魯迅〈拿來主義〉——引用論證與對比論證結合</span><span class="ex-text">【核心段落精神】魯迅批判「送去主義」（一味輸出本國文化以討好外人）與「閉關主義」（全面排斥外來文化），主張「運用腦髓，放出眼光，自己來拿」。
+
+【論證結構還原】
+論點：對待外來文化應主動選擇吸收，而非被動接受或全盤拒絕。
+論據（對比）：送去主義→國家尊嚴喪失；閉關主義→自我封閉落後；拿來主義→取精華去糟粕。
+論據（引用）：以「大宅子」比喻外來文化遺產，以「孱頭、昏蛋、廢物」三種錯誤態度為反例。
+論證方式：對比論證＋比喻論證（類比推理）。
+
+備課重點：引導學生分辨「比喻」在議論文中如何發揮論證功能，而非只是修辭裝飾。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>論點（Thesis / Claim）</strong></td><td>作者在文章中明確提出、希望讀者接受的核心主張，必須具體且可辯駁，不可只是事實描述。</td></tr><tr><td><strong>論據（Evidence）</strong></td><td>用以支持論點的材料，分為事實論據（案例、數據、史實）與理論論據（名言、定律、公認原則）兩大類。</td></tr><tr><td><strong>論證（Argumentation）</strong></td><td>將論點與論據連結起來的推理過程，說明「為何這個論據能支持這個論點」，是議論文的邏輯核心。</td></tr><tr><td><strong>歸謬法（Reductio ad Absurdum）</strong></td><td>先承認對方的前提或假設，沿其邏輯推演至荒謬或矛盾的結論，藉此反駁對方論點的論證方法。</td></tr><tr><td><strong>對比論證（Contrast Argumentation）</strong></td><td>將正反兩面的觀點、情況或結果並列比較，透過強烈對照突顯己方論點的正確性，如魯迅對比送去主義與拿來主義。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【論點提煉練習】給學生一篇短文（如〈差不多先生傳〉節錄），請他們用一句話寫出作者論點，再與同學互相檢核：這句話是「事實陳述」還是「可辯駁的主張」？這個區辨是寫好議論文的第一關，10分鐘即可完成，適合課首暖身。</li><li>【歸謬法辯論工作坊】將全班分為正反方，給定一個貼近生活的命題（如「高中生應全面禁用手機」），要求反方必須至少使用一次歸謬法回應正方論點，並說明推演步驟。結束後全班一起評析：哪個歸謬最有力？為何？訓練批判性思考同時熟悉論證結構。</li><li>【論據升級挑戰】學生先寫一個只有論點和一個事實論據的短段落，再由教師示範如何加入引用論據（名言/數據）與對比論據，將同一段落「升級」三次。讓學生直觀感受不同論據組合對說服力的影響，最後請學生自己「升級」自己的段落，教師逐組給回饋。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g2-card" data-cat="xiao">
@@ -1176,13 +1376,24 @@
             <div class="card-sub">人物・情節・主題</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">小說六要素教學框架</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary01141" target="_blank">白先勇《永遠的尹雪艷》</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary02048" target="_blank">黃春明《看海的日子》</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary01173" target="_blank">陳映真短篇小說選讀</a><span class="link-tag tag-official">台灣文學館</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">小說敘事視角辨析</a><span class="link-tag tag-official">國語文學科中心</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>小說六要素（人物、情節、場景、觀點、主題、文體）是分析小說的基礎架構，教師可引導學生逐一拆解，掌握作者如何透過各要素傳達意涵。</li><li>人物塑造方法分為直接描寫（外貌、語言、行動、心理）與間接描寫（他人反應、環境烘托），白先勇筆下的尹雪艷以「永遠不老」的形象，展現時代悲涼的象徵性人物寫法。</li><li>情節結構通常依循「起承轉合」或「開端→發展→高潮→結局」推進，黃春明《看海的日子》以白梅從妓女到成為母親的轉變為高潮，呈現人的尊嚴與救贖。</li><li>敘事視角決定讀者所見的範圍與情感距離：第一人稱具親密性但視角受限；第三人稱全知視角便於客觀呈現全貌；限制視角則製造懸疑與張力。</li><li>主題是作者透過故事所傳遞的核心關懷，陳映真小說常以台灣底層人物處境折射社會矛盾，教師可引導學生從人物命運反推作者的社會批判意圖。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">白先勇《永遠的尹雪艷》——象徵性人物描寫</span><span class="ex-text">「尹雪艷從來不老。……她站在那兒，帶著那股子淡淡的笑意，依舊是鬢角生春，顧盼生輝。」此段以「從來不老」的超現實設定，將尹雪艷塑造為凝固時間的象徵，暗示那個逝去的上海時代無從挽回；教師可引導學生討論：人物的「不變」如何反映周遭人物的「悲涼變遷」，進而觸及時代主題。</span></div><div class="ex-item"><span class="ex-label">黃春明《看海的日子》——情節轉折與人物成長</span><span class="ex-text">白梅決定生下孩子的那一刻，是全篇情節的最高潮。她從事娼妓多年，卻選擇以「成為母親」來重建自我尊嚴。教師可提問：白梅的選擇是逃避還是救贖？這個問題沒有標準答案，正好訓練學生從情節細節（她如何存錢、如何說服父親）去支撐各自的詮釋，培養文本論據能力。</span></div><div class="ex-item"><span class="ex-label">敘事視角比較練習——同一事件，不同視角</span><span class="ex-text">練習題設計：取一段街頭吵架的場景，要求學生分別用「當事人（第一人稱）」「旁觀路人（第三人稱限制視角）」「全知敘述者（第三人稱全知）」各寫一段（每段約80字）。完成後小組互讀，討論：哪種視角最能引發讀者同情？哪種最適合製造懸疑？透過創作體驗理解敘事視角對讀者感受的影響。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>敘事視角（Narrative Point of View）</strong></td><td>指敘述者觀看、講述故事的位置與角度，影響讀者獲得資訊的多寡與情感的親疏，分為第一人稱、第三人稱全知、第三人稱限制視角等類型。</td></tr><tr><td><strong>象徵（Symbol）</strong></td><td>以具體的人、事、物或場景，暗示抽象的概念或情感。如尹雪艷的「永不衰老」象徵逝去的舊時代；白梅「望海」象徵對新生的渴望。</td></tr><tr><td><strong>情節高潮（Climax）</strong></td><td>故事中衝突張力積累至最高點的關鍵時刻，通常緊接著情節轉折，決定人物命運走向，也是主題最集中呈現的段落。</td></tr><tr><td><strong>人物塑造（Characterization）</strong></td><td>作者透過外貌、語言、行動、心理及他人反應等手法，建立人物形象的技巧，分為直接描寫與間接描寫兩大類。</td></tr><tr><td><strong>主題（Theme）</strong></td><td>作者藉由小說所傳達的核心思想或人生觀察，通常不直接說明，而是透過人物命運與情節發展讓讀者自行體會與歸納。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>採用「人物關係圖」導讀法：上課前讓學生先畫出小說中各角色的關係網絡（用箭頭標示情感方向與衝突），再對照情節發展確認或修正。此法能讓學生在閱讀過程中主動追蹤人物互動，避免被動接受教師詮釋，適合搭配《永遠的尹雪艷》等人物眾多的作品。</li><li>使用「主題拍賣」活動深化主題教學：列出五個詞語（如「尊嚴」「宿命」「鄉愁」「社會壓迫」「救贖」），每位學生持虛擬籌碼競標最符合本文主題的詞語，並在競標後用文本證據捍衛自己的選擇。此活動能訓練學生「以文本支持論點」的議論能力，也能促進班級多元詮釋的對話。</li><li>設計「敘事視角改寫」小作文（約150字）：選取課文中一段關鍵場景，指定學生換用不同視角重寫，寫完後對照原文，討論視角改變後讀者獲得的資訊、情感和判斷如何改變。此練習兼顧閱讀理解與寫作應用，符合108課綱「素養導向」的跨能力整合精神。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g2-card" data-cat="wen-hua">
@@ -1190,16 +1401,43 @@
           <div class="card-icon icon-red">🏛️</div>
           <div>
             <div class="card-title">文化與思想</div>
-            <div class="card-sub">儒道佛・台灣文化</div>
+            <div class="card-sub">儒道佛・台灣文學史</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://pedia.cloud.edu.tw/Entry/Detail?title=%E9%81%93%E5%AE%B6%E5%93%B2%E5%AD%B8" target="_blank">儒道比較思想</a><span class="link-tag tag-official">教育雲百科</span></li>
-          <li><a href="https://nrch.culture.tw" target="_blank">國家文化記憶庫</a><span class="link-tag tag-official">資料庫</span></li>
-          <li><a href="https://tlvm.nmtl.gov.tw/zh/History/HistoryList" target="_blank">台灣文學史概說</a><span class="link-tag tag-official">文學虛擬博物館</span></li>
-          <li><a href="https://tln.nmtl.gov.tw" target="_blank">台灣文學館線上資源</a><span class="link-tag tag-official">官方</span></li>
-          <li><a href="https://xiaoxue.iis.sinica.edu.tw/yanbian" target="_blank">漢字演變：甲骨金篆隸</a><span class="link-tag tag-official">中研院小學堂</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>儒家思想以「仁」為核心，強調人際倫理與社會秩序，孔子主張「克己復禮」、「修身齊家治國平天下」，由個人道德推展至國家治理。</li><li>道家思想以「道」為宇宙本體，老子倡「無為而治」、「知足常樂」，莊子發展「逍遙遊」與「齊物論」，強調順應自然、超脫世俗束縛。</li><li>儒道比較：儒家積極入世，以人倫禮義改造社會；道家消極出世，以自然無為保全本性。兩者互補，形塑中國文化的雙元精神。</li><li>台灣文學史分期：荷鄭清領時期（漢詩移植）→日治時期（新舊文學論戰、白話文運動）→戰後初期（反共文學）→六七○年代（鄉土文學論戰）→當代多元（女性、原住民、同志文學）。</li><li>漢字演變脈絡：甲骨文（商代占卜）→金文（銅器銘刻）→篆書（秦統一字形）→隸書（漢代通行、波磔出現）→楷書（標準化沿用至今），字形由象形趨向符號化。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">孔子與老子思想對比文本（《論語》vs《道德經》）</span><span class="ex-text">《論語・顏淵》：「克己復禮為仁。一日克己復禮，天下歸仁焉。」
+→ 儒家：透過自我約束與回歸禮制，實現「仁」的社會理想。
+
+《道德經》第十六章：「致虛極，守靜篤。萬物並作，吾以觀復。」
+→ 道家：放空執念、回歸靜定，觀察萬物自然循環之道。
+
+【課堂對比提問】兩段文字對「理想人格」的理解有何不同？孔子強調「做什麼」，老子強調「不做什麼」——這樣的差異背後是什麼樣的人生觀？</span></div><div class="ex-item"><span class="ex-label">台灣文學史關鍵事件：鄉土文學論戰（1977年）</span><span class="ex-text">1977年，王拓、黃春明等作家主張文學應反映台灣本土農村、勞工現實；余光中批評部分作品「工農兵文學」傾向。
+
+代表作：黃春明〈兒子的大玩偶〉——描寫廣告夾板人為養家糊口的辛酸，批判經濟高速發展下小人物的處境。
+
+【教學意義】論戰促使台灣文學從移植中原文化、反共意識形態，轉向關注「這片土地上的人」，是本土意識覺醒的重要里程碑。</span></div><div class="ex-item"><span class="ex-label">漢字演變實例：「馬」字字形流變</span><span class="ex-text">甲骨文：象形，可見馬頭、馬鬃、四蹄，造型生動具體。
+金文：線條略簡，仍保留象形特徵。
+小篆：秦統一後字形規範化，筆畫圓轉對稱。
+隸書：漢代大幅簡化，出現「波磔」（橫畫末端上挑），象形意味消退。
+楷書：筆畫方正，即今日通行字形「馬」（正體）或「马」（簡體）。
+
+【課堂活動】讓學生臨摹甲骨文「馬」並比對楷書，討論：為什麼文字需要從象形走向符號化？</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>仁（儒家）</strong></td><td>儒家最高道德理念，指愛人、推己及人的精神；《論語》中孔子多次詮釋，核心為「己所不欲，勿施於人」。</td></tr><tr><td><strong>無為（道家）</strong></td><td>老子哲學的行動原則，非「什麼都不做」，而是「不強行干預自然秩序」，順應天道，讓萬物自然發展。</td></tr><tr><td><strong>鄉土文學</strong></td><td>1970年代台灣文學運動，主張文學應扎根本土、描寫台灣庶民生活，對抗移植大陸文化與西化現代主義的傾向。</td></tr><tr><td><strong>甲骨文</strong></td><td>商代（約西元前14~11世紀）刻於龜甲、獸骨上的古老文字，用於占卜記錄，是目前已知最早成系統的漢字形態。</td></tr><tr><td><strong>隸變</strong></td><td>漢字由篆書轉化為隸書的歷史演變過程，字形大幅簡化、方正化，象形特徵消退，是漢字發展史上最關鍵的轉型節點。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【儒道思想辯論賽】將全班分為「儒家隊」與「道家隊」，針對情境題（如：面對職場壓力，你選擇積極進取還是知足放下？）進行三分鐘立場陳述與反駁。課後引導學生思考：現實生活中，儒道思想能否並存？此活動可強化哲學概念的內化，並訓練口語表達與批判思考。</li><li>【台灣文學時間軸小報】要求學生以五大分期為骨架，每期挑選一位作家、一部代表作、一句引文，製作A3時間軸海報。可搭配賴和〈一桿稱仔〉（日治）、鍾理和〈笠山農場〉（戰後）、李昂〈殺夫〉（女性文學）等作品，讓學生感受各時期文學關懷的演變，培養文學史縱觀能力。</li><li>【漢字考古家】課前印出甲骨文字卡（如：日、月、山、水、人、口），請學生先猜字義再翻牌驗證。接著展示同一字的金文→篆→隸→楷演變圖，讓學生觀察「何時開始認不出象形」。此活動適合作為文字學單元導入，10分鐘即可完成，能有效引發學習動機。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g2-card" data-cat="wen">
@@ -1207,16 +1445,30 @@
           <div class="card-icon icon-purple">🎭</div>
           <div>
             <div class="card-title">詩詞精讀</div>
-            <div class="card-sub">唐詩・宋詞・元曲</div>
+            <div class="card-sub">李白・李清照・蘇軾</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://ocw.aca.ntu.edu.tw/uploads/course_item_file/file/684/104S110_CT02L01.pdf" target="_blank">李白・杜甫對比教學</a><span class="link-tag tag-free">台大開放課程</span></li>
-          <li><a href="https://zh.wikisource.org/wiki/%E6%B0%B4%E8%AA%BF%E6%AD%8C%E9%A0%AD_(%E6%98%8E%E6%9C%88%E5%B9%BE%E6%99%82%E6%9C%89)" target="_blank">蘇軾詞《水調歌頭》全文</a><span class="link-tag tag-free">維基文庫</span></li>
-          <li><a href="https://ocw.aca.ntu.edu.tw/uploads/course_item_file/file/839/103S102_AA08L01.pdf" target="_blank">李清照詞精析</a><span class="link-tag tag-free">台大開放課程</span></li>
-          <li><a href="https://www.zdic.net" target="_blank">漢典（聲韻查詢）</a><span class="link-tag tag-free">工具</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/classical" target="_blank">平仄格律入門教學</a><span class="link-tag tag-official">國語文學科中心</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>李白詩風以浪漫主義為核心，善用誇飾、想像與神話意象，展現個人主體意識，代表作《靜夜思》《將進酒》皆體現此特色。</li><li>李清照詞以婉約派為主，善用日常意象（花、酒、秋風）傳達細膩情感，前期詞多閒愁，南渡後轉為哀國傷己之深沉。</li><li>蘇軾《水調歌頭》（明月幾時有）融入哲學思辨，以月寄情，兼具豪放氣度與人生感懷，是豪放詞的代表作。</li><li>平仄格律是古典詩詞的音樂性基礎：平聲（陰平、陽平）輕揚，仄聲（上、去、入聲）短促，兩者交錯形成抑揚頓挫之美。</li><li>李白與杜甫並稱「李杜」，李白崇尚自由超脫，杜甫關懷現實民生；兩人風格對比是理解唐詩流派的重要切入點。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">李白《靜夜思》——意象與情感分析</span><span class="ex-text">床前明月光，疑是地上霜。舉頭望明月，低頭思故鄉。
+【分析】全詩僅二十字，卻以「月光→霜→月→故鄉」串聯視覺與情感。「疑是地上霜」用比喻寫月色清冷，一個「疑」字暗示詩人半夢半醒、思緒飄離之狀。此詩平仄工整，適合帶學生做第一次格律練習。</span></div><div class="ex-item"><span class="ex-label">李清照《如夢令》——婉約詞的情感層次</span><span class="ex-text">昨夜雨疏風驟，濃睡不消殘酒。試問卷簾人，卻道海棠依舊。知否？知否？應是綠肥紅瘦。
+【分析】詞人以「問答」結構推進情節，「綠肥紅瘦」四字精煉傳神，以色彩對比暗喻花謝葉繁，春光消逝，寄託青春易逝之感。可引導學生討論：詞人真的只在意花嗎？</span></div><div class="ex-item"><span class="ex-label">蘇軾《水調歌頭》——哲學轉化與曠達情懷</span><span class="ex-text">明月幾時有？把酒問青天。不知天上宮闕，今夕是何年……人有悲歡離合，月有陰晴圓缺，此事古難全。但願人長久，千里共嬋娟。
+【分析】上闋問月，下闋轉入人間。「此事古難全」一句是全詞轉折，將個人遺憾昇華為宇宙普遍規律，展現蘇軾「以理化情」的豪放詞風。最後以祝福收尾，情感從自憐轉為利他，層次分明。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>婉約派</strong></td><td>宋詞流派之一，風格細膩含蓄，多寫兒女情長、離愁別緒，代表人物為李清照、柳永。</td></tr><tr><td><strong>豪放派</strong></td><td>宋詞流派之一，風格奔放開闊，題材擴及山河壯志與人生哲思，代表人物為蘇軾、辛棄疾。</td></tr><tr><td><strong>平仄</strong></td><td>漢字聲調的分類：平聲（陰平、陽平）聲調平穩；仄聲（上、去、入聲）聲調有起伏，兩者交替使詩詞產生音樂感。</td></tr><tr><td><strong>意象</strong></td><td>詩詞中承載情感的具體形象或事物，如月（思鄉/孤獨）、菊（高潔）、梅（堅忍），是解讀詩詞情感的重要切入點。</td></tr><tr><td><strong>誇飾（誇張）</strong></td><td>修辭手法之一，以超越現實的誇大描述強化情感，如李白「飛流直下三千尺」，常見於浪漫主義詩風。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【對比教學法】將李白《將進酒》與杜甫《石壕吏》並排，引導學生找出兩詩在題材、語氣、意象上的差異，再歸納「浪漫主義 vs 現實主義」兩種唐詩傳統。可用表格讓學生填寫，最後全班討論：你更喜歡哪種風格？為什麼？</li><li>【格律入門體驗】以《靜夜思》為材料，教師先用拍掌區分平（長拍）與仄（短拍），讓學生邊念邊拍，感受音樂性。再讓學生嘗試把其中一個字換成音調相反的字（如「明」換「美」），討論節奏感的變化，直覺建立平仄概念，無需死背規則。</li><li>【情境寫作延伸】讀完李清照《如夢令》後，請學生仿照「問答結構＋色彩意象」寫一段現代短文（不限詩詞格式），描述自己某個清晨看見某樣東西，心中升起的情緒。此活動幫助學生從「理解文本」進入「內化情感」，也可作為短篇寫作評量。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g2-card" data-cat="yi">
@@ -1227,13 +1479,37 @@
             <div class="card-sub">議論文進階</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">引論・本論・結論架構</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">學測作文題目整理（近10年）</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0N087492631715011728" target="_blank">學生作文優良範文集</a><span class="link-tag tag-official">112學測佳作</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0O088660248459885780" target="_blank">作文批改評語範本</a><span class="link-tag tag-official">113學測佳作</span></li>
-          <li><a href="https://www.ceec.edu.tw" target="_blank">大考中心作文規定</a><span class="link-tag tag-official">官方</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>議論文的三段式結構（引論—本論—結論）是學測作文的核心骨架：引論需在150字內點明論點，本論以2至3個分論點逐層展開，結論則昇華主旨而非重複。</li><li>有效的論證方法包含「例證法」「對比法」「引用法」三大類：例證法以具體事例支撐論點，對比法藉正反案例凸顯是非，引用法援引名言警句增添說服力與文學質感。</li><li>學測作文評分著重「立意取材」「結構組織」「遣詞造句」「錯別字」四大向度：立意需有深度而非表面，結構需邏輯清晰，語言需精準而有文采，零錯別字是基本門檻。</li><li>議論文的「論點、論據、論證」三要素缺一不可：論點是核心主張，論據是支撐事實或道理，論證是將兩者有機連結的推理過程，三者環環相扣才構成有效論述。</li><li>進階議論文須避免「泛道德化」與「套作」二大陷阱：前者指論述停留於說教而無具體分析，後者指套用固定模板而缺乏個人觀點，兩者皆會導致立意分數偏低。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">引論範例：以「挫折」為題的開篇寫法</span><span class="ex-text">【題目】試論挫折對人生的意義
+
+【引論示範】
+人們往往將挫折視為人生路上的絆腳石，亟欲繞道而行；然而，若換一個角度審視，挫折或許正是磨礪心智、淬鍊意志的試煉場。司馬遷受宮刑之辱，卻完成了「史家之絕唱」的《史記》；貝多芬失聰於創作盛年，卻譜出震撼人心的《命運交響曲》。由此可見，挫折並非終點，而是通往成就的必經之路。本文將從心理韌性、自我認識與社會同理三個面向，探討挫折對人生的深遠意義。
+
+【分析】此段共約150字，開頭以對比句式引入，接以二例快速立論，末句明確預告本論架構，符合「引論需扼要點題」的原則。</span></div><div class="ex-item"><span class="ex-label">本論段落範例：分論點展開的標準格式</span><span class="ex-text">【分論點一：挫折鍛造心理韌性】
+
+心理韌性（resilience）並非與生俱來的天賦，而是在反覆跌倒與起身的過程中逐漸建構而成。台灣籃球員林書豪在NBA生涯初期屢遭裁員，甚至一度睡在隊友沙發上，然而他並未放棄，最終以「林來瘋」旋風震驚全球。此例說明，唯有真正歷經挫折、正視失敗，個人才能累積面對逆境的心理資本。若人生一帆風順，則如同溫室花朵，一旦離開庇護便難以存活。因此，挫折不僅是考驗，更是建立心理韌性不可或缺的養分。
+
+【分析】此段結構為「分論點＋說明→事例→分析→反面假設→小結」，約150字，環環相扣，是本論段落的標準寫法。</span></div><div class="ex-item"><span class="ex-label">結論範例：昇華主旨而非重複</span><span class="ex-text">【結論示範（承接「挫折」一文）】
+
+挫折之所以珍貴，不在於它帶來的痛苦，而在於痛苦過後我們選擇如何回應。心理學家維克多・弗蘭克爾在納粹集中營中仍尋得生命的意義，他說：「在任何情況下，人都有選擇自身態度的自由。」這句話道出了挫折的真諦——它奪不走的，是我們面對它的方式。願每一位讀者，都能在人生的低谷中，找到屬於自己的星光。
+
+【分析】結論不重複本論要點，而是引用名言提升高度，末句以感性收尾創造餘韻，體現「結論須昇華、不贅述」的寫作原則。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>論點（Thesis）</strong></td><td>作者對議題所持的核心主張或見解，須明確、具體且可被論證，通常出現於引論末句或各本論段首句。</td></tr><tr><td><strong>論據（Evidence）</strong></td><td>用以支撐論點的材料，分為「事實論據」（歷史事件、時事案例、統計數據）與「道理論據」（名言、定律、邏輯推理）兩大類。</td></tr><tr><td><strong>論證（Argumentation）</strong></td><td>將論點與論據有機連結的推理過程，說明「為何此論據能支持此論點」，是議論文中最考驗思維深度的部分。</td></tr><tr><td><strong>起承轉合</strong></td><td>中文議論文的傳統章法：「起」點題破題，「承」展開論述，「轉」提出對立面或深化議題，「合」總結昇華，與現代三段式架構可相互對照應用。</td></tr><tr><td><strong>昇華（Elevation）</strong></td><td>結論段的核心技法，指在總結全文後將主旨提升至更高的人文、哲學或社會層次，使文章的思想深度超越事件本身，給讀者留下深刻餘韻。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【段落拆解練習】將一篇學測佳作（或教師自撰示範文）印出，請學生以不同顏色螢光筆標記：黃色＝論點句、藍色＝論據（事例或引用）、紅色＝論證分析句。完成後小組討論「哪一段論證最有力、為什麼」，引導學生內化議論文的「論點—論據—論證」三層結構，比單純講述更有效。</li><li>【限時寫作＋同儕互評】每節課安排15分鐘「微寫作」：給定一個論題（如「失敗是成功之母，你同意嗎？」），要求學生只寫「引論＋一個本論段」約250字。完成後兩人交換，依「立意是否清晰、有無具體例子、論證是否連貫」三項給1至3分的同儕評分，並寫下一句改善建議。每週累積四篇微寫作，期末匯集即是一本個人議論文練習冊。</li><li>【反方思辨訓練】針對學生寫好的本論段，教師要求學生在旁邊寫出「對方可能的反駁」，再練習用「退一步承認法（誠然……然而……）」回應。例如：學生寫「挫折使人成長」，反駁可能是「過度挫折也會造成心理創傷」，學生須在文中先承認此點再提出更深層的辯護，訓練多角度思維，避免議論文淪為片面說教。</li></ul>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1270,13 +1546,47 @@
             <div class="card-sub">各大題得分攻略</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0P118433526920370959&sid=0P115655386884050217" target="_blank">第一大題：綜合測驗（詞義語法）</a><span class="link-tag tag-official">大考中心試題特色</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0P118433526920370959&sid=0P115655386884050217" target="_blank">第二大題：文意選填</a><span class="link-tag tag-official">大考中心試題特色</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0P118433526920370959&sid=0P115655386884050217" target="_blank">第三大題：篇章結構</a><span class="link-tag tag-official">大考中心試題特色</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0J066614317330887844&sid=0K196324977750461423" target="_blank">第四大題：閱讀測驗</a><span class="link-tag tag-official">大考中心評量精神</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">第五大題：作文（60分）</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>學測國文選擇題（綜合測驗、文意選填、篇章結構）共佔48分，考生應優先掌握各大題題型邏輯，方能有效分配作答時間。</li><li>綜合測驗以段落理解為核心，題目多考字詞辨義、成語用法及語意推論，解題關鍵在於回歸上下文脈絡，而非憑印象猜答案。</li><li>文意選填考驗考生整合語境的能力，作答時應先通讀全文、標記空格前後語意線索，再以刪去法縮小選項範圍。</li><li>篇章結構（排列順序題）要辨識段落的起承轉合與邏輯銜接詞（如「然而」、「因此」、「此外」），從「首尾句」切入是最高效的攻略。</li><li>國寫分「知性題」與「感性題」各25分，知性題需明確立論、分段論述；感性題重視敘事細節與情感層次，兩者都要求段落分明、首尾呼應。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">篇章結構解題示範（銜接詞辨識）</span><span class="ex-text">原文段落（節錄）：「科技的進步帶來便利，______，人與人之間的情感連結卻日漸疏離。______，許多人寧願用訊息取代面對面的交談。」
+
+解題步驟：
+1. 第一空格前講「便利」，後講「疏離」——轉折關係，可填「然而」或「但是」。
+2. 第二空格後舉具體例子，為說明關係，可填「例如」或「以至於」。
+3. 結論：選「然而」＋「例如」，符合篇章邏輯。
+
+教師提示：讓學生圈出銜接詞類型（轉折/因果/舉例），再對應選項，準確率大幅提升。</span></div><div class="ex-item"><span class="ex-label">國寫知性題審題與立論示範</span><span class="ex-text">題目：「閱讀下列材料，說明『數位時代下，閱讀紙本書的價值』。」
+
+立論結構示範：
+【引（50字）】以現象切入：「手機螢幕充斥日常，紙本閱讀逐漸式微，然其獨特價值不應被忽視。」
+【論點一（100字）】深度專注：紙本閱讀排除超連結干擾，有助形成線性思維與深層記憶。
+【論點二（100字）】感官體驗：紙張質感與翻頁動作強化閱讀記憶，非數位媒介所能取代。
+【結（50字）】呼應開頭：「在訊息洪流中，紙本閱讀是思考慢下來的珍貴空間。」
+
+教師提示：要求學生先用30秒寫出「一句話立場」，再展開論述，避免離題。</span></div><div class="ex-item"><span class="ex-label">文意選填解題範例（語意線索辨識）</span><span class="ex-text">原文（節錄）：「台灣的茶文化源遠流長，各地茶區因______不同，孕育出風味迥異的茶葉。高山茶因______較大，茶葉生長緩慢，芳香物質積累豐富。」
+
+選項：A.日夜溫差　B.地理環境　C.採摘時節　D.海拔高度
+
+解題邏輯：
+- 第一空格後接「各地茶區」，語境為地理差異，選B「地理環境」。
+- 第二空格後接「茶葉生長緩慢、芳香物質積累」，為高山氣候特徵，選A「日夜溫差」。
+
+教師提示：訓練學生養成「空格前後各讀兩句」的習慣，找出語意核心詞再對應選項。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>銜接詞</strong></td><td>用於連接句子或段落的詞語，標示語意關係（如轉折、因果、遞進、舉例），是篇章結構題的核心解題線索。</td></tr><tr><td><strong>語境推論</strong></td><td>根據上下文的語意脈絡推導字詞或空格意義的能力，為綜合測驗與文意選填題的核心考驗。</td></tr><tr><td><strong>知性題（國寫）</strong></td><td>學測國寫第二大題，要求考生針對議題進行理性分析與論述，強調立論清晰、條理分明、有憑有據。</td></tr><tr><td><strong>感性題（國寫）</strong></td><td>學測國寫第一大題，以敘述、描寫或抒情為主，強調情感真實、細節具體、文字有個人風格。</td></tr><tr><td><strong>刪去法</strong></td><td>解選擇題時，先排除明顯錯誤選項、縮小範圍，再從剩餘選項中比較最佳答案的解題策略，適用於文意選填及閱讀測驗。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【限時模擬＋大題計時訓練】將選擇題四大題分段計時練習：綜合測驗建議15分鐘、文意選填10分鐘、篇章結構8分鐘、閱讀測驗20分鐘，讓學生形成時間感，避免考場因一題卡關而全盤失守。</li><li>【國寫審題工作坊】每週一題，讓學生在課堂前5分鐘只做「審題＋列綱要」（不動筆寫正文），練習用心智圖或條列式整理立論方向，教師再集體討論哪些立場最易展開、哪些容易離題，培養快速構思能力。</li><li>【銜接詞分類卡片遊戲】製作銜接詞卡（轉折類：然而/但是；因果類：因此/以致；遞進類：甚至/況且；舉例類：例如/諸如），讓學生分組搶答，將卡片貼入篇章結構練習題空格，邊玩邊建立語感，適合用於篇章結構專題複習課。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g3-card" data-cat="essay">
@@ -1287,13 +1597,37 @@
             <div class="card-sub">審題→立意→布局→修辭</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0O088660248459885780" target="_blank">審題四步驟（精準破題）</a><span class="link-tag tag-official">113學測佳作評析</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0N087492631715011728" target="_blank">開頭10種模式練習</a><span class="link-tag tag-official">112學測佳作評析</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">結尾昇華法×3</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc/cont?xsmsid=0J071624926253508127&sid=0J109540528429024070" target="_blank">佳句素材庫（依主題分類）</a><span class="link-tag tag-official">108學測佳作評析</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">評分委員評語分析（歷屆）</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>審題是作文成敗的第一關：讀完題目後須圈出「核心詞」與「限制詞」，確認寫作範疇，避免偏題或離題，才能在立意階段確立明確主張。</li><li>立意決定文章深度：好的立意不停留在表面描述，而是從個人經驗出發，延伸至普遍人性或社會意義，使評審感受到思考的厚度與廣度。</li><li>布局決定閱讀流暢度：常用「起—承—轉—合」或「總—分—總」結構，開頭切題引人入勝，中段以具體事例充實論點，結尾昇華主旨、首尾呼應。</li><li>修辭是加分利器而非裝飾：比喻、排比、對偶、設問等修辭手法應配合語境自然運用，過度堆砌反而失分；評審重視「用得準」勝於「用得多」。</li><li>開頭與結尾是評審最先、最後閱讀之處：開頭十種模式（問句破題、名言引用、情境描繪、對比反差等）與結尾昇華技法（反思、呼籲、意象收束）直接影響第一印象與整體印象分。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">開頭示範：情境描繪法（題目：「等待」）</span><span class="ex-text">「月台上，母親的身影越縮越小，直到消失在轉角。我握著手機，卻始終沒有按下傳送鍵——那句『我到了』，不知道要等到什麼時候才能說出口。」
+
+【解析】以具體場景代入，立刻拉近讀者距離，同時暗示核心情感「等待背後的牽掛」，順勢引出立意，比直接說「等待是人生的課題」更有感染力。</span></div><div class="ex-item"><span class="ex-label">結尾昇華示範（題目：「挫折」）</span><span class="ex-text">「挫折從不是終點，它是那把鑿子，一刀一刀刻出我們輪廓的深度。若沒有被鑿刻的疼痛，大理石永遠只是一塊頑石，無從成為雕像。願每一個跌倒的人，都能在重新站起的瞬間，看見自己更清晰的形狀。」
+
+【解析】以「比喻」（鑿子＋大理石）統整全文意象，再以第二人稱「願每一個人」擴展主旨至普遍性，完成情感昇華，令評審留下深刻印象。</span></div><div class="ex-item"><span class="ex-label">審題實例：區分核心詞與限制詞</span><span class="ex-text">題目：「在人際關係中，我學到了真正的勇氣」
+
+核心詞：勇氣（立意主軸）
+限制詞：人際關係中（寫作範疇，不可只寫個人內心獨白，須有人與人互動的具體情境）
+
+審題步驟示範：
+① 圈出「勇氣」→思考：何種勇氣？說真話的勇氣？接受拒絕的勇氣？
+② 圈出「人際關係中」→確認：必須有真實互動場景（友情、師生、家人）
+③ 確認「我」→以第一人稱敘事，須有親身感受或成長轉變
+④ 確認「真正的」→暗示立意需超越表面，找出對「勇氣」的深層詮釋</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>審題</strong></td><td>閱讀作文題目後，辨別寫作範疇、核心主題與限制條件的思考過程，是確保文章不偏題的第一步。</td></tr><tr><td><strong>立意</strong></td><td>確立文章的核心主張或觀點，指作者想透過文章傳達的核心思想，好的立意須具備深度與獨特性。</td></tr><tr><td><strong>布局（謀篇）</strong></td><td>安排文章各段落的順序與比重，包括開頭、主體、結尾的結構規劃，使文章脈絡清晰、層次分明。</td></tr><tr><td><strong>修辭</strong></td><td>運用特定語言技巧（如比喻、排比、對偶、設問、誇飾等）增強表達效果，使文句更生動、有感染力。</td></tr><tr><td><strong>昇華</strong></td><td>作文結尾時，將個人經驗或具體事件提升至普遍人性、社會意義或哲理層次，使主旨更深遠、有餘韻。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【審題訓練：90秒圈詞練習】課堂發放5道近年學測題目，限時90秒，要求學生用不同顏色筆分別圈出「核心詞（紅）」「限制詞（藍）」「人稱或時態（綠）」，再兩人一組互相說明自己的解讀，教師巡視糾正常見誤判，有效建立審題習慣。</li><li>【開頭接龍：十種模式實作】將全班分為十組，每組分配一種開頭模式（問句式、名言引用式、情境描繪式、對比反差式、定義切入式、數據引用式、故事懸念式、感官描寫式、否定反問式、呼告式），各組針對同一題目（如「勇氣」）各寫一段開頭，貼在黑板上集體評析，讓學生感受不同模式的效果差異，最後票選「最想繼續讀下去」的開頭並討論原因。</li><li>【改寫升分法：結尾昇華工作坊】收集學生期末作文中常見的「平淡收尾」段落（如「總之，這次經驗讓我成長許多」），印成學習單，要求學生用「意象收束法」或「呼籲法」改寫，教師提供改寫前後對照範例，讓學生親眼見到分數差距的原因，再進行同儕互評，說明「昇華」的具體標準。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g3-card" data-cat="wen">
@@ -1301,16 +1635,44 @@
           <div class="card-icon icon-blue">📚</div>
           <div>
             <div class="card-title">文言文字詞彙整</div>
-            <div class="card-sub">考前必背 300 詞</div>
+            <div class="card-sub">考前必備核心詞</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">虛詞用法：之乎者也</a><span class="link-tag tag-official">教育部國語辭典</span></li>
-          <li><a href="https://xiaoxue.iis.sinica.edu.tw/" target="_blank">實詞一字多義彙整</a><span class="link-tag tag-official">中研院小學堂</span></li>
-          <li><a href="https://xiaoxue.iis.sinica.edu.tw/yanbian" target="_blank">古今字義對照表</a><span class="link-tag tag-official">中研院字形演變</span></li>
-          <li><a href="https://dict.variants.moe.edu.tw" target="_blank">通假字總整理</a><span class="link-tag tag-official">教育部異體字字典</span></li>
-          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">線上字義查詢（教部辭典）</a><span class="link-tag tag-official">工具</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>虛詞（之、乎、者、也、而、以、於、乃）在文言文中不表實義，而是表達語氣、結構或邏輯關係，須依上下文判斷其功能，如「之」可作代詞、助詞、動詞，意義各異。</li><li>實詞一字多義是學測常考重點，同一字在不同語境中詞性與意義截然不同，例如「負」可作「背負」、「欠債」、「辜負」、「依靠」等，需熟記各義項並搭配例句記憶。</li><li>古今字義差異（古今異義）指某些字詞在文言文中的意思與現代中文完全不同，容易誤解，例如「妻子」古代指妻與子女，今指配偶；「走」古代指跑，今指步行。</li><li>通假字是古人書寫時以聲音相同或相近的字代替本字，閱讀時必須還原本字才能正確理解，例如「蚤」通「早」、「說」通「悅」、「知」通「智」。</li><li>文言文詞類活用是指名詞、形容詞、動詞在特定句型中轉換詞性使用，如名詞活用作動詞、形容詞活用作名詞，識別活用是理解文義的關鍵能力。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">「之」的一字多義辨析（虛詞代表）</span><span class="ex-text">① 代詞：「愛共叔段，欲立之。」（之＝他，指共叔段）
+② 助詞（取消句子獨立性）：「師道之不傳也久矣。」（之在主謂間，無實義）
+③ 助詞（結構助詞，的）：「水陸草木之花。」（之＝的）
+④ 動詞（往、去）：「吾欲之南海。」（之＝前往）
+
+教師提示：遇「之」先判斷前後詞性，若前為名詞／代詞、後為動詞，多為代詞；若在主謂間，多為取消句子獨立性的助詞。</span></div><div class="ex-item"><span class="ex-label">古今異義對照表（常見易錯詞）</span><span class="ex-text">詞語｜古義｜今義
+走｜奔跑（「棄甲曳兵而走」）｜步行
+妻子｜妻與子女（「率妻子邑人來此絕境」）｜配偶
+可以｜可以憑藉（「忠之屬也，可以一戰」）｜表示許可或可能
+犧牲｜祭祀用的牛羊豬（「犧牲玉帛，弗敢加也」）｜為某目的捨棄生命或利益
+去｜離開（「去國懷鄉」）｜前往
+
+教師提示：此類題學測每年必考2至3題，建議讓學生用顏色筆在課文中圈出，並寫上古義備註。</span></div><div class="ex-item"><span class="ex-label">通假字例句整理（學測高頻考點）</span><span class="ex-text">① 「旦日不可不蚤自來謝項王。」——蚤通早，意為早早、及早。（《鴻門宴》）
+② 「學而時習之，不亦說乎？」——說通悅，意為喜悅、高興。（《論語》）
+③ 「甚矣，汝之不惠！」——惠通慧，意為聰明。（《愚公移山》）
+④ 「河曲智叟亡以應。」——亡通無，意為沒有。（《愚公移山》）
+
+辨識技巧：通假字讀音與本字相同或相近；遇到字義說不通時，優先考慮是否為通假字。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>虛詞</strong></td><td>文言文中不具體表示事物或動作意義、主要表達語法關係或語氣的字，如之、乎、者、也、而、以、於、乃、焉等。</td></tr><tr><td><strong>實詞</strong></td><td>文言文中具有實際詞彙意義的字，包括名詞、動詞、形容詞等，是句子意義的主要載體，常見一字多義現象。</td></tr><tr><td><strong>古今異義</strong></td><td>某詞語在文言文中的意思與現代中文用法明顯不同，閱讀時需依古義理解，不可以今義套入，否則易造成誤解。</td></tr><tr><td><strong>通假字</strong></td><td>古人書寫時借用音同或音近的字代替正字（本字），閱讀時需辨識並還原本字意義，是文言文理解的重要障礙之一。</td></tr><tr><td><strong>詞類活用</strong></td><td>文言文中某些詞在特定句型下臨時改變詞性使用，例如名詞活用作動詞、形容詞活用作名詞，須依句子結構判斷其活用類型。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>採用「語境猜義法」課堂練習：每節課開始給學生3至5個含文言虛詞或多義詞的例句，要求學生不查資料先依語境猜出字義，再對照正確解釋，反覆訓練語感，比死背更有效；錯誤率高的字詞集中製成班級「易錯詞牆」貼在教室。</li><li>設計「古今對照卡」分組活動：將班級分組，每組負責整理5至8個古今異義詞，製成雙面小卡（正面古義例句、背面今義說明），課堂互相測試；期末統整成全班共用複習包，兼顧合作學習與考前複習效率。</li><li>利用「通假字還原練習」強化辨識能力：從歷屆學測考題中挑選含通假字的段落，刻意不加注釋，讓學生先嘗試翻譯，再揭示通假關係；強調「字義說不通就懷疑通假」的解題策略，並引導學生歸納通假字的聲符規律（形聲字同聲符常互通假）。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g3-card" data-cat="gsat">
@@ -1321,13 +1683,33 @@
             <div class="card-sub">快速讀懂長篇文章</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0J066614317330887844&sid=0K196324977750461423" target="_blank">首段定主旨法</a><span class="link-tag tag-official">大考中心閱讀評量</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0P118433526920370959&sid=0P115655386884050217" target="_blank">選項排除技巧×5</a><span class="link-tag tag-official">大考中心試題特色</span></li>
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">科普文 vs 文學文讀法</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://cerctestsys.tp.edu.tw/" target="_blank">跨文本整合練習卷</a><span class="link-tag tag-official">學科中心線上測驗</span></li>
-          <li><a href="https://epaper.tc.edu.tw/application/show-article?id=3038" target="_blank">閱讀速度訓練方法</a><span class="link-tag tag-official">台中市教育局</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>首段主旨法：閱讀長篇文章時，先精讀第一段與最後一段，可快速掌握全文核心論點，再以此為基準掃讀中間各段的轉折語與段首句。</li><li>段落結構分析：辨認「總—分—總」、「起—承—轉—合」等常見結構，有助於預測作者論述走向，減少全文逐字閱讀的時間成本。</li><li>選項排除法：遇到難以判斷的題目，先刪去「過度絕對」（含所有、永遠、絕無）與「無中生有」（文中未提及）的選項，縮小範圍後再比對原文語境。</li><li>科普文與文學文讀法區分：科普文重邏輯與定義，需找關鍵術語與因果關係；文學文重意象與情感，需注意比喻、象徵及敘述者語氣的轉變。</li><li>跨文本整合策略：面對學測常見的雙文本或多文本題組，先各自摘要每篇立場，再聚焦題目所問的「相同處」或「差異處」，避免混淆不同作者的觀點。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">例一：首段主旨法應用示範（科普文）</span><span class="ex-text">文章首段：「氣候變遷不僅是環境議題，更是攸關社會公平的政治問題。弱勢族群往往最先承受極端氣候的衝擊，卻最缺乏資源因應。」
+→ 教師引導：本段已揭示全文核心：氣候正義。學生據此可預測後段將舉弱勢族群受害的具體例子，並提出政策建議。閱讀後段時只需確認論點是否呼應首段，大幅節省時間。</span></div><div class="ex-item"><span class="ex-label">例二：選項排除法示範（文學文題型）</span><span class="ex-text">題目：下列何者最能說明文中「那扇窗始終沒有開過」的涵義？
+(A) 主角從未有機會了解外面的世界（過度絕對，應排除）
+(B) 象徵主角內心的封閉與對改變的抗拒（符合文中意象脈絡）
+(C) 暗示屋主忘記開窗（無中生有，文中無此情節）
+(D) 說明天氣寒冷（僅表面字義，未涉及象徵層次）
+→ 依「排除絕對語」與「排除無中生有」原則，先刪 A、C，再比較 B、D 與文本意象，確認答案為 B。</span></div><div class="ex-item"><span class="ex-label">例三：跨文本整合示範（雙文本題組）</span><span class="ex-text">文本甲（梭羅《湖濱散記》節選）：強調個人遠離社會、回歸自然的自主生活。
+文本乙（當代環保學者論述）：主張透過集體行動與政策改革解決環境危機。
+題目：兩篇文章對「人與自然關係」的看法有何異同？
+→ 教師示範：同：皆重視人與自然的連結；異：甲採個人實踐路徑，乙採集體制度路徑。學生需分別圈出各文本的核心主張再對照，切勿將兩者立場混合。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>主旨句</strong></td><td>全文或段落中最能概括核心論點的句子，通常出現在首段、末段或各段段首，是快速掌握文意的關鍵。</td></tr><tr><td><strong>轉折語</strong></td><td>如「然而」、「但是」、「儘管如此」等詞語，標誌作者論點的方向改變，閱讀時需特別留意其後的新觀點。</td></tr><tr><td><strong>干擾選項</strong></td><td>命題者刻意設計的錯誤答案，常以「過度絕對」、「無中生有」或「偷換概念」等方式混淆考生，需學會辨識。</td></tr><tr><td><strong>跨文本整合</strong></td><td>學測常見題型，要求考生閱讀兩篇或多篇文章後，比較其立場、論述方式或主題異同，需分別理解再加以對照。</td></tr><tr><td><strong>象徵</strong></td><td>文學修辭手法，以具體事物代表抽象概念或情感（如「窗」象徵開放或封閉），讀文學文時需留意反覆出現的意象。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>計時限速練習：每篇閱讀測驗文章限定三分鐘內完成「首段→尾段→段首句」快速掃讀，並寫下一句主旨摘要，再對照題目驗證。每週固定練習兩篇，讓學生建立速讀節奏感，習慣以「結構骨架」取代全文逐字精讀。</li><li>錯誤選項解剖教學：收集歷屆學測閱讀測驗的錯誤選項，帶領學生逐一標記「過度絕對語」、「無中生有」、「混淆原文語意」三類陷阱，製成個人錯誤類型統計表，讓學生發現自己最常落入哪一類，針對性加強。</li><li>跨文本比較便利貼活動：發給學生兩種顏色便利貼，讀完雙文本後，用一色寫甲文觀點、另一色寫乙文觀點，貼在黑板上分欄排列，全班共同尋找重疊與分歧之處，視覺化呈現整合思維，比單純口頭討論更有助於釐清異同。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g3-card" data-cat="exam">
@@ -1335,16 +1717,27 @@
           <div class="card-icon icon-sage">📋</div>
           <div>
             <div class="card-title">歷屆試題分析</div>
-            <div class="card-sub">111～113 學測</div>
+            <div class="card-sub">111～114學測趨勢</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">113 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
-          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">112 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
-          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">111 學測國文試題</a><span class="link-tag tag-official">試題</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0P118433526920370959&sid=0P115655386884050217" target="_blank">近5年高頻考點統計</a><span class="link-tag tag-official">大考中心試題特色</span></li>
-          <li><a href="https://www.ceec.edu.tw/xcepaper/cont?xsmsid=0J066588036013658199&qunit=0J066614317330887844&sid=0K196324977750461423" target="_blank">失分最多題型解析</a><span class="link-tag tag-official">大考中心評量精神</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>111～114學測國文，閱讀理解題佔比逐年提升，從純記憶型轉向「文意推論」與「跨文本比對」，考生須具備統整分析能力，不能只靠死背。</li><li>文言文考題以「語境推敲字義」為主，直接考翻譯的題型減少；114學測起更強調辨析古人論述邏輯與議題立場，需讀懂全段意旨再作答。</li><li>現代文學與生活語文融合出題，白話散文、新詩、圖表、廣告文案均可入題，跨文體閱讀能力成為致勝關鍵，單一文類訓練已不足夠。</li><li>寫作測驗（國寫）分「知性題」與「感性題」雙軌，知性題強調論證結構與引用素材的合理性；感性題要求情感真實與敘事層次，兩題失分比例皆高於預期。</li><li>成語、語法、修辭等語文知識題難度雖稍降，但「辨析語境適切性」取代「機械式填空」，考生常因語境判斷失誤而失分，須以整句理解取代單字記憶。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">111學測跨文本比對題示例（題型說明）</span><span class="ex-text">111學測出現「雙文本閱讀」：同時呈現一篇古典散文（節錄《聊齋志異》）與一篇現代評論，要求考生比較兩文對「鬼魅」意象的不同詮釋方式。此類題型要求學生先個別讀懂兩段文字的主旨，再進行觀點對照，無法只靠局部掃讀答題。教師可用此題型引導學生練習「主旨摘要→觀點提取→比對異同」三步驟閱讀法。</span></div><div class="ex-item"><span class="ex-label">113學測國寫知性題考點示例</span><span class="ex-text">113學測知性寫作題以「人工智慧輔助創作是否削弱人類創造力」為核心議題，提供三段引文（科技報導、藝術家訪談、哲學短文），要求考生綜合引文立場提出個人論點並加以論證。高頻失分原因：僅摘述引文而未提出己見、論點與論據脫節、結論未呼應開頭。教師可以此為範本訓練「引文活用→立場明確→首尾呼應」的議論文結構。</span></div><div class="ex-item"><span class="ex-label">114學測文言文語境推敲示例</span><span class="ex-text">114學測考〈諫逐客書〉片段，考題設計為：「文中『客』一字，在不同語境下各指何義？」選項設計極為相近，需逐句辨析上下文才能確定。此類題型反映命題趨勢：不考「客的字典義」，而考「作者在此句用『客』的策略意圖」。教師備課時可準備同一詞在不同文章中出現的語境對照練習，強化學生脈絡閱讀習慣。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>跨文本閱讀</strong></td><td>同時閱讀兩篇以上文本，比較其主題、立場或表達方式的差異，為111學測起逐年強化的核心能力。</td></tr><tr><td><strong>語境推敲</strong></td><td>依據詞語前後文的語義脈絡判斷其在特定句中的意思，而非僅憑字典定義作答。</td></tr><tr><td><strong>知性寫作</strong></td><td>國寫兩大題型之一，要求學生閱讀素材後提出有邏輯支撐的論點，強調論證結構與引文活用能力。</td></tr><tr><td><strong>感性寫作</strong></td><td>國寫兩大題型之一，以情感表達與敘事層次為評分重點，考驗學生將個人經驗轉化為有文學性文字的能力。</td></tr><tr><td><strong>高頻考點</strong></td><td>歷屆試題中反覆出現的知識或能力項目，如文意推論、修辭辨析、論述邏輯等，為備考資源分配的優先依據。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【跨文本配對練習】每週選一組古今配對文本（如唐宋散文＋當代評論），讓學生練習「主旨一句話摘要→觀點列點→異同比較表格」，模擬111～114學測跨文本題型，每次練習後公開討論摘要品質，建立共同標準。</li><li>【國寫拆題訓練】將知性寫作題拆成三個子任務分課進行：第一節只練「讀懂引文、提取立場」、第二節練「擬定論點與舉例」、第三節才整合成完整文章。避免一開始就要求學生直接下筆，降低焦慮並精準定位失分環節。</li><li>【語境選詞搶答】製作20～30組「同詞異境」卡片（同一成語或文言詞出現在不同語境的句子），每節課用5分鐘搶答，要求學生說明選擇理由而非只給答案，訓練語境判斷的口語化表達，呼應114學測命題走向。</li></ul>
+          </div>
+        </div>
       </div>
 
       <div class="card g3-card" data-cat="plan">
@@ -1355,13 +1748,37 @@
             <div class="card-sub">考前8週滾動計畫</div>
           </div>
         </div>
-        <ul class="link-list">
-          <li><a href="https://cerclearning.tp.edu.tw/" target="_blank">第8週：全範圍弱點盤點</a><span class="link-tag tag-official">國語文學科中心</span></li>
-          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">第6-7週：文言文強化</a><span class="link-tag tag-official">教育部國語辭典</span></li>
-          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">第4-5週：閱讀測驗刷題</a><span class="link-tag tag-official">大考中心歷屆試題</span></li>
-          <li><a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0J071624926253508127" target="_blank">第2-3週：作文每週一篇</a><span class="link-tag tag-official">大考中心佳作專區</span></li>
-          <li><a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">第1週：模擬考+檢討</a><span class="link-tag tag-official">大考中心歷屆試題</span></li>
-        </ul>
+        <div class="lesson-body">
+          <div class="lesson-section">
+            <div class="lesson-label">核心概念</div>
+            <ul class="lesson-list"><li>學測國文考前衝刺應採「滾動式計畫」：每兩週檢核一次弱點，依模擬考結果即時調整後四週的比重，而非固定死板地逐週推進。</li><li>文言文強化以「字詞義辨析→句構翻譯→主旨歸納」三層遞進為原則，每週精讀1至2篇經典選文，並搭配歷屆學測題型交叉練習。</li><li>作文每週至少完整練習一篇，題型依序涵蓋：看圖寫作→引導寫作→知性議題，並在批改後聚焦「論點是否清晰」與「首尾呼應」兩大核心問題。</li><li>模擬考後的「錯題本」建立是衝刺期最高槓桿的學習行為：分類記錄錯誤成因（粗心、不熟、觀念錯），並於下次模擬考前複習。</li><li>語文知識（修辭、文學常識、國字注音）適合利用零碎時間以「flashcard翻牌法」高頻複習，避免佔用整塊時間，集中整塊時間攻讀深度閱讀與寫作。</li></ul>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">教學範例</div>
+            <div class="lesson-examples"><div class="ex-item"><span class="ex-label">8週滾動計畫總覽架構</span><span class="ex-text">第1-2週【診斷期】：完成近三年學測國文科全卷模擬，分析各題型得分率；建立個人弱點清單，訂定後六週優先補強項目。
+第3-4週【文言文強攻期】：精讀《勸學》《出師表》《師說》等高頻選文，每篇完成字詞義辨析與翻譯練習；搭配歷屆選擇題。
+第5-6週【現代文＋作文衝刺期】：每週一篇引導式作文（限時50分鐘），老師批改後同儕互評；現代散文閱讀測驗以「找主旨句」為核心策略訓練。
+第7週【綜合模擬期】：模擬全真考場（計時、不查資料），考後當日對答案、寫錯題本，翌日進行錯題分析討論。
+第8週【收斂整理期】：只看錯題本＋個人弱點清單；語文知識以flashcard高頻翻牌；作文只練開頭段與結尾段，不做全篇。</span></div><div class="ex-item"><span class="ex-label">錯題本記錄範例（文言文題）</span><span class="ex-text">【題目】〈師說〉「師者，所以傳道受業解惑也」，下列何者正確？
+【我的答案】B（受＝接受）
+【正確答案】A（受＝通「授」，傳授）
+【錯誤成因】觀念錯誤——未記通假字
+【複習筆記】「受」通「授」是高頻通假字，另有「說」通「悅」、「知」通「智」需一併記憶。
+【下次模擬前要看】✓</span></div><div class="ex-item"><span class="ex-label">作文每週練習批改評分單</span><span class="ex-text">日期：第5週  題目：以「距離」為題，寫一篇文章
+【論點清晰度】3/5——主旨在第二段才出現，開頭偏敘事，議論性不足。
+【結構完整性】4/5——起承轉合架構清楚，首尾有呼應。
+【語言表達】3/5——多次出現「然後」「然後」的口語語病，建議改為「繼而」「其後」。
+【具體建議】下週練習時，先寫「主題句大綱」再動筆，確保第一段即點出核心論點。</span></div></div>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">術語整理</div>
+            <table class="lesson-table"><tbody><tr><td><strong>滾動式計畫</strong></td><td>每隔固定週期（通常兩週）重新檢視學習成效，依據實際表現動態調整後續計畫比重與內容，而非一開始即固定全程安排。</td></tr><tr><td><strong>通假字</strong></td><td>古文中借用音同或音近的字代替本字的用法，例如「受」通「授」、「說」通「悅」，是文言文閱讀測驗高頻考點。</td></tr><tr><td><strong>錯題本</strong></td><td>學生將作答錯誤題目連同錯誤成因、正確觀念一併記錄的複習工具，用於找出個人盲點並在考前定期回顧。</td></tr><tr><td><strong>引導式作文</strong></td><td>學測作文題型之一，題目提供文字材料或情境說明作為引導，要求考生依題意發揮，需兼顧「理解題旨」與「個人論述」兩層能力。</td></tr><tr><td><strong>收斂整理期</strong></td><td>考前最後一到兩週的學習策略，停止攝入新知識，轉為整理已知弱點、反覆複習錯題本與重點筆記，以穩定應試狀態為目標。</td></tr></tbody></table>
+          </div>
+          <div class="lesson-section">
+            <div class="lesson-label">課堂建議</div>
+            <ul class="lesson-list tips"><li>【第一次模擬考後的全班弱點地圖】：將全班模擬考各題型得分率製成簡單色塊表（紅/黃/綠），投影給學生看，讓學生自我對照，討論「哪個區塊最值得集中火力」，比老師單向宣布更能激發主動感，也讓衝刺計畫具有真實數據基礎。</li><li>【作文互評工作坊（每兩週一次）】：學生兩兩交換批改，使用統一評分單（論點、結構、語言各20分），批改後須用一句話說出「最欣賞的句子」與「一個可改進之處」，老師最後點評2至3篇共性問題。此法節省老師批改時間，同時強化學生「讀者意識」。</li><li>【文言文精讀「三遍法」操作示範】：第一遍學生自讀，標記不確定字詞；第二遍師生對讀，逐句確認句構與語氣；第三遍學生默寫重點句，老師以「克漏字」方式即時檢測。此三遍法可在40分鐘內完成一篇中等長度選文，適合衝刺期課堂使用。</li></ul>
+          </div>
+        </div>
       </div>
 
     </div>
