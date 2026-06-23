@@ -154,14 +154,14 @@
   .nav-inner {
     max-width: 1100px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     overflow: visible;
     gap: 0;
   }
   .nav-tab {
     position: relative;
-    padding: 14px 18px;
+    padding: 14px 8px;
     font-size: 14px;
     font-weight: 600;
     color: var(--muted);
@@ -173,6 +173,7 @@
     user-select: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 4px;
   }
   .nav-tab:hover { color: var(--sage); background: var(--sage-pale); }
@@ -693,9 +694,15 @@
   /* RULE: Mobile overflow prevention — on narrow screens, all multi-column grids must
      collapse to 1 or 2 columns. Never let content bleed past the viewport edge.
      white-space:nowrap must always be paired with overflow-x:auto on its container. */
+  /* 平板：導覽列 4 欄等寬 */
+  @media (max-width: 860px) {
+    .nav-inner { grid-template-columns: repeat(4, 1fr); }
+  }
   @media (max-width: 640px) {
     .header-search { min-width: unset; width: 100%; }
     nav { top: 90px; }
+    .nav-inner { grid-template-columns: repeat(4, 1fr); }
+    .nav-tab { padding: 12px 4px; font-size: 13px; letter-spacing: 0; }
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .cat-mascot { bottom: 16px; right: 16px; }
