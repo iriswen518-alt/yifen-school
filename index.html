@@ -648,6 +648,28 @@
     margin-top: 10px;
     border: 1px solid #c5ddd8;
   }
+  /* 板書範本（HTML 排版） */
+  .bd { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; margin-top: 10px; }
+  .bd-h { padding: 10px 14px; font-weight: 700; color: #fff; font-size: 14px; letter-spacing: .5px; }
+  .bd-c2 { display: grid; grid-template-columns: 1fr 1fr; }
+  .bd-cell { padding: 9px 12px; font-size: 13px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .bd-c2 .bd-cell:nth-child(even) { border-left: 1px solid var(--border); }
+  .bd-colh { justify-content: center; font-weight: 700; background: var(--sage-pale); color: var(--ink); }
+  .bd-num { color: var(--muted); font-weight: 700; flex: 0 0 auto; }
+  .bl { flex: 1 1 auto; border-bottom: 1.5px dashed #c4c4c4; min-width: 40px; height: 1.05em; }
+  .bd-full { padding: 9px 12px; border-top: 1px solid var(--border); font-size: 13px; background: #fafbfa; display: flex; align-items: center; gap: 8px; }
+  .bd-full b { flex: 0 0 auto; color: var(--ink); font-weight: 700; }
+  .bd-flow { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; padding: 12px; }
+  .bd-box { flex: 1 1 64px; min-width: 64px; border: 1.5px solid currentColor; border-radius: 9px; padding: 8px 6px; text-align: center; font-size: 12.5px; font-weight: 700; }
+  .bd-box .bl { display: block; margin-top: 6px; min-width: 0; }
+  .bd-arrow { align-self: center; color: var(--muted); font-weight: 700; }
+  .bd-mind { padding: 10px 14px; font-size: 13px; }
+  .bd-center { text-align: center; font-weight: 700; font-size: 14px; color: var(--ink); margin: 2px 0 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .bd-branch { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px dashed var(--border); }
+  .bd-key { flex: 0 0 auto; font-weight: 700; color: var(--ink); background: var(--sage-pale); border-radius: 6px; padding: 2px 9px; font-size: 12.5px; }
+  .bd-note { padding: 8px 14px; font-size: 12px; color: var(--muted); background: #fff; border-top: 1px dashed var(--border); }
+  .bd-copy { margin-top: 10px; font-size: 12.5px; color: var(--sage); background: var(--sage-pale); border: 1px solid #c5ddd8; border-radius: 8px; padding: 7px 14px; cursor: pointer; font-weight: 600; }
+  .bd-copy:active { background: #d3e8e2; }
 
   /* ===== ACCENTS ===== */
   .accent-sage { background: var(--sage-pale); }
@@ -4177,57 +4199,95 @@ function pickEssayTheme(theme, el) {
 
 // ========== TOOL: BOARD ==========
 const boardData = {
-  cause: `【因果型板書】
-┌─────────────────────────────────┐
-│  原因（Why）      ➜   結果（What）  │
-├────────────────┬────────────────┤
-│ 1. ____________│ 1. ___________│
-│ 2. ____________│ 2. ___________│
-│ 3. ____________│ 3. ___________│
-├────────────────┴────────────────┤
-│  結論 / 啟示：_____________________│
-└─────────────────────────────────┘
-使用時機：古文背景分析、人物行為動機`,
-  compare: `【比較型板書】
-┌────────────────┬────────────────┐
-│    甲（A）      │    乙（B）      │
-├────────────────┼────────────────┤
-│ ______________ │ ______________ │
-│ ______________ │ ______________ │
-│ ______________ │ ______________ │
-├────────────────┴────────────────┤
-│  相同點：__________________________│
-│  相異點：__________________________│
-└─────────────────────────────────┘
-使用時機：作者比較、文體比較、人物比較`,
-  flow: `【流程型板書】
-┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐
-│  開端  │ ➜ │  發展  │ ➜ │  高潮  │ ➜ │  結局  │
-│______│   │______│   │______│   │______│
-└──────┘   └──────┘   └──────┘   └──────┘
-          ↓
-┌─────────────────────────────────┐
-│  主旨 / 核心意涵：_________________│
-└─────────────────────────────────┘
-使用時機：小說情節分析、歷史事件`,
-  mind: `【心智圖型板書】
-              ┌─ 人物 ──────────┐
-              │                   │
-      ┌─ 背景─┤                   ▼
-      │       └─ 時代 ──────課文名稱
-      │                   │
-  主旨──────────────────┤
-      │                   │
-      │       ┌─ 修辭 ──────────┤
-      └─ 手法─┤                   │
-              └─ 結構 ──────────┘
-                    ↓
-            核心主題 / 啟示
-使用時機：整課總整理、複習課`
+  cause: {
+    html: `<div class="bd">
+      <div class="bd-h" style="background:var(--sage)">因果型板書</div>
+      <div class="bd-c2">
+        <div class="bd-cell bd-colh">原因（Why）</div>
+        <div class="bd-cell bd-colh">結果（What）</div>
+        <div class="bd-cell"><span class="bd-num">1.</span><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bd-num">1.</span><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bd-num">2.</span><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bd-num">2.</span><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bd-num">3.</span><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bd-num">3.</span><span class="bl"></span></div>
+      </div>
+      <div class="bd-full"><b>結論／啟示：</b><span class="bl"></span></div>
+      <div class="bd-note">使用時機：古文背景分析、人物行為動機</div>
+    </div>`,
+    text: `【因果型板書】\n原因（Why）　➜　結果（What）\n1. ____________｜1. ____________\n2. ____________｜2. ____________\n3. ____________｜3. ____________\n結論／啟示：____________________\n使用時機：古文背景分析、人物行為動機`
+  },
+  compare: {
+    html: `<div class="bd">
+      <div class="bd-h" style="background:var(--blue)">比較型板書</div>
+      <div class="bd-c2">
+        <div class="bd-cell bd-colh">甲（A）</div>
+        <div class="bd-cell bd-colh">乙（B）</div>
+        <div class="bd-cell"><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bl"></span></div>
+        <div class="bd-cell"><span class="bl"></span></div>
+      </div>
+      <div class="bd-full"><b>相同點：</b><span class="bl"></span></div>
+      <div class="bd-full"><b>相異點：</b><span class="bl"></span></div>
+      <div class="bd-note">使用時機：作者比較、文體比較、人物比較</div>
+    </div>`,
+    text: `【比較型板書】\n甲（A）　｜　乙（B）\n______________｜______________\n______________｜______________\n______________｜______________\n相同點：________________________\n相異點：________________________\n使用時機：作者比較、文體比較、人物比較`
+  },
+  flow: {
+    html: `<div class="bd">
+      <div class="bd-h" style="background:var(--gold)">流程型板書</div>
+      <div class="bd-flow" style="color:var(--gold)">
+        <div class="bd-box">開端<span class="bl"></span></div>
+        <span class="bd-arrow">➜</span>
+        <div class="bd-box">發展<span class="bl"></span></div>
+        <span class="bd-arrow">➜</span>
+        <div class="bd-box">高潮<span class="bl"></span></div>
+        <span class="bd-arrow">➜</span>
+        <div class="bd-box">結局<span class="bl"></span></div>
+      </div>
+      <div class="bd-full"><b>主旨／核心意涵：</b><span class="bl"></span></div>
+      <div class="bd-note">使用時機：小說情節分析、歷史事件</div>
+    </div>`,
+    text: `【流程型板書】\n開端 ➜ 發展 ➜ 高潮 ➜ 結局\n（各階段：____________）\n主旨／核心意涵：________________\n使用時機：小說情節分析、歷史事件`
+  },
+  mind: {
+    html: `<div class="bd">
+      <div class="bd-h" style="background:var(--red)">心智圖型板書</div>
+      <div class="bd-mind">
+        <div class="bd-center">課文名稱：<span class="bl" style="min-width:120px"></span></div>
+        <div class="bd-branch"><span class="bd-key">背景</span>時代／人物<span class="bl"></span></div>
+        <div class="bd-branch"><span class="bd-key">主旨</span><span class="bl"></span></div>
+        <div class="bd-branch"><span class="bd-key">手法</span>修辭／結構<span class="bl"></span></div>
+        <div class="bd-branch"><span class="bd-key">核心主題／啟示</span><span class="bl"></span></div>
+      </div>
+      <div class="bd-note">使用時機：整課總整理、複習課</div>
+    </div>`,
+    text: `【心智圖型板書】\n課文名稱：____________\n├ 背景：時代／人物 ____________\n├ 主旨：____________\n├ 手法：修辭／結構 ____________\n└ 核心主題／啟示：____________\n使用時機：整課總整理、複習課`
+  }
 };
 
 function showBoard(type) {
-  document.getElementById('board-output').textContent = boardData[type] || '（暫無）';
+  const d = boardData[type];
+  const out = document.getElementById('board-output');
+  if (!d) { out.textContent = '（暫無）'; return; }
+  out.style.background = 'transparent';
+  out.style.border = 'none';
+  out.style.padding = '0';
+  out.style.whiteSpace = 'normal';
+  out.innerHTML = d.html + '<button class="bd-copy" onclick="copyBoard(\'' + type + '\', this)">📋 複製純文字範本</button>';
+}
+
+function copyBoard(type, btn) {
+  const d = boardData[type];
+  if (!d || !navigator.clipboard) return;
+  navigator.clipboard.writeText(d.text).then(() => {
+    const old = btn.textContent;
+    btn.textContent = '✓ 已複製';
+    setTimeout(() => { btn.textContent = old; }, 1500);
+  });
 }
 
 // ========== NOTES ==========
