@@ -34,6 +34,9 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* 全站輸入框字級 ≥16px，避免 iOS 點擊聚焦時自動放大畫面 */
+  input, textarea, select { font-size: 16px; }
+
   body {
     font-family: 'Noto Serif TC', 'Georgia', 'Times New Roman', serif;
     background: var(--bg);
@@ -134,7 +137,7 @@
     border: none;
     outline: none;
     color: white;
-    font-size: 14px;
+    font-size: 16px; /* ≥16px 避免 iOS 聚焦時自動放大畫面 */
     width: 100%;
     font-family: inherit;
   }
@@ -214,10 +217,11 @@
   .nav-menu-item.active svg { color: var(--sage); }
   /* ===== 底部固定分頁列（手機）===== */
   .bottom-nav { display: none; }
+  .more-sheet, .more-backdrop { display: none; }
   @media (max-width: 640px) {
     .bottom-nav {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       position: fixed;
       top: auto;
       bottom: 0; left: 0; right: 0;
@@ -244,6 +248,40 @@
     .bottom-tab.active { color: var(--sage); }
     body { padding-bottom: 60px; }
     .cat-mascot { bottom: 72px; }
+    /* 更多功能彈出選單 */
+    .more-backdrop.show {
+      display: block;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 510;
+    }
+    .more-sheet.show {
+      display: block;
+      position: fixed;
+      left: 0; right: 0;
+      bottom: calc(60px + env(safe-area-inset-bottom, 0));
+      background: white;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      box-shadow: 0 -6px 24px rgba(0,0,0,0.15);
+      z-index: 520;
+      padding: 8px 10px 14px;
+      animation: sheet-up 0.2s ease;
+    }
+    @keyframes sheet-up { from { transform: translateY(12px); opacity: 0.6; } to { transform: translateY(0); opacity: 1; } }
+    .more-sheet-title { font-size: 12px; color: var(--muted); font-weight: 700; padding: 8px 12px 6px; letter-spacing: 1px; }
+    .more-sheet-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 14px;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+    .more-sheet-item svg { width: 20px; height: 20px; flex: 0 0 20px; color: var(--muted); }
+    .more-sheet-item.active { background: var(--sage-pale); color: var(--sage); }
+    .more-sheet-item.active svg { color: var(--sage); }
+    .more-sheet-item:active { background: var(--sage-pale); }
   }
   /* ===== MAIN ===== */
   main {
@@ -592,7 +630,7 @@
     padding: 10px 12px;
     border: 1.5px solid var(--border);
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 16px; /* ≥16px 避免 iOS 聚焦放大 */
     outline: none;
     resize: vertical;
     min-height: 80px;
@@ -926,18 +964,6 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/></svg>
     <span>首頁</span>
   </a>
-  <a class="bottom-tab" data-tab="g1" onclick="switchTabFilter('g1','all');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg>
-    <span>高一</span>
-  </a>
-  <a class="bottom-tab" data-tab="g2" onclick="switchTabFilter('g2','all');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg>
-    <span>高二</span>
-  </a>
-  <a class="bottom-tab" data-tab="g3" onclick="switchTabFilter('g3','all');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg>
-    <span>高三</span>
-  </a>
   <a class="bottom-tab" data-tab="exam" onclick="switchTab('exam');return false;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 12l2 2 4-4"/></svg>
     <span>考試</span>
@@ -946,11 +972,29 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-4-4-7 7-1 5z"/><path d="M14 6l4 4"/></svg>
     <span>工具</span>
   </a>
-  <a class="bottom-tab" data-tab="notes" onclick="switchTab('notes');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg>
-    <span>筆記</span>
+  <a class="bottom-tab" id="bottom-more" onclick="toggleMoreSheet(event)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>
+    <span>更多功能</span>
   </a>
 </nav>
+
+<!-- 更多功能彈出選單（手機）-->
+<div class="more-sheet" id="more-sheet">
+  <div class="more-sheet-title">更多功能</div>
+  <a class="more-sheet-item" data-tab="g1" onclick="navGo('g1','all'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高一資源</span>
+  </a>
+  <a class="more-sheet-item" data-tab="g2" onclick="navGo('g2','all'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高二資源</span>
+  </a>
+  <a class="more-sheet-item" data-tab="g3" onclick="navGo('g3','all'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg><span>高三資源</span>
+  </a>
+  <a class="more-sheet-item" data-tab="notes" onclick="navGo('notes'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>我的筆記</span>
+  </a>
+</div>
+<div class="more-backdrop" id="more-backdrop" onclick="closeMoreSheet()"></div>
 
 <!-- ===== MAIN ===== -->
 <main>
@@ -3603,7 +3647,7 @@
       <div class="tool-card">
         <h3>🧭 課文分析框架生成器</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">輸入課文名稱，產生備課分析框架</p>
-        <input type="text" id="tool-text-input" style="width:100%; padding:8px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; outline:none; margin-bottom:10px; font-family:inherit;" placeholder="例：師說、背影、錯誤…">
+        <input type="text" id="tool-text-input" style="width:100%; padding:8px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:16px; outline:none; margin-bottom:10px; font-family:inherit;" placeholder="例：師說、背影、錯誤…">
         <div style="display:flex; gap:8px; margin-bottom:10px;">
           <select id="tool-genre" style="flex:1; padding:7px 10px; border:1.5px solid var(--border); border-radius:8px; font-size:13px; outline:none; font-family:inherit;">
             <option value="wen">文言文</option>
@@ -3731,6 +3775,9 @@ function switchTab(id, fromSearch) {
   document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   document.querySelectorAll('[data-tab="'+id+'"]').forEach(t => t.classList.add('active'));
+  // 底部 home bar：高一/高二/高三/筆記 收在「更多功能」，故這些分頁時將「更多」標為 active
+  const moreBtn = document.getElementById('bottom-more');
+  if (moreBtn) moreBtn.classList.toggle('active', ['g1','g2','g3','notes'].includes(id));
   const cur = document.getElementById('nav-current');
   if (cur && TAB_NAMES[id]) cur.textContent = TAB_NAMES[id];
   if (!fromSearch) window.scrollTo(0,0);
@@ -3773,6 +3820,19 @@ function navGo(tab, filter) {
 document.addEventListener('click', e => {
   if (!e.target.closest('.nav-inner')) closeNavMenu();
 });
+
+// 底部「更多功能」彈出選單開關
+function toggleMoreSheet(e) {
+  if (e) e.stopPropagation();
+  const sheet = document.getElementById('more-sheet');
+  const back = document.getElementById('more-backdrop');
+  const open = sheet.classList.toggle('show');
+  back.classList.toggle('show', open);
+}
+function closeMoreSheet() {
+  document.getElementById('more-sheet').classList.remove('show');
+  document.getElementById('more-backdrop').classList.remove('show');
+}
 
 // ========== DATE ==========
 (function(){
