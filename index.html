@@ -246,7 +246,6 @@
     .bottom-tab span { font-size: 10px; font-weight: 600; letter-spacing: 0; }
     .bottom-tab.active { color: var(--sage); }
     body { padding-bottom: 60px; }
-    .cat-mascot { bottom: 100px; }
     /* 更多功能彈出選單 */
     .more-backdrop.show {
       display: block;
@@ -738,58 +737,6 @@
   .tl-title { font-size: 13px; font-weight: 600; }
   .tl-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-  /* ===== CAT MASCOT ===== */
-  .cat-mascot {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 999;
-    cursor: pointer;
-    user-select: none;
-    animation: cat-float 3s ease-in-out infinite;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
-    transition: transform 0.2s;
-  }
-  .cat-mascot:hover { transform: scale(1.15) rotate(-5deg); }
-  .cat-mascot:hover .cat-bubble { opacity: 1; transform: translateY(0); }
-  @keyframes cat-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  .cat-body {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(45,90,78,0.5), 0 0 0 2px rgba(255,255,255,0.6);
-  }
-  .cat-body img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .cat-bubble {
-    position: absolute;
-    bottom: 72px;
-    right: 0;
-    background: white;
-    border-radius: 12px 12px 4px 12px;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--ink);
-    white-space: normal;
-    width: 220px;
-    line-height: 1.5;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-    border: 1px solid var(--border);
-    opacity: 0;
-    transform: translateY(6px);
-    transition: all 0.25s;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
   /* ===== CAT PAW DIVIDER ===== */
   .paw-divider {
     text-align: center;
@@ -809,7 +756,6 @@
     nav { top: 90px; }
     .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .cat-mascot { bottom: 100px; right: 16px; }
     .chip-row { flex-wrap: wrap; }
     .chip { flex: 1 1 calc(50% - 4px); min-width: 0; }
   }
@@ -931,13 +877,6 @@
 
   /* ===== 小助教 CHAT ===== */
   .chat-wrap { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 16px rgba(74,124,111,0.12); border: 1px solid var(--border); }
-  .chat-header { padding: 0.85rem 1rem; background: linear-gradient(135deg, #4a7c6f, #6b9e92); color: #fff; display: flex; align-items: center; gap: 0.7rem; }
-  .chat-header-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.7); flex-shrink: 0; }
-  .chat-header-info { flex: 1; }
-  .chat-header-name { font-weight: 700; font-size: 0.98rem; letter-spacing: 0.5px; }
-  .chat-header-sub { font-size: 0.73rem; opacity: 0.9; }
-  .chat-reset-btn { background: rgba(255,255,255,0.22); border: none; border-radius: 20px; padding: 0.32rem 0.8rem; color: #fff; font-size: 0.75rem; cursor: pointer; white-space: nowrap; }
-  .chat-reset-btn:hover { background: rgba(255,255,255,0.35); }
   .chat-messages { flex: 1; overflow-y: auto; padding: 1rem 0.75rem; display: flex; flex-direction: column; gap: 0.75rem; background: #f7faf9; min-height: 320px; max-height: 56vh; }
   .chat-row { display: flex; flex-direction: column; }
   .chat-row.me { align-items: flex-end; }
@@ -3819,14 +3758,6 @@
     </div>
     <div class="card" style="padding:0;overflow:hidden;">
       <div class="chat-wrap">
-        <div class="chat-header">
-          <img class="chat-header-avatar" src="yifen_avatar.png" alt="小助教">
-          <div class="chat-header-info">
-            <div class="chat-header-name">小助教</div>
-            <div class="chat-header-sub">備課、出題、批改重點，問我就對了</div>
-          </div>
-          <button class="chat-reset-btn" onclick="resetChat()">↺ 重新開始</button>
-        </div>
         <div id="chatMessages" class="chat-messages">
           <div class="chat-intro">
             <img src="yifen_avatar.png" alt="小助教">
@@ -4457,55 +4388,7 @@ renderNotes();
   });
 })();
 
-// ========== CAT MASCOT ==========
-const catMessages = [
-  '「學而時習之，不亦說乎」——《論語》',
-  '「吾日三省吾身」：忠？信？習乎？',
-  '文言虛詞「之」：代詞、助詞、動詞，你分清了嗎？',
-  '「師者，所以傳道受業解惑也」——韓愈〈師說〉',
-  '「天下興亡，匹夫有責」——顧炎武',
-  '蘇軾〈赤壁賦〉：「逝者如斯，而未嘗往也」',
-  '作文開頭：先破題，再立意，切忌廢話連篇。',
-  '「不積跬步，無以至千里」——〈勸學〉荀子',
-  '〈醉翁亭記〉：醉翁之意不在酒，在乎山水之間也。',
-  '修辭：排比增氣勢，對偶顯工整，譬喻最生動。',
-  '學測作文 60 分，審題是第一關——題目每個字都有用。',
-  '「業精於勤，荒於嬉」——韓愈〈進學解〉',
-  '文言文翻譯口訣：留、刪、換、調、補、貫。',
-  '白居易〈琵琶行〉：「同是天涯淪落人，相逢何必曾相識。」',
-  '陶淵明〈桃花源記〉：避世烏托邦，還是現實批判？',
-  '「問渠那得清如許，為有源頭活水來」——朱熹',
-  '議論文三要素：論點、論據、論證，缺一不可。',
-  '〈出師表〉諸葛亮：「鞠躬盡瘁，死而後已」',
-  '「鳥宿池邊樹，僧敲月下門」——賈島推敲的故事',
-  '閱讀測驗技巧：先看題目，再讀文章，效率加倍。',
-  '「窮則獨善其身，達則兼善天下」——《孟子》',
-  '〈項脊軒志〉歸有光：以小見大，情感深沉。',
-  '實詞虛詞各有妙用，「而」字用法至少有七種！',
-  '「落霞與孤鶩齊飛，秋水共長天一色」——王勃〈滕王閣序〉',
-  '作文結尾：昇華主旨，回扣開頭，首尾呼應最有力。',
-];
-let catIdx = 0;
-let catUsed = [];
-function triggerCat() {
-  const bubble = document.querySelector('.cat-bubble');
-  if (catUsed.length === catMessages.length) catUsed = [];
-  let idx;
-  do { idx = Math.floor(Math.random() * catMessages.length); } while (catUsed.includes(idx));
-  catUsed.push(idx);
-  bubble.textContent = catMessages[idx];
-  catIdx++;
-  bubble.style.opacity = '1';
-  bubble.style.transform = 'translateY(0)';
-  setTimeout(() => {
-    bubble.style.opacity = '0';
-    bubble.style.transform = 'translateY(6px)';
-  }, 2400);
-}
 document.addEventListener('DOMContentLoaded', function() {
-  const mascot = document.getElementById('cat-mascot');
-  mascot.addEventListener('click', triggerCat);
-  mascot.addEventListener('touchend', function(e){ e.preventDefault(); triggerCat(); });
 
   // 課程卡摺疊功能：全站高一/高二/高三課程卡，點標題展開／收合，預設收合
   document.querySelectorAll('#g1-grid > .card, #g2-grid > .card, #g3-grid > .card').forEach(card => {
@@ -4685,14 +4568,6 @@ function startVoice() {
   recog.onend = function() { if (btn) btn.classList.remove('listening'); };
 }
 </script>
-
-<!-- 浮動貓咪吉祥物 -->
-<div class="cat-mascot" id="cat-mascot">
-  <div class="cat-bubble">點我說話 🌸</div>
-  <div class="cat-body">
-    <img src="yifen_avatar.png" alt="宜芬老師">
-  </div>
-</div>
 
 </body>
 </html>
