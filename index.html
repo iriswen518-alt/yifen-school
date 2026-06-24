@@ -928,6 +928,44 @@
   .sr-item:last-child { border-bottom: none; }
   .sr-cat { font-size: 10px; color: var(--muted); background: var(--border); padding: 1px 6px; border-radius: 6px; }
   .search-wrap { position: relative; }
+
+  /* ===== 小助教 CHAT ===== */
+  .chat-wrap { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 16px rgba(74,124,111,0.12); border: 1px solid var(--border); }
+  .chat-header { padding: 0.85rem 1rem; background: linear-gradient(135deg, #4a7c6f, #6b9e92); color: #fff; display: flex; align-items: center; gap: 0.7rem; }
+  .chat-header-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.7); flex-shrink: 0; }
+  .chat-header-info { flex: 1; }
+  .chat-header-name { font-weight: 700; font-size: 0.98rem; letter-spacing: 0.5px; }
+  .chat-header-sub { font-size: 0.73rem; opacity: 0.9; }
+  .chat-reset-btn { background: rgba(255,255,255,0.22); border: none; border-radius: 20px; padding: 0.32rem 0.8rem; color: #fff; font-size: 0.75rem; cursor: pointer; white-space: nowrap; }
+  .chat-reset-btn:hover { background: rgba(255,255,255,0.35); }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 1rem 0.75rem; display: flex; flex-direction: column; gap: 0.75rem; background: #f7faf9; min-height: 320px; max-height: 56vh; }
+  .chat-row { display: flex; flex-direction: column; }
+  .chat-row.me { align-items: flex-end; }
+  .chat-row.bot { align-items: flex-start; }
+  .chat-label { font-size: 0.7rem; font-weight: 600; color: var(--muted); margin-bottom: 0.2rem; }
+  .chat-bubble { max-width: 80%; padding: 0.7rem 1rem; border-radius: 16px; font-size: 0.9rem; line-height: 1.7; word-break: break-word; }
+  .chat-bubble.me { background: var(--sage); color: #fff; border-bottom-right-radius: 4px; }
+  .chat-bubble.bot { background: #fff; border: 1px solid var(--border); color: var(--text); border-bottom-left-radius: 4px; }
+  .chat-intro { text-align: center; padding: 1.5rem 1rem 0.5rem; }
+  .chat-intro img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem; }
+  .chat-intro p { color: var(--muted); font-size: 0.88rem; line-height: 1.8; }
+  .chat-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin-top: 0.8rem; }
+  .chat-chip { background: var(--sage-pale); color: var(--sage); border: 1px solid #c5ddd8; border-radius: 16px; padding: 0.32rem 0.8rem; font-size: 0.78rem; cursor: pointer; }
+  .chat-chip:hover { background: #d8ece7; }
+  .chat-input-row { display: flex; gap: 0.5rem; padding: 0.7rem; border-top: 1px solid var(--border); background: #fff; align-items: flex-end; }
+  .chat-input { flex: 1; border: 1.5px solid var(--border); border-radius: 22px; padding: 0.55rem 0.95rem; font-size: 0.9rem; font-family: inherit; outline: none; resize: none; transition: border-color 0.2s; max-height: 110px; overflow-y: auto; line-height: 1.5; }
+  .chat-input:focus { border-color: var(--sage); }
+  .chat-send { background: var(--sage); color: #fff; border: none; border-radius: 22px; padding: 0.55rem 1.2rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; flex-shrink: 0; }
+  .chat-send:disabled { opacity: 0.45; cursor: not-allowed; }
+  .chat-voice-btn { background: none; border: 1.5px solid var(--border); border-radius: 50%; width: 38px; height: 38px; font-size: 1.1rem; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .chat-voice-btn:active { background: var(--sage-pale); }
+  .chat-voice-btn.listening { background: var(--sage-pale); border-color: var(--sage); animation: chatpulse 1s infinite; }
+  @keyframes chatpulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .chat-typing-row { display: flex; align-items: center; gap: 4px; padding: 0.6rem 0.85rem; background: #fff; border: 1px solid var(--border); border-radius: 16px; border-bottom-left-radius: 4px; width: fit-content; }
+  .chat-typing-row span { width: 7px; height: 7px; background: var(--sage-light); border-radius: 50%; animation: chatbounce 1.2s infinite; display: inline-block; }
+  .chat-typing-row span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-typing-row span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes chatbounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-7px)} }
 </style>
 </head>
 <body>
@@ -993,6 +1031,9 @@
   <a class="more-sheet-item" data-tab="notes" onclick="navGo('notes'); closeMoreSheet();">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>我的筆記</span>
   </a>
+  <a class="more-sheet-item" data-tab="chat" onclick="navGo('chat'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9 9 0 0 1-3.8-.8L3 21l1.8-5.7a8.38 8.38 0 0 1-.8-3.8 8.5 8.5 0 0 1 17 0z"/></svg><span>小助教</span>
+  </a>
 </div>
 <div class="more-backdrop" id="more-backdrop" onclick="closeMoreSheet()"></div>
 
@@ -1045,6 +1086,7 @@
           <li><a href="#" onclick="switchTab('exam')">📝 考試資源 — 段考・歷屆試題</a></li>
           <li><a href="#" onclick="switchTab('tools')">🛠️ 備課工具 — 分析框架・板書範本</a></li>
           <li><a href="#" onclick="switchTab('notes')">📌 我的筆記 — 私人備課重點</a></li>
+          <li><a href="#" onclick="switchTab('chat')">💬 小助教 — 備課問答・課文分析・出題批改</a></li>
         </ul>
       </div>
 
@@ -3764,11 +3806,56 @@
     </div>
   </div>
 
+  <!-- ===== 小助教 CHAT ===== -->
+  <div class="section" id="tab-chat">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--sage-pale)">💬</div>
+        <div>
+          <h2>小助教</h2>
+          <p>備課好幫手 × 課文分析 × 出題與批改</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div class="chat-wrap">
+        <div class="chat-header">
+          <img class="chat-header-avatar" src="yifen_avatar.png" alt="小助教">
+          <div class="chat-header-info">
+            <div class="chat-header-name">小助教</div>
+            <div class="chat-header-sub">備課、出題、批改重點，問我就對了</div>
+          </div>
+          <button class="chat-reset-btn" onclick="resetChat()">↺ 重新開始</button>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-intro">
+            <img src="yifen_avatar.png" alt="小助教">
+            <p>宜芬老師好，我是小助教！<br>備課、課文分析、出題、作文批改重點都可以問我。<br>試試下面的快速問題：</p>
+            <div class="chat-chips">
+              <span class="chat-chip" onclick="quickAsk('課文分析框架怎麼寫？')">課文分析框架</span>
+              <span class="chat-chip" onclick="quickAsk('〈師說〉的備課重點是什麼？')">某課備課重點</span>
+              <span class="chat-chip" onclick="quickAsk('作文批改重點有哪些？')">作文批改重點</span>
+              <span class="chat-chip" onclick="quickAsk('怎麼出一題閱讀測驗？')">出題技巧</span>
+              <span class="chat-chip" onclick="quickAsk('一堂課的教學設計怎麼安排？')">教學設計流程</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <button class="chat-voice-btn" id="chatVoiceBtn" onclick="startVoice()" title="語音輸入">🎤</button>
+          <textarea id="chatInput" class="chat-input" placeholder="輸入問題，或點麥克風用說的…" rows="1"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
+            oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,110)+'px'"></textarea>
+          <button class="chat-send" id="chatSendBtn" onclick="sendChat()">送出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <script>
 // ========== TABS ==========
-const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', tools:'備課工具', notes:'我的筆記' };
+const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', tools:'備課工具', notes:'我的筆記', chat:'小助教' };
 function switchTab(id, fromSearch) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-menu-item').forEach(t => t.classList.remove('active'));
@@ -3868,6 +3955,7 @@ const searchData = [
   {title:'學測作文題目', cat:'高三', tab:'g3'},
   {title:'閱讀測驗策略', cat:'高三', tab:'g3'},
   {title:'文言文翻譯技巧', cat:'高二文言文', tab:'g2'},
+  {title:'小助教 備課問答', cat:'小助教', tab:'chat'},
 ];
 
 const input = document.getElementById('search-input');
@@ -4432,6 +4520,170 @@ document.addEventListener('DOMContentLoaded', function() {
     header.addEventListener('click', () => card.classList.toggle('open'));
   });
 });
+
+// ========== 小助教（國文備課智慧問答，純前端、不需 API）==========
+const ASSISTANT_KB = [
+  // ── 各課備課重點（依本站收錄篇目）──
+  { keys:['論語','學而','論語選'], reply:'〈論語選〉備課重點：\n📌 文體：語錄體，孔子與弟子對話，要先講「為什麼這樣記」。\n🎯 教學切入：抓「為學、為仁、為政」三主軸串起選文。\n⚠️ 常考：實詞「習、慍、罔、殆」；虛詞「之、其、而」；「學而不思則罔，思而不學則殆」對舉。\n📝 出題方向：句意翻譯、為學態度比較、引申到現代學習。' },
+  { keys:['孟子','魚我所欲','孟子選'], reply:'〈孟子選〉備課重點：\n📌 思想：性善、義利之辨、捨生取義。\n🎯 教學切入：用「比喻論證」「對比論證」帶學生看孟子怎麼說服人。\n⚠️ 常考：「魚與熊掌」取捨的譬喻、排比氣勢、「所欲有甚於生者」。\n📝 出題方向：論證方法判斷、義利觀申論、與論語對讀。' },
+  { keys:['師說','韓愈'], reply:'〈師說〉備課重點（韓愈）：\n📌 背景：古文運動，反對六朝駢儷、提倡載道。\n🎯 教學切入：論點「師者，所以傳道受業解惑」＋當時「恥學於師」的對比。\n⚠️ 常考：「無貴無賤，無長無少，道之所存，師之所存」；「句讀」「或師焉，或不焉」；虛詞「之、其、乎」。\n📝 出題方向：論證結構（正反對比）、從師之道申論。' },
+  { keys:['赤壁賦','赤壁','蘇軾','前赤壁'], reply:'〈赤壁賦〉備課重點（蘇軾）：\n📌 文體：賦（主客問答）；情感由樂→悲→悟。\n🎯 教學切入：用「主客問答」是蘇軾自我辯證，帶出曠達的人生觀。\n⚠️ 常考：「寄蜉蝣於天地，渺滄海之一粟」；變與不變之理；「清風明月」共適。\n📝 出題方向：情感轉折脈絡、變與不變的哲思、寫景抒情融合。' },
+  { keys:['項脊軒志','歸有光'], reply:'〈項脊軒志〉備課重點（歸有光）：\n📌 特色：以小見大，藉一間小書房寫家族變遷與親情。\n🎯 教學切入：抓「物在人亡」的對照，尤其結尾枇杷樹。\n⚠️ 常考：「庭有枇杷樹，吾妻死之年所手植也，今已亭亭如蓋矣」的含蓄；細節描寫。\n📝 出題方向：情感表達手法、以景結情、細節的作用。' },
+  { keys:['春酒','琦君'], reply:'〈春酒〉備課重點（琦君）：\n📌 主題：藉童年喝春酒的記憶，寫思鄉與母親。\n🎯 教學切入：感官記憶（味覺、嗅覺）如何勾起鄉愁。\n⚠️ 重點：以物寄情、含蓄節制、「家鄉味」的象徵。\n📝 出題方向：感官描寫分析、鄉愁主題、結尾「到哪裡去找真正的家醅」的情感。' },
+  { keys:['鄉愁','余光中'], reply:'〈鄉愁〉備課重點（余光中）：\n📌 結構：郵票／船票／墳墓／海峽，四段時間遞進。\n🎯 教學切入：平行結構＋意象，從個人鄉愁昇華到家國。\n⚠️ 重點：疊音詞「小小的、窄窄的、矮矮的、淺淺的」的作用；具象化抽象情感。\n📝 出題方向：意象分析、結構層次、情感昇華。' },
+  { keys:['錯誤','鄭愁予','達達的馬蹄'], reply:'〈錯誤〉備課重點（鄭愁予）：\n📌 主題：閨怨／過客，現代詩中的古典韻味。\n🎯 教學切入：「我不是歸人，是個過客」的反差與留白。\n⚠️ 重點：「美麗的錯誤」矛盾修辭；「達達的馬蹄」聽覺意象；蓮花、東風、柳絮等古典意象。\n📝 出題方向：矛盾修辭、意象與情境、敘事視角。' },
+  { keys:['桃花源記','陶淵明'], reply:'〈桃花源記〉備課重點（陶淵明）：\n📌 主題：理想國寄託，對亂世的批判與嚮往。\n🎯 教學切入：以漁人行蹤為線，虛實相生。\n⚠️ 常考：「黃髮垂髫，並怡然自樂」；「不足為外人道也」；「乃不知有漢，無論魏晉」。\n📝 出題方向：烏托邦寄託、敘事線索、虛實手法。' },
+  { keys:['醉翁亭記','歐陽脩','歐陽修'], reply:'〈醉翁亭記〉備課重點（歐陽脩）：\n📌 特色：21個「也」字句尾，一唱三嘆；與民同樂。\n🎯 教學切入：「醉翁之意不在酒，在乎山水之間」的弦外之音。\n⚠️ 重點：「也」字節奏、層層推進的寫景、樂的層次（山水樂→宴樂→與民同樂）。\n📝 出題方向：句式特色、主旨「與民同樂」、寫景順序。' },
+  { keys:['出師表','諸葛亮'], reply:'〈出師表〉備課重點（諸葛亮）：\n📌 文體：表（臣對君的奏議），情辭懇切。\n🎯 教學切入：抓「報先帝、忠陛下」的情感主線與具體建議。\n⚠️ 常考：「鞠躬盡瘁，死而後已」；「親賢臣，遠小人」；「臨表涕泣」。\n📝 出題方向：勸諫策略、忠的情感、文中具體建議分類。' },
+  { keys:['鴻門宴','項羽','史記','項羽本紀'], reply:'〈鴻門宴〉備課重點（史記）：\n📌 特色：紀傳體，以場面與對話刻畫人物。\n🎯 教學切入：用「座次、動作、語言」分析項羽、劉邦、范增、樊噲的性格。\n⚠️ 重點：項羽的婦人之仁；「項莊舞劍，意在沛公」；戲劇張力。\n📝 出題方向：人物形象對比、敘事張力、成敗關鍵分析。' },
+  { keys:['一桿稱仔','黃春明','看海的日子'], reply:'黃春明小說備課重點：\n📌 主題：鄉土文學，寫小人物的尊嚴與困境。\n🎯 教學切入：〈一桿稱仔〉的殖民壓迫與反抗；關懷底層。\n⚠️ 重點：寫實筆法、台灣鄉土語感、人物的悲劇性。\n📝 出題方向：鄉土文學特色、主題意識、人物處境分析。' },
+  { keys:['尹雪艷','白先勇','台北人'], reply:'白先勇小說備課重點：\n📌 主題：《台北人》今昔對照，繁華落盡的蒼涼。\n🎯 教學切入：〈永遠的尹雪艷〉中「不變的尹雪艷」對照世事變遷的反諷。\n⚠️ 重點：象徵、冷筆敘事、歷史滄桑感。\n📝 出題方向：象徵手法、今昔對比、敘事觀點。' },
+  { keys:['短歌行','曹操'], reply:'〈短歌行〉備課重點（曹操）：\n📌 主題：求賢若渴、人生苦短的慨嘆。\n🎯 教學切入：「對酒當歌，人生幾何」起，到「周公吐哺，天下歸心」收。\n⚠️ 重點：用典（青青子衿、周公）、比興、慷慨悲涼的建安風骨。\n📝 出題方向：用典分析、情感層次、建安文學特色。' },
+  { keys:['將進酒','李白'], reply:'〈將進酒〉備課重點（李白）：\n📌 主題：及時行樂中藏懷才不遇的悲憤。\n🎯 教學切入：誇飾與奔放的節奏，看似豪放實則悲慨。\n⚠️ 重點：「君不見黃河之水天上來」誇飾；「天生我材必有用」；情緒大起大落。\n📝 出題方向：誇飾手法、情感的表與裡、浪漫主義特色。' },
+  // 備課 / 課文分析
+  { keys:['課文分析','分析框架','文本分析','怎麼備課','備課架構'], reply:'課文分析框架（六步驟）：\n1️⃣ 作者與背景：時代、生平、創作緣由\n2️⃣ 文體與主旨：文體判斷＋一句話主旨\n3️⃣ 段落結構：分段、起承轉合、脈絡\n4️⃣ 字詞句解：難字、虛詞、關鍵句翻譯\n5️⃣ 修辭與技巧：標出主要修辭、寫作手法\n6️⃣ 延伸與評析：對照其他篇章、現代連結、價值討論\n\n備課時每段先抓「主題句＋例證＋作用」，板書會更有層次。' },
+  { keys:['教學設計','教案','教學步驟','課堂流程','教學流程'], reply:'一堂課的教學設計（建議節奏）：\n🔹 暖身（5分）：提問、影片或情境，引起動機\n🔹 概覽（5分）：作者背景＋全文大意\n🔹 精讀（20分）：分段導讀、字詞句解、修辭標記\n🔹 討論（10分）：開放問題、小組對話、價值思辨\n🔹 統整（5分）：主旨回扣、重點板書、課後延伸\n\n每個環節先寫「目標」再設「活動」，評量才對得上教學目標。' },
+  { keys:['出題','命題','怎麼出','出考題','設計題目'], reply:'國文命題技巧：\n📝 字詞義：選最易混淆的形音義、成語誤用\n📝 文意理解：問「主旨／作者態度／言外之意」\n📝 修辭判斷：給例句辨識修辭格\n📝 閱讀測驗：題幹要可從文本「找到依據」，避免主觀\n📝 跨域素養：結合圖表、生活情境、多文本對讀\n\n難易配置建議 易:中:難 = 3:5:2；每題只考一個概念，誘答選項要「看起來合理」。' },
+  { keys:['閱讀測驗','閱測','閱讀題','素養題'], reply:'出一題閱讀測驗的流程：\n1️⃣ 選文：500~800字，主題明確、有層次\n2️⃣ 設定能力：擷取訊息／統整解釋／省思評鑑\n3️⃣ 題幹：扣緊文本，問「依據文章…」\n4️⃣ 選項：正解可回文本驗證；誘答來自常見誤讀\n5️⃣ 難度檢核：自己先不看文章作答，太好猜就改\n\n素養題重點是「情境＋整合」，可附圖表或兩篇對讀。' },
+  { keys:['作文批改','批改','改作文','評分','作文評量'], reply:'作文批改四向度（學測級分概念）：\n✍️ 立意取材：切題、深度、選材是否新穎\n✍️ 結構組織：段落分明、起承轉合、首尾呼應\n✍️ 遣詞造句：用詞精準、句式變化、修辭得當\n✍️ 錯別字與標點：扣分但不主導\n\n批改技巧：眉批點出「具體一句」優缺，總評給「一個可改進方向＋一句鼓勵」，學生才改得動。' },
+  { keys:['作文教學','教作文','寫作教學','作文怎麼教'], reply:'作文教學步驟：\n1️⃣ 審題：圈關鍵詞、辨題型（記敘／抒情／議論）\n2️⃣ 立意：定中心思想，一句話講清楚要表達什麼\n3️⃣ 取材：列舉可用素材（生活、閱讀、時事）\n4️⃣ 布局：擬大綱，起承轉合各段要點\n5️⃣ 修辭潤飾：加比喻、排比、引用提升質感\n\n建議用「範文對照＋仿寫」，比單純講理論更有效。' },
+  // 修辭 / 文法
+  { keys:['修辭','排比','設問','誇飾','類疊','對偶','轉化','映襯'], reply:'常考修辭整理：\n🔸 譬喻：明喻（像/如）、暗喻（是）、借喻（直接代替）\n🔸 轉化：擬人、擬物、形象化\n🔸 排比：三句以上相同結構並列，增強氣勢\n🔸 設問：提問引導；反問：答案在問句裡\n🔸 映襯：對比（正反並列）、烘托\n🔸 誇飾、類疊、對偶、頂真、回文\n\n教學小訣竅：用學生熟悉的歌詞或廣告語當例子，最有感。' },
+  { keys:['譬喻','比喻','明喻','暗喻','借喻'], reply:'譬喻三類（備課常被問）：\n⭐ 明喻：甲「像／如／似」乙（她的笑像花）\n⭐ 暗喻：甲「是／成為」乙（她是一朵花）\n⭐ 借喻：不出現本體，直接用喻體（那朵花走進教室）\n\n判斷訣竅：看有沒有喻詞、本體有沒有出現。借喻最易和轉化混淆，可放一起對比教。' },
+  { keys:['文言','虛詞','之乎者也','實詞','文言文翻譯'], reply:'文言文教學步驟：\n1️⃣ 斷句：先找動詞、主詞，把長句切段\n2️⃣ 虛詞表：之（的／他／往）、而（但／且）、其（他的／大概）、以（用／因為）、於（在／對）、者、也\n3️⃣ 逐詞對應再調順成現代語\n4️⃣ 整理「一字多義」對照表給學生\n\n建議每課挑 5~8 個高頻虛詞重點講，比逐字翻譯更有效率。' },
+  { keys:['的地得'], reply:'「的、地、得」用法（板書口訣）：\n✅ 的：接名詞（美麗的花）\n✅ 地：接動詞／形容詞，修飾動作（認真地讀）\n✅ 得：接結果或程度補語（跑得很快）\n\n口訣：名詞用「的」、動作用「地」、結果用「得」。' },
+  // 學測 / 考試
+  { keys:['學測','國綜','國寫','衝刺','考前'], reply:'學測國文衝刺重點：\n📖 國綜：字音字形、成語、文意理解、閱讀測驗、文化常識\n📝 國寫：知性題（分析、論說）＋情意題（記敘、抒情）\n\n衝刺策略：\n1️⃣ 寫歷屆考古題（111~115）抓題感\n2️⃣ 國寫每週限時練一篇＋對照範文\n3️⃣ 建立成語、修辭、文化常識速記卡\n\n本站「考試資源」有 111~115 學測完整解析可直接用。' },
+  { keys:['國寫','情意題','知性題'], reply:'國寫兩大題型：\n🧠 知性題：重「分析、論證、條理」。要求：先回應題目觀點→舉證→收束。忌空泛。\n💗 情意題：重「真情、細節、畫面」。用具體場景、感官描寫帶出情感，避免口號式抒情。\n\n教學建議：給學生「審題→列點→成文」三段式練習，先求結構穩再求文采。' },
+  { keys:['成語','成語誤用','成語教學'], reply:'成語教學與命題：\n🔹 依主題分類（勤學、品德、處世、時間…）記憶\n🔹 命題常考「誤用」：望文生義（如「七月流火」非天熱）、對象用錯、褒貶不分\n🔹 教學可用「成語接龍／情境造句」增加記憶\n\n本站「備課工具」有成語典可查。' },
+  // 鼓勵 / 通用
+  { keys:['謝謝','感謝','你好棒','太好了'], reply:'不客氣，能幫上忙我很開心 😊\n備課、出題、批改的問題隨時都可以找我，我們一起把課準備得更好！' },
+  { keys:['你好','哈囉','嗨','在嗎'], reply:'宜芬老師好！我是小助教 💬\n備課、課文分析、出題、作文批改重點都可以問我。要不要先試試「課文分析框架怎麼寫？」' },
+];
+
+function assistantReply(text) {
+  const t = text.toLowerCase();
+  for (const item of ASSISTANT_KB) {
+    if (item.keys.some(k => t.includes(k.toLowerCase()))) return item.reply;
+  }
+  // 主題偵測
+  if (t.includes('高一') || t.includes('高二') || t.includes('高三')) {
+    return '想找該年級的課文資源嗎？本站「高一／高二／高三資源」分頁有課文、修辭、習作整理。\n若想要備課方向，告訴我是哪一課，我可以幫你列分析框架與出題重點 📚';
+  }
+  if (t.includes('題') || t.includes('考')) {
+    return '關於命題，告訴我要考哪個面向（字詞義／文意理解／修辭判斷／閱讀測驗／國寫），我來幫你抓題型和難易配置 📝';
+  }
+  // 預設
+  const defaults = [
+    '我可以幫忙備課喔！試試問我：「課文分析框架怎麼寫？」「作文批改重點有哪些？」「怎麼出一題閱讀測驗？」',
+    '告訴我你正在備哪一課，或想處理哪個環節（分析／教學設計／出題／批改），我來幫你整理 ✨',
+    '我是備課小助教，課文分析、修辭整理、命題、作文批改都能幫忙，你想從哪個開始？📖',
+  ];
+  return defaults[Math.floor(Math.random() * defaults.length)];
+}
+
+function chatEsc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function appendMsg(role, text) {
+  const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
+  const isBot = role === 'assistant';
+  const row = document.createElement('div');
+  row.className = 'chat-row ' + (isBot ? 'bot' : 'me');
+  const label = document.createElement('div');
+  label.className = 'chat-label';
+  label.textContent = isBot ? '小助教' : '宜芬老師';
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + (isBot ? 'bot' : 'me');
+  bubble.innerHTML = chatEsc(text).replace(/\n/g,'<br>');
+  row.appendChild(label);
+  row.appendChild(bubble);
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
+  const row = document.createElement('div');
+  row.className = 'chat-row bot';
+  row.id = 'chatTyping';
+  const label = document.createElement('div');
+  label.className = 'chat-label';
+  label.textContent = '小助教';
+  const t = document.createElement('div');
+  t.className = 'chat-typing-row';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  row.appendChild(label);
+  row.appendChild(t);
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function removeTyping() { const t = document.getElementById('chatTyping'); if (t) t.remove(); }
+
+function sendChat() {
+  try {
+    const input = document.getElementById('chatInput');
+    const btn = document.getElementById('chatSendBtn');
+    const text = (input ? input.value : '').trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+    if (btn) btn.disabled = true;
+    appendMsg('user', text);
+    showTyping();
+    const delay = 700 + Math.floor(Math.random() * 600);
+    setTimeout(function() {
+      removeTyping();
+      appendMsg('assistant', assistantReply(text));
+      if (btn) btn.disabled = false;
+    }, delay);
+  } catch(e) {
+    removeTyping();
+    appendMsg('assistant', '抱歉，剛剛出了點狀況，請重新整理頁面再試一次。');
+  }
+}
+
+function quickAsk(q) {
+  const input = document.getElementById('chatInput');
+  if (input) input.value = q;
+  sendChat();
+}
+
+function resetChat() {
+  const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
+  msgs.innerHTML = '';
+  appendMsg('assistant', '好的，我們重新開始！備課、出題、批改有什麼想處理的，告訴我吧 💬');
+}
+
+function startVoice() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const btn = document.getElementById('chatVoiceBtn');
+  if (!SpeechRecognition) {
+    appendMsg('assistant', '這個瀏覽器不支援語音輸入，請改用文字輸入。\n（建議使用 Safari 或 Chrome）');
+    return;
+  }
+  if (btn && btn.classList.contains('listening')) return;
+  const recog = new SpeechRecognition();
+  recog.lang = 'zh-TW';
+  recog.interimResults = false;
+  recog.maxAlternatives = 1;
+  if (btn) btn.classList.add('listening');
+  recog.start();
+  recog.onresult = function(e) {
+    const text = e.results[0][0].transcript;
+    const input = document.getElementById('chatInput');
+    if (input) { input.value = text; input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 110) + 'px'; }
+    if (btn) btn.classList.remove('listening');
+    sendChat();
+  };
+  recog.onerror = function() {
+    if (btn) btn.classList.remove('listening');
+    appendMsg('assistant', '語音辨識失敗，請再試一次或改用文字輸入。');
+  };
+  recog.onend = function() { if (btn) btn.classList.remove('listening'); };
+}
 </script>
 
 <!-- 浮動貓咪吉祥物 -->
