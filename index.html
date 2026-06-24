@@ -300,6 +300,26 @@
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 16px;
   }
+  /* 課程卡：全站單欄（與上方 chip 列同寬）＋可摺疊 */
+  #g1-grid, #g2-grid, #g3-grid { grid-template-columns: 1fr; }
+  .card.lesson-collapsible > .card-header {
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+    align-items: center;
+  }
+  .card.lesson-collapsible.open > .card-header { margin-bottom: 14px; }
+  .card.lesson-collapsible > .lesson-body { display: none; }
+  .card.lesson-collapsible.open > .lesson-body { display: block; }
+  .lesson-chevron {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 13px;
+    transition: transform 0.2s;
+    padding-left: 10px;
+  }
+  .card.lesson-collapsible.open .lesson-chevron { transform: rotate(90deg); }
 
   /* ===== CARD ===== */
   .card {
@@ -3805,15 +3825,12 @@ document.addEventListener('click', e => { if (!e.target.closest('.search-wrap'))
 // ========== FILTER G1 ==========
 // 設計規則：篩選後內容須與上方 chip 列同寬。
 // grid 欄數隨「可見卡片數」自動調整（1→1欄滿版、2→2欄、3↑→3欄），內容永遠填滿寬度。
+// 課程卡全站單欄（與上方 chip 列同寬），交給 CSS grid-template-columns:1fr
 function fitGrid(gridId) {
   const grid = document.getElementById(gridId);
   if (!grid) return;
-  if (window.innerWidth <= 640) { grid.style.gridTemplateColumns = ''; return; } // 手機固定單欄，交給 CSS
-  const visible = [...grid.children].filter(c => c.style.display !== 'none').length;
-  const cols = Math.min(visible, 3) || 1;
-  grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  grid.style.gridTemplateColumns = '1fr';
 }
-window.addEventListener('resize', () => ['g1-grid','g2-grid','g3-grid'].forEach(fitGrid));
 function filterG1(cat, el) {
   document.querySelectorAll('#tab-g1 .chip').forEach(c => c.classList.remove('on'));
   el.classList.add('on');
@@ -4303,6 +4320,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const mascot = document.getElementById('cat-mascot');
   mascot.addEventListener('click', triggerCat);
   mascot.addEventListener('touchend', function(e){ e.preventDefault(); triggerCat(); });
+
+  // 課程卡摺疊功能：全站高一/高二/高三課程卡，點標題展開／收合，預設收合
+  document.querySelectorAll('#g1-grid > .card, #g2-grid > .card, #g3-grid > .card').forEach(card => {
+    const body = card.querySelector('.lesson-body');
+    if (!body) return; // 略過無課程內容的卡（如外部資源卡）
+    card.classList.add('lesson-collapsible');
+    const header = card.querySelector('.card-header');
+    const chev = document.createElement('span');
+    chev.className = 'lesson-chevron';
+    chev.textContent = '▶';
+    header.appendChild(chev);
+    header.addEventListener('click', () => card.classList.toggle('open'));
+  });
 });
 </script>
 
