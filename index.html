@@ -5177,7 +5177,7 @@ function startVoice() {
 
 // ========== 作文批改（純前端規則式，依學測國寫四向度）==========
 const ESSAY_IDIOMS = ['一鼓作氣','一蹴可幾','一籌莫展','一絲不苟','三心二意','不勝枚舉','不可思議','不約而同','不脛而走','人云亦云','井然有序','力不從心','千鈞一髮','口耳相傳','大同小異','大公無私','川流不息','循循善誘','心曠神怡','息息相關','恍然大悟','悠然自得','按部就班','排山倒海','措手不及','摩拳擦掌','日新月異','時不我與','栩栩如生','根深蒂固','歷歷在目','水到渠成','沾沾自喜','油然而生','津津有味','深思熟慮','滔滔不絕','潛移默化','瞬息萬變','突飛猛進','耳濡目染','胼手胝足','興高采烈','茅塞頓開','蛛絲馬跡','設身處地','豁然開朗','輕而易舉','迎刃而解','過眼雲煙','遊刃有餘','錦上添花','防微杜漸','雪中送炭','飲水思源','鳥語花香','鵬程萬里','名列前茅','美輪美奐','變本加厲','莫名其妙','處變不驚','刻骨銘心','五味雜陳','百感交集','感同身受','義無反顧','持之以恆','腳踏實地'];
-const ESSAY_TYPOS = [['因該','應該'],['報怨','抱怨'],['渡假','度假'],['一但','一旦'],['觀查','觀察'],['急燥','急躁'],['籍由','藉由'],['既使','即使'],['莫明其妙','莫名其妙'],['變本加曆','變本加厲'],['美倫美奐','美輪美奐'],['不徑而走','不脛而走'],['穿流不息','川流不息'],['一愁莫展','一籌莫展'],['名列前矛','名列前茅'],['記錄片','紀錄片']];
+const ESSAY_TYPOS = [['因該','應該'],['報怨','抱怨'],['渡假','度假'],['一但','一旦'],['觀查','觀察'],['急燥','急躁'],['籍由','藉由'],['既使','即使'],['莫明其妙','莫名其妙'],['變本加曆','變本加厲'],['美倫美奐','美輪美奐'],['不徑而走','不脛而走'],['穿流不息','川流不息'],['一愁莫展','一籌莫展'],['名列前矛','名列前茅'],['記錄片','紀錄片'],['一昧','一味'],['迫不急待','迫不及待'],['走頭無路','走投無路'],['神彩奕奕','神采奕奕'],['不加思索','不假思索'],['心無旁鶩','心無旁騖'],['委屈求全','委曲求全'],['既往不究','既往不咎'],['義氣用事','意氣用事'],['出其制勝','出奇制勝'],['病入膏盲','病入膏肓'],['鬼鬼崇崇','鬼鬼祟祟'],['草管人命','草菅人命'],['一厥不振','一蹶不振'],['自顧不瑕','自顧不暇'],['震筆疾書','振筆疾書'],['雄糾糾','雄赳赳'],['帳蓬','帳篷'],['言簡意該','言簡意賅'],['慢不經心','漫不經心']];
 
 function essaySetSource(mode){
   ['paste','file','ocr'].forEach(m=>{
@@ -5215,16 +5215,46 @@ async function essayLoadFile(input){
   }catch(e){ alert('讀取檔案失敗，請改用「貼上文字」。'); }
 }
 
+// OCR 前的影像預處理：放大、灰階、對比強化，提升辨識率
+function essayPreprocess(file){
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      try{
+        const longSide=Math.max(img.width,img.height);
+        // 太小放大、太大縮小，目標長邊約 1800px
+        const scale=longSide? Math.min(2.5, Math.max(0.5, 1800/longSide)) : 1;
+        const cw=Math.max(1,Math.round(img.width*scale)), ch=Math.max(1,Math.round(img.height*scale));
+        const c=document.createElement('canvas'); c.width=cw; c.height=ch;
+        const ctx=c.getContext('2d'); ctx.drawImage(img,0,0,cw,ch);
+        const d=ctx.getImageData(0,0,cw,ch), a=d.data;
+        for(let i=0;i<a.length;i+=4){
+          let g=0.299*a[i]+0.587*a[i+1]+0.114*a[i+2];
+          g=(g-128)*1.35+128;            // 拉對比
+          g=Math.max(0,Math.min(255,g));
+          a[i]=a[i+1]=a[i+2]=g;
+        }
+        ctx.putImageData(d,0,0);
+        c.toBlob(b=>resolve(b||file),'image/png');
+      }catch(e){ resolve(file); }
+    };
+    img.onerror=()=>resolve(file);
+    img.src=URL.createObjectURL(file);
+  });
+}
+
 async function essayRunOcr(input){
   const f=input.files && input.files[0]; if(!f) return;
   const hint=document.getElementById('essayOcrHint');
-  if(hint) hint.textContent='辨識中…首次使用需下載辨識模型，請稍候（約 10～30 秒）。';
+  if(hint) hint.textContent='影像處理中…首次使用需下載辨識模型，請稍候（約 10～30 秒）。';
   try{
     await essayLoadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
-    const res=await Tesseract.recognize(f,'chi_tra');
+    const blob=await essayPreprocess(f);
+    if(hint) hint.textContent='辨識中…請稍候。';
+    const res=await Tesseract.recognize(blob,'chi_tra');
     const txt=((res.data&&res.data.text)||'').replace(/[ \t]+/g,'').replace(/\n{2,}/g,'\n').trim();
     document.getElementById('essayText').value=txt; essayUpdateCount();
-    if(hint) hint.textContent='辨識完成！手寫辨識率有限，請務必校對下方內容後再批改。';
+    if(hint) hint.textContent=txt? '辨識完成！手寫辨識率有限，請務必校對下方內容後再批改。' : '幾乎沒有辨識到文字，建議拍清楚一點（光線足、字跡正），或改用「貼上文字」。';
   }catch(e){ if(hint) hint.textContent='辨識失敗，請改用「貼上文字」或「上傳檔案」。'; }
 }
 
@@ -5399,7 +5429,7 @@ function essayGrade(){
   });
 
   html+='<div class="essay-note">⚠️ 以上為規則式檢核的<b>參考結果</b>，依可量化線索（字數、段落、修辭、標點）推估，無法判讀文意深度與情感，<b>不等於真人級分</b>，請以老師判讀為準。</div>';
-  html+='<div class="essay-actions"><button class="btn btn-sage" onclick="essayCopy()">複製評語純文字</button></div>';
+  html+='<div class="essay-actions"><button class="btn btn-sage" onclick="essayCopy()">複製評語純文字</button><button class="btn btn-ghost" onclick="essaySaveNote()">存進我的筆記</button></div>';
   html+='</div>';
   document.getElementById('essayResult').innerHTML=html;
 
@@ -5425,6 +5455,18 @@ function essayCopy(){
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(t).then(()=>alert('評語已複製，可貼回給學生或記事本。'),()=>essayCopyFallback(t));
   } else essayCopyFallback(t);
+}
+function essaySaveNote(){
+  const t=window._essayPlain||'';
+  if(!t){ alert('目前沒有可儲存的批改結果。'); return; }
+  try{
+    const notes=loadNotes();
+    const now=new Date();
+    const time=now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate()+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+    notes.unshift({ text:t, tag:'作文', time });
+    saveNotes(notes); renderNotes();
+    alert('已存進「我的筆記」（標籤：作文），可到「更多功能 → 我的筆記」查看。');
+  }catch(e){ alert('儲存失敗，請改用「複製評語純文字」。'); }
 }
 function essayCopyFallback(t){
   const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
