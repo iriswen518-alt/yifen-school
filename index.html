@@ -4882,13 +4882,17 @@ const L_IDIOM   = { url:'https://dict.idioms.moe.edu.tw',   label:'教育部成�
 const L_MOEDICT = { url:'https://www.moedict.tw',           label:'萌典' };
 const L_CEEC    = { url:'https://www.ceec.edu.tw/examresource/exam', label:'大考中心歷屆試題' };
 const L_NAER    = { url:'https://www.naer.edu.tw',          label:'國家教育研究院' };
+// 概念主題的直接內容頁（點下去就是該主題說明，免再查；已實測 200）
+const L_RHET      = { url:'https://zh.wikipedia.org/zh-tw/修辭格', label:'修辭格（直接看說明）' };
+const L_CLASSICAL = { url:'https://zh.wikipedia.org/zh-tw/文言文', label:'文言文（直接看說明）' };
+const L_IDIOMWIKI = { url:'https://zh.wikipedia.org/zh-tw/成語',   label:'成語（直接看說明）' };
 
 // 依問題內容，挑出最相關的站內＋外部權威連結
 function linksFor(t) {
   if (['謝謝','感謝','你好棒','太好了','你好','哈囉','嗨','在嗎'].some(k => t.includes(k))) {
     return [I_EXAM, I_TOOLS, I_NOTES];
   }
-  if (['成語'].some(k => t.includes(k))) return [I_TOOLS, L_IDIOM, L_DICT];
+  if (['成語'].some(k => t.includes(k))) return [I_TOOLS, L_IDIOMWIKI, L_IDIOM];
   if (['學測','國綜','國寫','衝刺','考前','知性題','情意題'].some(k => t.includes(k))) {
     return [I_EXAM, L_CEEC, L_DICT];
   }
@@ -4897,10 +4901,10 @@ function linksFor(t) {
     return [I_EXAM, L_CEEC, L_NAER];
   }
   if (['修辭','譬喻','比喻','排比','設問','誇飾','類疊','對偶','轉化','映襯'].some(k => t.includes(k))) {
-    return [I_TOOLS, L_DICT, L_MOEDICT];
+    return [I_TOOLS, L_RHET, L_DICT];
   }
   if (['文言','虛詞','實詞','翻譯','字音','字形','的地得','字詞'].some(k => t.includes(k))) {
-    return [I_TOOLS, L_DICT, L_MOEDICT];
+    return [I_TOOLS, L_CLASSICAL, L_DICT];
   }
   if (['課文分析','分析框架','文本分析','備課','教學設計','教案','教學流程','課堂'].some(k => t.includes(k))) {
     return [I_TOOLS, I_NOTES, L_DICT];
