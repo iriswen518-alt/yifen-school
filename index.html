@@ -351,6 +351,57 @@
     margin-top: 2px;
   }
 
+  /* ===== 作文批改 ===== */
+  .essay-srcrow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .essay-srcbtn {
+    padding: 10px 4px; border-radius: 10px; border: 1.5px solid var(--border);
+    background: var(--card); color: var(--muted); font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: inherit; letter-spacing: .5px; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; transition: .15s;
+  }
+  .essay-srcbtn.on { background: var(--sage-pale); border-color: var(--sage); color: var(--sage); }
+  .essay-label { font-size: 12px; font-weight: 700; color: var(--ink); margin: 4px 0 6px; }
+  .essay-input {
+    width: 100%; box-sizing: border-box; border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 10px 12px; font-family: inherit; font-size: 16px;
+    color: var(--text); background: var(--card); resize: vertical;
+  }
+  .essay-input:focus { outline: none; border-color: var(--sage); }
+  textarea.essay-input { min-height: 200px; line-height: 1.8; }
+  .essay-hint { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .essay-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .essay-actions .btn { flex: 1; min-width: 120px; padding: 11px 16px; font-size: 14px; }
+  .essay-note {
+    background: var(--gold-pale); border: 1px solid #e6d5b8; border-radius: 10px;
+    padding: 10px 13px; font-size: 11px; color: #7a5a1e; line-height: 1.7; margin-top: 14px;
+  }
+  .essay-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 4px 0 16px; }
+  .essay-stat { background: var(--sage-pale); border-radius: 10px; padding: 12px 6px; text-align: center; }
+  .essay-stat b { display: block; font-size: 20px; font-weight: 800; color: var(--sage); letter-spacing: .5px; }
+  .essay-stat span { font-size: 11px; color: var(--muted); }
+  .essay-dim { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .essay-dim-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .essay-dim-head h3 { font-size: 15px; font-weight: 700; letter-spacing: .5px; color: var(--ink); }
+  .essay-stars { font-size: 14px; letter-spacing: 1px; white-space: nowrap; }
+  .essay-stars .on { color: var(--gold); }
+  .essay-stars .off { color: #d8d2c8; }
+  .essay-dim ul { list-style: none; margin: 0; padding: 0; }
+  .essay-dim li { font-size: 13px; line-height: 1.75; padding-left: 20px; position: relative; color: var(--text); }
+  .essay-dim li::before { position: absolute; left: 2px; }
+  .essay-dim li.ob::before { content: "🔍"; }
+  .essay-dim li.sug::before { content: "✏️"; }
+  .essay-dim li.good::before { content: "🌟"; }
+  .essay-overall {
+    background: linear-gradient(135deg, var(--sage-pale), var(--gold-pale));
+    border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+  }
+  .essay-grade { font-size: 30px; font-weight: 800; color: var(--sage); letter-spacing: 1px; }
+  .essay-overall .lead { font-size: 13px; line-height: 1.8; color: var(--text); margin-top: 8px; }
+  .essay-overall .focus { font-size: 13px; font-weight: 700; color: var(--red); margin-top: 10px; }
+  @media (max-width: 600px) {
+    .essay-stats { grid-template-columns: 1fr 1fr; }
+  }
+
   /* ===== GRID ===== */
   .grid-3 {
     display: grid;
@@ -1135,6 +1186,9 @@
   </a>
   <a class="more-sheet-item" data-tab="chat" onclick="navGo('chat'); closeMoreSheet();">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9 9 0 0 1-3.8-.8L3 21l1.8-5.7a8.38 8.38 0 0 1-.8-3.8 8.5 8.5 0 0 1 17 0z"/></svg><span>小助教</span>
+  </a>
+  <a class="more-sheet-item" data-tab="essay" onclick="navGo('essay'); closeMoreSheet();">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>作文批改</span>
   </a>
 </div>
 <div class="more-backdrop" id="more-backdrop" onclick="closeMoreSheet()"></div>
@@ -3956,6 +4010,64 @@
     </div>
   </div>
 
+  <!-- ===== 作文批改 ===== -->
+  <div class="section" id="tab-essay">
+    <div class="section-header">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--sage-pale)">✍️</div>
+        <div>
+          <h2>作文批改</h2>
+          <p>依學測國寫四向度 × 規則檢核 × 具體評語</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="essay-label">作文來源</div>
+      <div class="essay-srcrow">
+        <button type="button" class="essay-srcbtn on" id="esrc-paste" onclick="essaySetSource('paste')">貼上文字</button>
+        <button type="button" class="essay-srcbtn" id="esrc-file" onclick="essaySetSource('file')">上傳檔案</button>
+        <button type="button" class="essay-srcbtn" id="esrc-ocr" onclick="essaySetSource('ocr')">拍照辨識</button>
+      </div>
+
+      <div id="esrc-file-box" style="display:none;margin-bottom:12px;">
+        <input type="file" id="essayFile" accept=".txt,.docx" onchange="essayLoadFile(this)"
+          style="font-size:13px;color:var(--muted);">
+        <div class="essay-hint">支援 .txt 與 Word .docx；讀取後文字會帶入下方內容框，可再修改。</div>
+      </div>
+
+      <div id="esrc-ocr-box" style="display:none;margin-bottom:12px;">
+        <input type="file" id="essayPhoto" accept="image/*" capture="environment" onchange="essayRunOcr(this)"
+          style="font-size:13px;color:var(--muted);">
+        <div class="essay-hint" id="essayOcrHint">拍照或選圖片，工具會嘗試辨識文字（繁體中文）。手寫辨識率有限，辨識後請務必校對再批改。</div>
+      </div>
+
+      <div class="essay-label">題目（選填，填了可檢查扣題）</div>
+      <input type="text" class="essay-input" id="essayTopic" placeholder="例如：花季的午後／論知足／如果我有一座新冰箱"
+        style="margin-bottom:14px;">
+
+      <div class="essay-label">題目關鍵詞（選填，用逗號分隔）</div>
+      <input type="text" class="essay-input" id="essayKeywords" placeholder="例如：知足, 慾望, 幸福"
+        style="margin-bottom:14px;">
+
+      <div class="essay-label">作文內容</div>
+      <textarea class="essay-input" id="essayText" placeholder="把學生作文貼在這裡，或從上方上傳／拍照帶入後校對…"></textarea>
+      <div class="essay-hint" id="essayCount">字數：0　段落：0</div>
+
+      <div class="essay-actions">
+        <button class="btn btn-sage" onclick="essayGrade()">開始批改</button>
+        <button class="btn btn-ghost" onclick="essayClear()">清除重來</button>
+      </div>
+
+      <div class="essay-note">
+        ⚠️ 本工具為「規則式檢核輔助」，依字數、段落、修辭、標點等可量化線索給<b>參考分數與建議</b>，
+        無法真正讀懂文意，<b>不等於真人級分</b>。最終評分與評語仍以老師判讀為準。作文內容僅在您的瀏覽器本機處理，不會上傳。
+      </div>
+    </div>
+
+    <div id="essayResult" style="margin-top:16px;"></div>
+  </div>
+
   <!-- ===== 行事曆 ===== -->
   <div class="section" id="tab-calendar">
     <div class="section-header">
@@ -4021,7 +4133,7 @@
 
 <script>
 // ========== TABS ==========
-const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', calendar:'行事曆', tools:'備課工具', notes:'我的筆記', chat:'小助教' };
+const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', calendar:'行事曆', tools:'備課工具', notes:'我的筆記', chat:'小助教', essay:'作文批改' };
 function switchTab(id, fromSearch) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-menu-item').forEach(t => t.classList.remove('active'));
@@ -4030,7 +4142,7 @@ function switchTab(id, fromSearch) {
   document.querySelectorAll('[data-tab="'+id+'"]').forEach(t => t.classList.add('active'));
   // 底部 home bar：高一/高二/高三/筆記 收在「更多功能」，故這些分頁時將「更多」標為 active
   const moreBtn = document.getElementById('bottom-more');
-  if (moreBtn) moreBtn.classList.toggle('active', ['g1','g2','g3','notes'].includes(id));
+  if (moreBtn) moreBtn.classList.toggle('active', ['g1','g2','g3','notes','chat','essay'].includes(id));
   const cur = document.getElementById('nav-current');
   if (cur && TAB_NAMES[id]) cur.textContent = TAB_NAMES[id];
   if (!fromSearch) window.scrollTo(0,0);
@@ -5062,6 +5174,265 @@ function startVoice() {
   };
   recog.onend = function() { if (btn) btn.classList.remove('listening'); };
 }
+
+// ========== 作文批改（純前端規則式，依學測國寫四向度）==========
+const ESSAY_IDIOMS = ['一鼓作氣','一蹴可幾','一籌莫展','一絲不苟','三心二意','不勝枚舉','不可思議','不約而同','不脛而走','人云亦云','井然有序','力不從心','千鈞一髮','口耳相傳','大同小異','大公無私','川流不息','循循善誘','心曠神怡','息息相關','恍然大悟','悠然自得','按部就班','排山倒海','措手不及','摩拳擦掌','日新月異','時不我與','栩栩如生','根深蒂固','歷歷在目','水到渠成','沾沾自喜','油然而生','津津有味','深思熟慮','滔滔不絕','潛移默化','瞬息萬變','突飛猛進','耳濡目染','胼手胝足','興高采烈','茅塞頓開','蛛絲馬跡','設身處地','豁然開朗','輕而易舉','迎刃而解','過眼雲煙','遊刃有餘','錦上添花','防微杜漸','雪中送炭','飲水思源','鳥語花香','鵬程萬里','名列前茅','美輪美奐','變本加厲','莫名其妙','處變不驚','刻骨銘心','五味雜陳','百感交集','感同身受','義無反顧','持之以恆','腳踏實地'];
+const ESSAY_TYPOS = [['因該','應該'],['報怨','抱怨'],['渡假','度假'],['一但','一旦'],['觀查','觀察'],['急燥','急躁'],['籍由','藉由'],['既使','即使'],['莫明其妙','莫名其妙'],['變本加曆','變本加厲'],['美倫美奐','美輪美奐'],['不徑而走','不脛而走'],['穿流不息','川流不息'],['一愁莫展','一籌莫展'],['名列前矛','名列前茅'],['記錄片','紀錄片']];
+
+function essaySetSource(mode){
+  ['paste','file','ocr'].forEach(m=>{
+    const b=document.getElementById('esrc-'+m); if(b) b.classList.toggle('on', m===mode);
+  });
+  const fb=document.getElementById('esrc-file-box'), ob=document.getElementById('esrc-ocr-box');
+  if(fb) fb.style.display = mode==='file' ? 'block':'none';
+  if(ob) ob.style.display = mode==='ocr' ? 'block':'none';
+}
+
+function essayLoadScript(url){
+  return new Promise((resolve,reject)=>{
+    if(document.querySelector('script[data-essay="'+url+'"]')) return resolve();
+    const s=document.createElement('script'); s.src=url; s.setAttribute('data-essay',url);
+    s.onload=()=>resolve(); s.onerror=()=>reject(new Error('load fail'));
+    document.head.appendChild(s);
+  });
+}
+
+async function essayLoadFile(input){
+  const f=input.files && input.files[0]; if(!f) return;
+  const name=f.name.toLowerCase();
+  try{
+    if(name.endsWith('.txt')){
+      const t=await f.text();
+      document.getElementById('essayText').value=t.trim(); essayUpdateCount(); return;
+    }
+    if(name.endsWith('.docx')){
+      await essayLoadScript('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js');
+      const buf=await f.arrayBuffer();
+      const r=await mammoth.extractRawText({arrayBuffer:buf});
+      document.getElementById('essayText').value=(r.value||'').trim(); essayUpdateCount(); return;
+    }
+    alert('僅支援 .txt 與 Word .docx 檔。');
+  }catch(e){ alert('讀取檔案失敗，請改用「貼上文字」。'); }
+}
+
+async function essayRunOcr(input){
+  const f=input.files && input.files[0]; if(!f) return;
+  const hint=document.getElementById('essayOcrHint');
+  if(hint) hint.textContent='辨識中…首次使用需下載辨識模型，請稍候（約 10～30 秒）。';
+  try{
+    await essayLoadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
+    const res=await Tesseract.recognize(f,'chi_tra');
+    const txt=((res.data&&res.data.text)||'').replace(/[ \t]+/g,'').replace(/\n{2,}/g,'\n').trim();
+    document.getElementById('essayText').value=txt; essayUpdateCount();
+    if(hint) hint.textContent='辨識完成！手寫辨識率有限，請務必校對下方內容後再批改。';
+  }catch(e){ if(hint) hint.textContent='辨識失敗，請改用「貼上文字」或「上傳檔案」。'; }
+}
+
+function essayUpdateCount(){
+  const t=(document.getElementById('essayText').value)||'';
+  const chars=(t.match(/[一-鿿]/g)||[]).length;
+  const paras=t.split(/\n+/).map(s=>s.trim()).filter(Boolean).length;
+  const el=document.getElementById('essayCount');
+  if(el) el.textContent='字數：'+chars+'　段落：'+paras;
+}
+
+function essayClear(){
+  ['essayText','essayTopic','essayKeywords'].forEach(id=>{const e=document.getElementById(id); if(e) e.value='';});
+  document.getElementById('essayResult').innerHTML=''; essayUpdateCount();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function essayStars(n){
+  let h='';
+  for(let i=1;i<=5;i++) h+= '<span class="'+(i<=n?'on':'off')+'">★</span>';
+  return '<span class="essay-stars">'+h+'</span>';
+}
+function essayClamp(n){ return Math.max(1, Math.min(5, n)); }
+
+function essayGrade(){
+  const text=((document.getElementById('essayText').value)||'').trim();
+  if(text.replace(/\s/g,'').length < 30){
+    alert('作文內容太短（至少 30 字），請先貼上或匯入完整作文。'); return;
+  }
+  const topic=((document.getElementById('essayTopic').value)||'').trim();
+  const kwRaw=((document.getElementById('essayKeywords').value)||'').trim();
+  const keywords=kwRaw? kwRaw.split(/[,，、\s]+/).map(s=>s.trim()).filter(Boolean):[];
+
+  // 基本統計
+  const charCount=(text.match(/[一-鿿]/g)||[]).length;
+  const paras=text.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+  const paraCount=paras.length;
+  const paraLens=paras.map(p=>(p.match(/[一-鿿]/g)||[]).length);
+  const sentences=text.split(/[。！？!?…]+/).map(s=>s.trim()).filter(Boolean);
+  const sentCount=sentences.length||1;
+  const avgSent=Math.round(charCount/sentCount);
+  const commaCount=(text.match(/，/g)||[]).length;
+  const endCount=(text.match(/[。！？]/g)||[]).length;
+  const runOn = commaCount>=8 && endCount<=1;
+
+  // 修辭偵測
+  const rhetoric={
+    譬喻:(text.match(/(像|如|彷彿|宛如|猶如|好比|似的|般)/g)||[]).length,
+    設問:(text.match(/(嗎？|呢？|難道|何嘗|豈|怎能)/g)||[]).length + (text.match(/？/g)||[]).length,
+    引用對話:(text.match(/「/g)||[]).length,
+    疊字:(text.match(/([一-鿿])\1/g)||[]).length
+  };
+  const rhetKinds=Object.values(rhetoric).filter(v=>v>0).length;
+  // 成語
+  const idiomHits=[];
+  for(const id of ESSAY_IDIOMS){ if(id!=='self' && id.length===4 && text.includes(id) && idiomHits.indexOf(id)<0) idiomHits.push(id); }
+
+  // 錯別字與標點
+  const typoHits=[];
+  for(const [bad,good] of ESSAY_TYPOS){ if(bad!==good && text.includes(bad)) typoHits.push(bad+'→'+good); }
+  const punctIssues=[];
+  if((text.match(/[，。！？、；：]{2,}/g)||[]).length) punctIssues.push('有連續重複的標點');
+  if((text.match(/[一-鿿][,.;:!?]/g)||[]).length) punctIssues.push('夾雜半形標點（,.!?），中文宜用全形（，。！？）');
+  if((text.match(/[一-鿿][ 　]+[一-鿿]/g)||[]).length) punctIssues.push('字句間有多餘空白');
+  if(runOn) punctIssues.push('出現「一逗到底」的長句，少用句號');
+
+  // ===== 計分 =====
+  // 立意取材
+  let s1=3;
+  if(charCount>=500) s1++; if(charCount<250) s1--;
+  let kwHit=0, kwMiss=[];
+  if(keywords.length){
+    keywords.forEach(k=>{ if(text.includes(k)) kwHit++; else kwMiss.push(k); });
+    const rate=kwHit/keywords.length;
+    if(rate>=0.7) s1++; else if(rate<0.34) s1--;
+  }
+  s1=essayClamp(s1);
+  // 結構組織
+  let s2=3;
+  if(paraCount>=4) s2++; if(paraCount===1) s2-=2; else if(paraCount<=2) s2--;
+  const avgPara=paraLens.reduce((a,b)=>a+b,0)/(paraCount||1);
+  const maxPara=Math.max.apply(null, paraLens.length?paraLens:[0]);
+  const longIdx=paraLens.indexOf(maxPara);
+  const tooLong = paraCount>1 && maxPara > avgPara*3 && maxPara>=180;
+  if(tooLong) s2--;
+  s2=essayClamp(s2);
+  // 遣詞造句
+  let s3=3;
+  if(rhetKinds>=3) s3++; if(rhetKinds===0) s3--;
+  if(idiomHits.length>=2) s3++;
+  if(runOn) s3--;
+  s3=essayClamp(s3);
+  // 錯別字與標點
+  let s4=5 - typoHits.length - punctIssues.length;
+  s4=essayClamp(s4);
+
+  const dims=[
+    {name:'立意取材', score:s1, obs:[], sug:[], good:[]},
+    {name:'結構組織', score:s2, obs:[], sug:[], good:[]},
+    {name:'遣詞造句', score:s3, obs:[], sug:[], good:[]},
+    {name:'錯別字與標點', score:s4, obs:[], sug:[], good:[]}
+  ];
+
+  // 立意取材 評語
+  dims[0].obs.push('全文約 '+charCount+' 字'+(charCount>=500?'，篇幅充足。':charCount>=350?'，篇幅適中。':'，篇幅偏短。'));
+  if(keywords.length){
+    dims[0].obs.push('扣題檢查：命中 '+kwHit+'／'+keywords.length+' 個關鍵詞'+(kwMiss.length?('，未出現：'+chatEsc(kwMiss.join('、'))):'。'));
+  }
+  if(charCount<350) dims[0].sug.push('篇幅偏短，建議把核心經驗或論點再展開，補上具體事例或細節，目標 500 字以上。');
+  if(keywords.length && kwMiss.length) dims[0].sug.push('部分題目關鍵詞著墨少，留意是否真正扣題，段落間適度回扣題旨。');
+  if(!dims[0].sug.length) dims[0].sug.push('立意大致清楚，可再找一個更具體或新穎的切入點，讓取材跳脫常見範例。');
+  dims[0].good.push('願意完整把題目寫成一篇文章，就是很好的開始！');
+
+  // 結構組織 評語
+  dims[1].obs.push('共 '+paraCount+' 段，各段字數約 '+(paraLens.join('、')||0)+'。');
+  if(paraCount===1) dims[1].sug.push('整篇沒有分段，建議依「起承轉合」至少分成 4 段，每段集中講一個重點。');
+  else if(paraCount<=2) dims[1].sug.push('段落偏少，建議再分段，讓開頭、發展、轉折、結尾更分明。');
+  if(tooLong) dims[1].sug.push('第 '+(longIdx+1)+' 段明顯偏長（約 '+maxPara+' 字），建議拆成兩段，避免一段塞太多重點。');
+  if(!dims[1].sug.length) dims[1].sug.push('分段清楚，可再檢查首段是否點題、末段是否收束有力、與開頭呼應。');
+  dims[1].good.push('有分段意識，文章讀起來就有層次。');
+
+  // 遣詞造句 評語
+  const rlist=[]; if(rhetoric.譬喻)rlist.push('譬喻 '+rhetoric.譬喻); if(rhetoric.設問)rlist.push('設問 '+rhetoric.設問); if(rhetoric.引用對話)rlist.push('引號 '+rhetoric.引用對話); if(rhetoric.疊字)rlist.push('疊字 '+rhetoric.疊字);
+  dims[2].obs.push('句數約 '+sentCount+' 句，平均每句約 '+avgSent+' 字。');
+  dims[2].obs.push('修辭線索：'+(rlist.length?rlist.join('、'):'較少')+'；成語 '+idiomHits.length+' 個'+(idiomHits.length?('（'+chatEsc(idiomHits.slice(0,5).join('、'))+'）'):'')+'。');
+  if(rhetKinds===0) dims[2].sug.push('較少使用修辭，可適度加入譬喻、排比或設問，讓文字更有畫面與節奏。');
+  if(runOn) dims[2].sug.push('有「一逗到底」的長句，建議適時用句號斷句，長短句交錯更有韻律。');
+  if(avgSent>45) dims[2].sug.push('平均句子偏長，注意有沒有把太多想法擠在一句裡。');
+  if(!dims[2].sug.length) dims[2].sug.push('用詞與修辭有亮點，可再追求精準，刪去「很、非常、的」等贅字。');
+  dims[2].good.push('文字裡看得到經營的痕跡，繼續累積語感會更好。');
+
+  // 錯別字與標點 評語
+  if(typoHits.length) dims[3].obs.push('疑似錯字：'+chatEsc(typoHits.join('，'))+'。');
+  if(punctIssues.length) dims[3].obs.push('標點：'+punctIssues.join('；')+'。');
+  if(!typoHits.length && !punctIssues.length) dims[3].obs.push('未偵測到明顯錯別字與標點問題。');
+  dims[3].obs.push('提醒自我確認易混淆字：的／地／得、在／再、做／作、須／需、已／以。');
+  if(typoHits.length||punctIssues.length) dims[3].sug.push('請逐一確認上列字詞與標點後再謄稿。');
+  else dims[3].sug.push('字句乾淨，仍建議出聲讀一遍做最後校對。');
+  dims[3].good.push('注意錯字與標點，文章的完成度就會明顯提升。');
+
+  // 整體
+  const avg=(s1+s2+s3+s4)/4;
+  const pct=Math.round(avg/5*100);
+  let grade, gtext;
+  if(avg>=4.3){grade='優';gtext='整體表現優異，立意、結構與文字都有水準。';}
+  else if(avg>=3.5){grade='良';gtext='整體表現良好，已具備清楚的結構與內容，再打磨可更出色。';}
+  else if(avg>=2.7){grade='可';gtext='整體尚可，基本完整，但在幾個向度還有明顯成長空間。';}
+  else if(avg>=1.8){grade='待加強';gtext='整體偏弱，建議從結構與篇幅先補強，再求文采。';}
+  else {grade='需重寫';gtext='目前完成度較低，建議重新審題、列大綱後再寫一次。';}
+  const weakest=dims.slice().sort((a,b)=>a.score-b.score)[0];
+
+  // ===== 渲染 =====
+  let html='';
+  html+='<div class="card">';
+  html+='<div class="card-header"><div class="card-icon" style="background:var(--gold-pale)">📊</div><div><div class="card-title">批改結果</div>'+(topic?('<div class="card-sub">題目：'+chatEsc(topic)+'</div>'):'')+'</div></div>';
+  html+='<div class="essay-stats">';
+  html+='<div class="essay-stat"><b>'+charCount+'</b><span>字數</span></div>';
+  html+='<div class="essay-stat"><b>'+paraCount+'</b><span>段落</span></div>';
+  html+='<div class="essay-stat"><b>'+sentCount+'</b><span>句數</span></div>';
+  html+='<div class="essay-stat"><b>'+(rhetoric.譬喻+rhetoric.設問+rhetoric.引用對話+rhetoric.疊字)+'</b><span>修辭線索</span></div>';
+  html+='</div>';
+  html+='<div class="essay-overall"><div class="essay-grade">參考等第：'+grade+'　<span style="font-size:18px;color:var(--gold)">參考分 '+pct+'/100</span></div>';
+  html+='<div class="lead">'+gtext+'</div>';
+  html+='<div class="focus">✦ 最該優先改：'+weakest.name+'——'+chatEsc(weakest.sug[0])+'</div></div>';
+
+  dims.forEach(d=>{
+    html+='<div class="essay-dim"><div class="essay-dim-head"><h3>'+d.name+'</h3>'+essayStars(d.score)+'</div><ul>';
+    d.obs.forEach(o=>html+='<li class="ob">'+o+'</li>');
+    d.sug.forEach(o=>html+='<li class="sug">'+o+'</li>');
+    d.good.forEach(o=>html+='<li class="good">'+o+'</li>');
+    html+='</ul></div>';
+  });
+
+  html+='<div class="essay-note">⚠️ 以上為規則式檢核的<b>參考結果</b>，依可量化線索（字數、段落、修辭、標點）推估，無法判讀文意深度與情感，<b>不等於真人級分</b>，請以老師判讀為準。</div>';
+  html+='<div class="essay-actions"><button class="btn btn-sage" onclick="essayCopy()">複製評語純文字</button></div>';
+  html+='</div>';
+  document.getElementById('essayResult').innerHTML=html;
+
+  // 純文字評語（供複製）
+  let plain='【作文批改參考】'+(topic?('　題目：'+topic):'')+'\n';
+  plain+='字數 '+charCount+'｜段落 '+paraCount+'｜句數 '+sentCount+'\n';
+  plain+='參考等第：'+grade+'（參考分 '+pct+'/100）\n'+gtext+'\n';
+  plain+='最該優先改：'+weakest.name+'——'+weakest.sug[0]+'\n\n';
+  dims.forEach(d=>{
+    plain+='■ '+d.name+'（'+d.score+'/5 星）\n';
+    d.obs.forEach(o=>plain+='　🔍 '+o.replace(/<[^>]+>/g,'')+'\n');
+    d.sug.forEach(o=>plain+='　✏️ '+o+'\n');
+    d.good.forEach(o=>plain+='　🌟 '+o+'\n');
+    plain+='\n';
+  });
+  plain+='＊本評語為規則式檢核參考，不等於真人級分，最終以老師判讀為準。';
+  window._essayPlain=plain;
+  document.getElementById('essayResult').scrollIntoView({behavior:'smooth'});
+}
+
+function essayCopy(){
+  const t=window._essayPlain||'';
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(()=>alert('評語已複製，可貼回給學生或記事本。'),()=>essayCopyFallback(t));
+  } else essayCopyFallback(t);
+}
+function essayCopyFallback(t){
+  const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); alert('評語已複製。'); }catch(e){ alert('複製失敗，請手動選取。'); }
+  document.body.removeChild(ta);
+}
+
+(function(){ const e=document.getElementById('essayText'); if(e) e.addEventListener('input', essayUpdateCount); })();
 </script>
 
 </body>
