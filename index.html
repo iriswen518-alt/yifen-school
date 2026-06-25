@@ -235,8 +235,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
-      padding: 7px 2px 6px;
+      gap: 4px;
+      padding: 12px 2px 12px;
       color: var(--muted);
       text-decoration: none;
       cursor: pointer;
@@ -245,7 +245,7 @@
     .bottom-tab svg { width: 21px; height: 21px; }
     .bottom-tab span { font-size: 10px; font-weight: 600; letter-spacing: 0; }
     .bottom-tab.active { color: var(--sage); }
-    body { padding-bottom: 60px; }
+    body { padding-bottom: 72px; }
     /* 更多功能彈出選單 */
     .more-backdrop.show {
       display: block;
@@ -257,7 +257,7 @@
       display: block;
       position: fixed;
       left: 0; right: 0;
-      bottom: calc(60px + env(safe-area-inset-bottom, 0));
+      bottom: calc(72px + env(safe-area-inset-bottom, 0));
       background: white;
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
@@ -355,6 +355,24 @@
     padding-left: 10px;
   }
   .card.lesson-collapsible.open .lesson-chevron { transform: rotate(90deg); }
+
+  /* 全站區塊摺疊：每一個 .card 都能點標題展開／收合（預設展開） */
+  .card.collapsible > .card-header {
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+  }
+  .card.collapsible:not(.open) > .card-header { margin-bottom: 0; }
+  .card.collapsible:not(.open) > :not(.card-header) { display: none; }
+  .collapse-chevron {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 13px;
+    transition: transform 0.2s;
+    padding-left: 10px;
+  }
+  .card.collapsible.open .collapse-chevron { transform: rotate(90deg); }
 
   /* ===== CARD ===== */
   .card {
@@ -4398,6 +4416,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = card.querySelector('.card-header');
     const chev = document.createElement('span');
     chev.className = 'lesson-chevron';
+    chev.textContent = '▶';
+    header.appendChild(chev);
+    header.addEventListener('click', () => card.classList.toggle('open'));
+  });
+
+  // 全站區塊摺疊：其餘每一個卡片也能點標題展開／收合，預設展開
+  document.querySelectorAll('.card').forEach(card => {
+    if (card.classList.contains('lesson-collapsible')) return; // 課程卡已由上方處理
+    if (card.querySelector('.lesson-body')) return;            // 內含課程內容的卡交給課程卡邏輯
+    const header = card.querySelector('.card-header');
+    if (!header) return;                                       // 無標題列的卡略過
+    card.classList.add('collapsible', 'open');                 // 預設展開
+    const chev = document.createElement('span');
+    chev.className = 'collapse-chevron';
     chev.textContent = '▶';
     header.appendChild(chev);
     header.addEventListener('click', () => card.classList.toggle('open'));
