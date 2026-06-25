@@ -144,6 +144,33 @@
   .header-search input::placeholder { color: rgba(255,255,255,0.5); }
   .header-search span { color: rgba(255,255,255,0.6); font-size: 16px; }
 
+  /* ===== 頂部天氣（網頁版）===== */
+  .header-weather {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+    color: #fff;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 8px 16px;
+    backdrop-filter: blur(4px);
+  }
+  .header-weather .hw-icon { font-size: 30px; line-height: 1; }
+  .header-weather .hw-temp { font-size: 20px; font-weight: 800; }
+  .header-weather .hw-temp .hw-city { font-size: 13px; font-weight: 600; opacity: 0.85; margin-left: 5px; }
+  .header-weather .hw-desc { font-size: 12px; opacity: 0.8; margin-top: 1px; }
+  .header-weather .hw-hl {
+    font-size: 12px;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+  }
+  /* 網頁版顯示頂部天氣、隱藏內文天氣條；手機反之 */
+  @media (max-width: 773px) { .header-weather { display: none; } }
+
   /* ===== NAV ===== */
   nav {
     background: white;
@@ -944,6 +971,8 @@
     padding: 6px 10px; white-space: nowrap; flex-shrink: 0;
   }
   @media (max-width: 560px) { .weather-strip .wx-hl { font-size: 12px; padding: 5px 8px; } }
+  /* 網頁版改用頂部天氣，隱藏內文天氣條 */
+  @media (min-width: 774px) { .weather-strip { display: none; } }
 
   /* ===== 行事曆 ===== */
   .cal-remind {
@@ -1054,6 +1083,14 @@
         <div id="search-results"></div>
       </div>
     </div>
+    <div class="header-weather" id="headerWeather">
+      <span class="hw-icon" id="wxIconH">🌈</span>
+      <div class="hw-info">
+        <div class="hw-temp"><span id="wxTempH">--</span>°<span class="hw-city">中壢市</span></div>
+        <div class="hw-desc" id="wxDescH">載入中…</div>
+      </div>
+      <div class="hw-hl">最高 <span id="wxHiH">--</span>° ／ 最低 <span id="wxLoH">--</span>°</div>
+    </div>
   </div>
 </header>
 
@@ -1137,7 +1174,7 @@
     <div class="weather-strip" id="weatherStrip">
       <span class="wx-icon" id="wxIcon">🌈</span>
       <div class="wx-info">
-        <div class="wx-temp"><span id="wxTemp">--</span>°<span class="wx-city">臺北市</span></div>
+        <div class="wx-temp"><span id="wxTemp">--</span>°<span class="wx-city">中壢市</span></div>
         <div class="wx-desc" id="wxDesc">載入今日天氣中…</div>
       </div>
       <div class="wx-hl">最高 <span id="wxHi">--</span>° ／ 最低 <span id="wxLo">--</span>°</div>
@@ -4062,7 +4099,7 @@ function closeMoreSheet() {
   document.getElementById('semester-label').textContent = `${year} 學年度 ${sem}`;
 })();
 
-// ========== 今日天氣（臺北市 / Open-Meteo，免金鑰）==========
+// ========== 今日天氣（中壢市 / Open-Meteo，免金鑰）==========
 (function loadWeather() {
   const WX = {
     0:['☀️','晴天'],1:['🌤️','晴時多雲'],2:['⛅','多雲'],3:['☁️','陰天'],
@@ -4075,18 +4112,19 @@ function closeMoreSheet() {
     85:['🌨️','陣雪'],86:['🌨️','陣雪'],
     95:['⛈️','雷雨'],96:['⛈️','雷雨伴冰雹'],99:['⛈️','強雷雨伴冰雹']
   };
-  const url = 'https://api.open-meteo.com/v1/forecast?latitude=25.0375&longitude=121.5637'
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=24.9576&longitude=121.2168'
     + '&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min'
     + '&timezone=Asia%2FTaipei&forecast_days=1';
+  const setTxt = (ids, val) => ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = val; });
   fetch(url).then(r => r.json()).then(d => {
     const info = WX[d.current.weather_code] || ['🌈','天氣'];
-    document.getElementById('wxIcon').textContent = info[0];
-    document.getElementById('wxDesc').textContent = info[1];
-    document.getElementById('wxTemp').textContent = Math.round(d.current.temperature_2m);
-    document.getElementById('wxHi').textContent = Math.round(d.daily.temperature_2m_max[0]);
-    document.getElementById('wxLo').textContent = Math.round(d.daily.temperature_2m_min[0]);
+    setTxt(['wxIcon','wxIconH'], info[0]);
+    setTxt(['wxDesc','wxDescH'], info[1]);
+    setTxt(['wxTemp','wxTempH'], Math.round(d.current.temperature_2m));
+    setTxt(['wxHi','wxHiH'], Math.round(d.daily.temperature_2m_max[0]));
+    setTxt(['wxLo','wxLoH'], Math.round(d.daily.temperature_2m_min[0]));
   }).catch(() => {
-    document.getElementById('wxDesc').textContent = '天氣載入失敗，請稍後再試';
+    setTxt(['wxDesc','wxDescH'], '天氣載入失敗，請稍後再試');
   });
 })();
 
