@@ -240,8 +240,9 @@
   .nav-menu-item svg { width: 18px; height: 18px; flex: 0 0 18px; color: var(--muted); }
   .nav-menu-item:hover { background: var(--sage-pale); color: var(--sage); }
   .nav-menu-item:hover svg { color: var(--sage); }
-  .nav-menu-item.active { background: var(--sage-pale); color: var(--sage); }
-  .nav-menu-item.active svg { color: var(--sage); }
+  /* 目前選中分頁：黃色高亮（沿用 morning-board 統一色） */
+  .nav-menu-item.active { background: #fff8d6; color: #8a6d00; }
+  .nav-menu-item.active svg { color: #c79a00; }
   /* ===== 底部固定分頁列（手機）===== */
   .bottom-nav { display: none; }
   .more-sheet, .more-backdrop { display: none; }
@@ -271,7 +272,7 @@
     }
     .bottom-tab svg { width: 21px; height: 21px; }
     .bottom-tab span { font-size: 10px; font-weight: 600; letter-spacing: 0; }
-    .bottom-tab.active { color: var(--sage); }
+    .bottom-tab.active { color: #c79a00; }
     body { padding-bottom: 72px; }
     /* 更多功能彈出選單 */
     .more-backdrop.show {
@@ -304,8 +305,8 @@
       text-decoration: none;
     }
     .more-sheet-item svg { width: 20px; height: 20px; flex: 0 0 20px; color: var(--muted); }
-    .more-sheet-item.active { background: var(--sage-pale); color: var(--sage); }
-    .more-sheet-item.active svg { color: var(--sage); }
+    .more-sheet-item.active { background: #fff8d6; color: #8a6d00; }
+    .more-sheet-item.active svg { color: #c79a00; }
     .more-sheet-item:active { background: var(--sage-pale); }
   /* ===== MAIN ===== */
   main {
