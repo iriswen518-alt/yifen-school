@@ -5111,6 +5111,28 @@ function showTyping() {
 }
 function removeTyping() { const t = document.getElementById('chatTyping'); if (t) t.remove(); }
 
+// 小助教 AI 中繼（Cloudflare Worker）。連不上或出錯就退回本地關鍵字庫，離線也能用。
+const ASSISTANT_API_URL = 'https://ziyu-chat.iriswen518.workers.dev';
+let chatHistory = [];
+async function assistantRespond(text, history) {
+  if (ASSISTANT_API_URL) {
+    try {
+      const ctrl = new AbortController();
+      const to = setTimeout(function(){ ctrl.abort(); }, 20000);
+      const r = await fetch(ASSISTANT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bot: 'yifen', q: text, history: (history || []).slice(-8) }),
+        signal: ctrl.signal,
+      });
+      clearTimeout(to);
+      const data = await r.json();
+      if (data && data.reply) return { text: data.reply, links: linksFor(text.toLowerCase()) };
+    } catch (e) { /* 落回本地關鍵字庫 */ }
+  }
+  return assistantReply(text);
+}
+
 function sendChat() {
   try {
     const input = document.getElementById('chatInput');
@@ -5120,15 +5142,20 @@ function sendChat() {
     input.value = '';
     input.style.height = 'auto';
     if (btn) btn.disabled = true;
+    const prior = chatHistory.slice(-8);
     appendMsg('user', text);
+    chatHistory.push({ role: 'user', text: text });
     showTyping();
-    const delay = 700 + Math.floor(Math.random() * 600);
-    setTimeout(function() {
+    assistantRespond(text, prior).then(function(r) {
       removeTyping();
-      const r = assistantReply(text);
       appendMsg('assistant', r.text, r.links);
+      chatHistory.push({ role: 'assistant', text: r.text });
       if (btn) btn.disabled = false;
-    }, delay);
+    }).catch(function() {
+      removeTyping();
+      appendMsg('assistant', '抱歉，剛剛出了點狀況，請重新整理頁面再試一次。');
+      if (btn) btn.disabled = false;
+    });
   } catch(e) {
     removeTyping();
     appendMsg('assistant', '抱歉，剛剛出了點狀況，請重新整理頁面再試一次。');
