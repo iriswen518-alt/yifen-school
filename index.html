@@ -171,6 +171,9 @@
   /* 網頁版顯示頂部天氣、隱藏內文天氣條；手機反之 */
   @media (max-width: 773px) { .header-weather { display: none; } }
 
+  /* ===== 單色線條 icon（feather 風） ===== */
+  svg.fi { width: 1em; height: 1em; flex-shrink: 0; vertical-align: -0.125em; }
+
   /* ===== NAV ===== */
   nav {
     background: white;
@@ -180,69 +183,6 @@
     z-index: 90;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    padding: 8px 20px;
-  }
-  /* 單一下拉式選單按鈕 */
-  .nav-menu-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    background: var(--sage-pale);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--sage);
-    font-size: 15px;
-    font-weight: 700;
-    font-family: inherit;
-    letter-spacing: 1px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.15s;
-  }
-  .nav-menu-btn:hover { background: #dcebe6; }
-  .nav-menu-btn svg { width: 18px; height: 18px; }
-  .nav-menu-arrow { font-size: 11px; opacity: 0.7; transition: transform 0.2s; margin-left: 2px; }
-  .nav-menu-btn.open .nav-menu-arrow { transform: rotate(180deg); }
-  /* 下拉清單 */
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% - 2px);
-    left: 20px;
-    min-width: 220px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: 0 10px 32px rgba(0,0,0,0.14);
-    padding: 6px;
-    z-index: 300;
-  }
-  .nav-menu.show { display: block; }
-  .nav-menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 14px;
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 14.5px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.12s, color 0.12s;
-  }
-  .nav-menu-item svg { width: 18px; height: 18px; flex: 0 0 18px; color: var(--muted); }
-  .nav-menu-item:hover { background: var(--sage-pale); color: var(--sage); }
-  .nav-menu-item:hover svg { color: var(--sage); }
-  /* 目前選中分頁：黃色高亮（沿用 morning-board 統一色） */
-  .nav-menu-item.active { background: #fff8d6; color: #8a6d00; }
-  .nav-menu-item.active svg { color: #c79a00; }
   /* ===== 底部固定分頁列（手機）===== */
   .bottom-nav { display: none; }
   .more-sheet, .more-backdrop { display: none; }
@@ -389,9 +329,9 @@
   .essay-dim ul { list-style: none; margin: 0; padding: 0; }
   .essay-dim li { font-size: 13px; line-height: 1.75; padding-left: 20px; position: relative; color: var(--text); }
   .essay-dim li::before { position: absolute; left: 2px; }
-  .essay-dim li.ob::before { content: "🔍"; }
-  .essay-dim li.sug::before { content: "✏️"; }
-  .essay-dim li.good::before { content: "🌟"; }
+  .essay-dim li.ob::before { content: "○"; color: var(--muted); }
+  .essay-dim li.sug::before { content: "✎"; color: var(--muted); }
+  .essay-dim li.good::before { content: "✓"; color: var(--sage); }
   .essay-overall {
     background: linear-gradient(135deg, var(--sage-pale), var(--gold-pale));
     border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
@@ -1112,6 +1052,47 @@
 </head>
 <body>
 
+<!-- 全站介面圖示：單色線條 SVG sprite（feather 風），JS 以 fi() 引用 -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="fi-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="fi-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="fi-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="fi-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="fi-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+  <symbol id="fi-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+  <symbol id="fi-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></symbol>
+  <symbol id="fi-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="fi-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="fi-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></symbol>
+  <symbol id="fi-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="fi-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="fi-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+  <symbol id="fi-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="fi-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="fi-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+  <symbol id="fi-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+  <symbol id="fi-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="fi-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+  <symbol id="fi-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="fi-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="fi-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="fi-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+  <symbol id="fi-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="fi-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+  <symbol id="fi-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="fi-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></symbol>
+  <symbol id="fi-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></symbol>
+  <symbol id="fi-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+  <symbol id="fi-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+  <symbol id="fi-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+  <symbol id="fi-cloud-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M20 12h2"/><path d="M19.4 5.3L18 6.7"/><path d="M15.9 9.2a4 4 0 1 0-7.4 2.3"/><path d="M13 16a4 4 0 0 0-8 0 3 3 0 0 0 0 6h8a3 3 0 0 0 0-6z"/></symbol>
+  <symbol id="fi-rain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="13" x2="16" y2="21"/><line x1="8" y1="13" x2="8" y2="21"/><line x1="12" y1="15" x2="12" y2="23"/><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/></symbol>
+  <symbol id="fi-drizzle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="19" x2="8" y2="21"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="16" y1="19" x2="16" y2="21"/><line x1="16" y1="13" x2="16" y2="15"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="12" y1="15" x2="12" y2="17"/><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/></symbol>
+  <symbol id="fi-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="8" y1="20" x2="8.01" y2="20"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="12" y1="22" x2="12.01" y2="22"/><line x1="16" y1="16" x2="16.01" y2="16"/><line x1="16" y1="20" x2="16.01" y2="20"/></symbol>
+  <symbol id="fi-fog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="13" x2="20" y2="13"/><line x1="6" y1="17" x2="18" y2="17"/></symbol>
+  <symbol id="fi-storm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/><polyline points="13 11 9 17 15 17 11 23"/></symbol>
+</svg>
+
 <!-- ===== HEADER ===== -->
 <header>
   <div class="header-bg-photo"></div>
@@ -1129,14 +1110,14 @@
     <div class="search-center">
       <div class="search-wrap">
         <div class="header-search">
-          <span>🔍</span>
+          <span><svg class="fi"><use href="#fi-search"/></svg></span>
           <input type="text" id="search-input" placeholder="搜尋課文、資源、工具…" autocomplete="off">
         </div>
         <div id="search-results"></div>
       </div>
     </div>
     <div class="header-weather" id="headerWeather">
-      <span class="hw-icon" id="wxIconH">🌈</span>
+      <span class="hw-icon" id="wxIconH"><svg class="fi"><use href="#fi-cloud"/></svg></span>
       <div class="hw-info">
         <div class="hw-temp"><span id="wxTempH">--</span>°<span class="hw-city">中壢市</span></div>
         <div class="hw-desc" id="wxDescH">載入中…</div>
@@ -1227,7 +1208,7 @@
 
     <!-- 今日天氣 -->
     <div class="weather-strip" id="weatherStrip">
-      <span class="wx-icon" id="wxIcon">🌈</span>
+      <span class="wx-icon" id="wxIcon"><svg class="fi"><use href="#fi-cloud"/></svg></span>
       <div class="wx-info">
         <div class="wx-temp"><span id="wxTemp">--</span>°<span class="wx-city">中壢市</span></div>
         <div class="wx-desc" id="wxDesc">載入今日天氣中…</div>
@@ -1240,28 +1221,28 @@
       <!-- 快速導覽 -->
       <div class="card">
         <div class="card-header">
-          <div class="card-icon icon-sage">🗺️</div>
+          <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-map"/></svg></div>
           <div>
             <div class="card-title">快速導覽</div>
             <div class="card-sub">點擊直達各分區</div>
           </div>
         </div>
         <ul class="link-list">
-          <li><a href="#" onclick="switchTab('g1')">📗 高一資源 — 課文・修辭・習作</a></li>
-          <li><a href="#" onclick="switchTab('g2')">📘 高二資源 — 文言文・議論文・小說</a></li>
-          <li><a href="#" onclick="switchTab('g3')">📕 高三資源 — 學測衝刺・作文技巧</a></li>
-          <li><a href="#" onclick="switchTab('exam')">📝 考試資源 — 段考・歷屆試題</a></li>
-          <li><a href="#" onclick="switchTab('calendar')">🗓️ 行事曆 — 段考・模考・活動倒數</a></li>
-          <li><a href="#" onclick="switchTab('tools')">🛠️ 備課工具 — 分析框架・板書範本</a></li>
-          <li><a href="#" onclick="switchTab('notes')">📌 我的筆記 — 私人備課重點</a></li>
-          <li><a href="#" onclick="switchTab('chat')">💬 小助教 — 備課問答・課文分析・出題批改</a></li>
+          <li><a href="#" onclick="switchTab('g1')"><svg class="fi"><use href="#fi-book"/></svg> 高一資源 — 課文・修辭・習作</a></li>
+          <li><a href="#" onclick="switchTab('g2')"><svg class="fi"><use href="#fi-book"/></svg> 高二資源 — 文言文・議論文・小說</a></li>
+          <li><a href="#" onclick="switchTab('g3')"><svg class="fi"><use href="#fi-book"/></svg> 高三資源 — 學測衝刺・作文技巧</a></li>
+          <li><a href="#" onclick="switchTab('exam')"><svg class="fi"><use href="#fi-file"/></svg> 考試資源 — 段考・歷屆試題</a></li>
+          <li><a href="#" onclick="switchTab('calendar')"><svg class="fi"><use href="#fi-calendar"/></svg> 行事曆 — 段考・模考・活動倒數</a></li>
+          <li><a href="#" onclick="switchTab('tools')"><svg class="fi"><use href="#fi-tool"/></svg> 備課工具 — 分析框架・板書範本</a></li>
+          <li><a href="#" onclick="switchTab('notes')"><svg class="fi"><use href="#fi-bookmark"/></svg> 我的筆記 — 私人備課重點</a></li>
+          <li><a href="#" onclick="switchTab('chat')"><svg class="fi"><use href="#fi-message"/></svg> 小助教 — 備課問答・課文分析・出題批改</a></li>
         </ul>
       </div>
 
       <!-- 常用網站 -->
       <div class="card">
         <div class="card-header">
-          <div class="card-icon icon-blue">⭐</div>
+          <div class="card-icon icon-blue"><svg class="fi"><use href="#fi-star"/></svg></div>
           <div>
             <div class="card-title">必備外部網站</div>
             <div class="card-sub">每日備課常用</div>
@@ -1269,27 +1250,27 @@
         </div>
         <ul class="link-list">
           <li>
-            <a href="https://dict.revised.moe.edu.tw" target="_blank">📚 教育部重編國語辭典</a>
+            <a href="https://dict.revised.moe.edu.tw" target="_blank"><svg class="fi"><use href="#fi-book"/></svg> 教育部重編國語辭典</a>
             <span class="link-tag tag-official">官方</span>
           </li>
           <li>
-            <a href="https://dict.variants.moe.edu.tw" target="_blank">🖊️ 異體字字典</a>
+            <a href="https://dict.variants.moe.edu.tw" target="_blank"><svg class="fi"><use href="#fi-edit"/></svg> 異體字字典</a>
             <span class="link-tag tag-official">官方</span>
           </li>
           <li>
-            <a href="https://ctext.org/zh" target="_blank">📜 中國哲學書電子化計劃</a>
+            <a href="https://ctext.org/zh" target="_blank"><svg class="fi"><use href="#fi-file"/></svg> 中國哲學書電子化計劃</a>
             <span class="link-tag tag-free">免費</span>
           </li>
           <li>
-            <a href="https://www.ceec.edu.tw/examresource/exam" target="_blank">📝 大考中心歷屆試題</a>
+            <a href="https://www.ceec.edu.tw/examresource/exam" target="_blank"><svg class="fi"><use href="#fi-file"/></svg> 大考中心歷屆試題</a>
             <span class="link-tag tag-official">官方</span>
           </li>
           <li>
-            <a href="https://www.naer.edu.tw" target="_blank">🏫 十二年課綱課程研究院</a>
+            <a href="https://www.naer.edu.tw" target="_blank"><svg class="fi"><use href="#fi-home"/></svg> 十二年課綱課程研究院</a>
             <span class="link-tag tag-official">官方</span>
           </li>
           <li>
-            <a href="https://stroke-order.learningweb.moe.edu.tw" target="_blank">✍️ 國字標準字體筆順學習網</a>
+            <a href="https://stroke-order.learningweb.moe.edu.tw" target="_blank"><svg class="fi"><use href="#fi-edit"/></svg> 國字標準字體筆順學習網</a>
             <span class="link-tag tag-free">免費</span>
           </li>
         </ul>
@@ -1298,7 +1279,7 @@
       <!-- 學校行事曆提醒 -->
       <div class="card">
         <div class="card-header">
-          <div class="card-icon icon-gold">📅</div>
+          <div class="card-icon icon-gold"><svg class="fi"><use href="#fi-calendar"/></svg></div>
           <div>
             <div class="card-title">學期進度提醒</div>
             <div class="card-sub">114 學年度</div>
@@ -1341,20 +1322,20 @@
       <!-- 最近更新 -->
       <div class="card">
         <div class="card-header">
-          <div class="card-icon icon-purple">🆕</div>
+          <div class="card-icon icon-purple"><svg class="fi"><use href="#fi-zap"/></svg></div>
           <div>
             <div class="card-title">使用說明</div>
             <div class="card-sub">如何用這個網站</div>
           </div>
         </div>
         <ul class="link-list" style="font-size:14px;">
-          <li><a href="#" onclick="switchTab('notes')">📌 備課筆記存在「我的筆記」，自動儲存到瀏覽器</a></li>
-          <li><a href="#" onclick="switchTab('tools')">🛠️ 「備課工具」有課文分析框架、作文出題輔助</a></li>
-          <li><a href="#" onclick="switchTab('exam')">📝 歷屆學測試題、段考常見題型都在「考試資源」</a></li>
-          <li><a href="javascript:void(0)" onclick="document.getElementById('search-input').focus()">🔍 上方搜尋框可快速找課文或資源</a></li>
+          <li><a href="#" onclick="switchTab('notes')"><svg class="fi"><use href="#fi-bookmark"/></svg> 備課筆記存在「我的筆記」，自動儲存到瀏覽器</a></li>
+          <li><a href="#" onclick="switchTab('tools')"><svg class="fi"><use href="#fi-tool"/></svg> 「備課工具」有課文分析框架、作文出題輔助</a></li>
+          <li><a href="#" onclick="switchTab('exam')"><svg class="fi"><use href="#fi-file"/></svg> 歷屆學測試題、段考常見題型都在「考試資源」</a></li>
+          <li><a href="javascript:void(0)" onclick="document.getElementById('search-input').focus()"><svg class="fi"><use href="#fi-search"/></svg> 上方搜尋框可快速找課文或資源</a></li>
         </ul>
         <div style="margin-top:14px; padding:12px; background:var(--sage-pale); border-radius:8px; font-size:12px; color:var(--sage); line-height:1.7;">
-          💡 <strong>提示：</strong>本站資料儲存在瀏覽器本機，換電腦需重新建立筆記。建議書籤收藏本頁。
+          <strong>提示：</strong>本站資料儲存在瀏覽器本機，換電腦需重新建立筆記。建議書籤收藏本頁。
         </div>
       </div>
     </div>
@@ -1364,7 +1345,7 @@
   <div class="section" id="tab-g1">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--sage-pale)">📗</div>
+        <div class="section-icon" style="background:var(--sage-pale)"><svg class="fi"><use href="#fi-book"/></svg></div>
         <div>
           <h2>高一資源</h2>
           <p>語言基礎 × 現代文學 × 文言啟蒙</p>
@@ -1373,19 +1354,19 @@
     </div>
 
     <div class="chip-row">
-      <span class="chip sage on" onclick="filterG1('all',this)">全部類型</span>
-      <span class="chip sage" onclick="filterG1('wen',this)">文言選篇</span>
-      <span class="chip sage" onclick="filterG1('xian',this)">現代文學</span>
-      <span class="chip sage" onclick="filterG1('xiu',this)">修辭語法</span>
-      <span class="chip sage" onclick="filterG1('xie',this)">寫作練習</span>
-      <span class="chip sage" onclick="filterG1('link',this)">外部資源</span>
+      <span class="chip sage on" onclick="filterG('g1','all',this)">全部類型</span>
+      <span class="chip sage" onclick="filterG('g1','wen',this)">文言選篇</span>
+      <span class="chip sage" onclick="filterG('g1','xian',this)">現代文學</span>
+      <span class="chip sage" onclick="filterG('g1','xiu',this)">修辭語法</span>
+      <span class="chip sage" onclick="filterG('g1','xie',this)">寫作練習</span>
+      <span class="chip sage" onclick="filterG('g1','link',this)">外部資源</span>
     </div>
 
     <div class="grid-3" id="g1-grid">
 
       <div class="card g1-card" data-cat="wen">
         <div class="card-header">
-          <div class="card-icon icon-gold">📜</div>
+          <div class="card-icon icon-gold"><svg class="fi"><use href="#fi-file"/></svg></div>
           <div>
             <div class="card-title">文言文基礎篇目</div>
             <div class="card-sub">先秦到唐宋代表作</div>
@@ -1427,7 +1408,7 @@
 
       <div class="card g1-card" data-cat="xian">
         <div class="card-header">
-          <div class="card-icon icon-sage">🌿</div>
+          <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-feather"/></svg></div>
           <div>
             <div class="card-title">現代詩選</div>
             <div class="card-sub">余光中・鄭愁予・楊牧</div>
@@ -1489,7 +1470,7 @@
 
       <div class="card g1-card" data-cat="xian">
         <div class="card-header">
-          <div class="card-icon icon-blue">🌊</div>
+          <div class="card-icon icon-blue"><svg class="fi"><use href="#fi-droplet"/></svg></div>
           <div>
             <div class="card-title">現代散文</div>
             <div class="card-sub">琦君・林文月・朱自清</div>
@@ -1525,7 +1506,7 @@
 
       <div class="card g1-card" data-cat="xiu">
         <div class="card-header">
-          <div class="card-icon icon-red">🎨</div>
+          <div class="card-icon icon-red"><svg class="fi"><use href="#fi-image"/></svg></div>
           <div>
             <div class="card-title">修辭法教學</div>
             <div class="card-sub">九大修辭＋例句練習</div>
@@ -1559,7 +1540,7 @@
 
       <div class="card g1-card" data-cat="xie">
         <div class="card-header">
-          <div class="card-icon icon-purple">🖊️</div>
+          <div class="card-icon icon-purple"><svg class="fi"><use href="#fi-edit"/></svg></div>
           <div>
             <div class="card-title">高一作文訓練</div>
             <div class="card-sub">記敘文→抒情文入門</div>
@@ -1595,7 +1576,7 @@
       <!-- 外部資源 -->
       <div class="card g1-card" data-cat="link">
         <div class="card-header">
-          <div class="card-icon icon-sage">🔗</div>
+          <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-link"/></svg></div>
           <div>
             <div class="card-title">高一必備外部資源</div>
             <div class="card-sub">工具 + 資料庫</div>
@@ -1618,7 +1599,7 @@
   <div class="section" id="tab-g2">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--blue-pale)">📘</div>
+        <div class="section-icon" style="background:var(--blue-pale)"><svg class="fi"><use href="#fi-book"/></svg></div>
         <div>
           <h2>高二資源</h2>
           <p>進階文言文 × 議論文 × 小說與文化</p>
@@ -1638,7 +1619,7 @@
 
       <div class="card g2-card" data-cat="wen">
         <div class="card-header">
-          <div class="card-icon icon-gold">📜</div>
+          <div class="card-icon icon-gold"><svg class="fi"><use href="#fi-file"/></svg></div>
           <div>
             <div class="card-title">進階文言文</div>
             <div class="card-sub">唐宋八大家・韓柳蘇</div>
@@ -1672,7 +1653,7 @@
 
       <div class="card g2-card" data-cat="yi">
         <div class="card-header">
-          <div class="card-icon icon-sage">💬</div>
+          <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-message"/></svg></div>
           <div>
             <div class="card-title">議論文教學</div>
             <div class="card-sub">論點・論據・論證</div>
@@ -1720,7 +1701,7 @@
 
       <div class="card g2-card" data-cat="xiao">
         <div class="card-header">
-          <div class="card-icon icon-blue">📖</div>
+          <div class="card-icon icon-blue"><svg class="fi"><use href="#fi-book-open"/></svg></div>
           <div>
             <div class="card-title">小說教學</div>
             <div class="card-sub">人物・情節・主題</div>
@@ -1748,7 +1729,7 @@
 
       <div class="card g2-card" data-cat="wen-hua">
         <div class="card-header">
-          <div class="card-icon icon-red">🏛️</div>
+          <div class="card-icon icon-red"><svg class="fi"><use href="#fi-home"/></svg></div>
           <div>
             <div class="card-title">文化與思想</div>
             <div class="card-sub">儒道佛・台灣文學史</div>
@@ -1792,7 +1773,7 @@
 
       <div class="card g2-card" data-cat="wen">
         <div class="card-header">
-          <div class="card-icon icon-purple">🎭</div>
+          <div class="card-icon icon-purple"><svg class="fi"><use href="#fi-music"/></svg></div>
           <div>
             <div class="card-title">詩詞精讀</div>
             <div class="card-sub">李白・李清照・蘇軾</div>
@@ -1823,7 +1804,7 @@
 
       <div class="card g2-card" data-cat="yi">
         <div class="card-header">
-          <div class="card-icon icon-gold">✍️</div>
+          <div class="card-icon icon-gold"><svg class="fi"><use href="#fi-edit"/></svg></div>
           <div>
             <div class="card-title">高二作文訓練</div>
             <div class="card-sub">議論文進階</div>
@@ -1869,7 +1850,7 @@
   <div class="section" id="tab-g3">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--red-pale)">📕</div>
+        <div class="section-icon" style="background:var(--red-pale)"><svg class="fi"><use href="#fi-book"/></svg></div>
         <div>
           <h2>高三資源</h2>
           <p>學測衝刺 × 作文滿分 × 分科測驗</p>
@@ -1890,7 +1871,7 @@
 
       <div class="card g3-card" data-cat="gsat">
         <div class="card-header">
-          <div class="card-icon icon-red">🎯</div>
+          <div class="card-icon icon-red"><svg class="fi"><use href="#fi-target"/></svg></div>
           <div>
             <div class="card-title">學測國文複習</div>
             <div class="card-sub">各大題得分攻略</div>
@@ -1941,7 +1922,7 @@
 
       <div class="card g3-card" data-cat="essay">
         <div class="card-header">
-          <div class="card-icon icon-gold">✍️</div>
+          <div class="card-icon icon-gold"><svg class="fi"><use href="#fi-edit"/></svg></div>
           <div>
             <div class="card-title">作文滿分技巧</div>
             <div class="card-sub">審題→立意→布局→修辭</div>
@@ -1982,7 +1963,7 @@
 
       <div class="card g3-card" data-cat="wen">
         <div class="card-header">
-          <div class="card-icon icon-blue">📚</div>
+          <div class="card-icon icon-blue"><svg class="fi"><use href="#fi-book"/></svg></div>
           <div>
             <div class="card-title">文言文字詞彙整</div>
             <div class="card-sub">考前必備核心詞</div>
@@ -2027,7 +2008,7 @@
 
       <div class="card g3-card" data-cat="gsat">
         <div class="card-header">
-          <div class="card-icon icon-purple">🧩</div>
+          <div class="card-icon icon-purple"><svg class="fi"><use href="#fi-grid"/></svg></div>
           <div>
             <div class="card-title">閱讀測驗策略</div>
             <div class="card-sub">快速讀懂長篇文章</div>
@@ -2064,7 +2045,7 @@
 
       <div class="card g3-card" data-cat="exam">
         <div class="card-header">
-          <div class="card-icon icon-sage">📋</div>
+          <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-clipboard"/></svg></div>
           <div>
             <div class="card-title">歷屆試題分析</div>
             <div class="card-sub">111～114學測趨勢</div>
@@ -2138,7 +2119,7 @@
   <div class="section" id="tab-exam">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--gold-pale)">📝</div>
+        <div class="section-icon" style="background:var(--gold-pale)"><svg class="fi"><use href="#fi-file"/></svg></div>
         <div>
           <h2>考試資源</h2>
           <p>學測國寫題目 × 選擇題答案 × 完整試題解析 × 段考命題</p>
@@ -2149,7 +2130,7 @@
     <!-- 歷屆學測國寫題目 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title"><span>✍️</span> 歷屆學測國寫題目（111～115）</div>
+        <div class="unit-block-title"><span><svg class="fi"><use href="#fi-edit"/></svg></span> 歷屆學測國寫題目（111～115）</div>
         <span class="toggle-arrow open">▶</span>
       </div>
       <div class="unit-block-body open">
@@ -2230,7 +2211,7 @@
     <!-- 歷屆學測選擇題參考答案 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title"><span>✅</span> 歷屆學測選擇題參考答案（111～115）</div>
+        <div class="unit-block-title"><span><svg class="fi"><use href="#fi-check"/></svg></span> 歷屆學測選擇題參考答案（111～115）</div>
         <span class="toggle-arrow">▶</span>
       </div>
       <div class="unit-block-body">
@@ -2261,7 +2242,7 @@
     <!-- 完整試題解析 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title"><span>🔍</span> 學測國綜完整試題解析（111～115）</div>
+        <div class="unit-block-title"><span><svg class="fi"><use href="#fi-search"/></svg></span> 學測國綜完整試題解析（111～115）</div>
         <span class="toggle-arrow">▶</span>
       </div>
       <div class="unit-block-body">
@@ -3820,7 +3801,7 @@
     <!-- 段考命題參考 -->
     <div class="unit-block">
       <div class="unit-block-header" onclick="toggleBlock(this)">
-        <div class="unit-block-title"><span>📋</span> 段考常見題型參考</div>
+        <div class="unit-block-title"><span><svg class="fi"><use href="#fi-clipboard"/></svg></span> 段考常見題型參考</div>
         <span class="toggle-arrow">▶</span>
       </div>
       <div class="unit-block-body">
@@ -3843,7 +3824,7 @@
   <div class="section" id="tab-tools">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--purple-pale)">🛠️</div>
+        <div class="section-icon" style="background:var(--purple-pale)"><svg class="fi"><use href="#fi-tool"/></svg></div>
         <div>
           <h2>備課工具</h2>
           <p>課文分析框架 × 板書生成 × 出題輔助</p>
@@ -3855,7 +3836,7 @@
 
       <!-- 課文分析框架 -->
       <div class="tool-card">
-        <h3>🧭 課文分析框架生成器</h3>
+        <h3>分析框架</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">輸入課文名稱，產生備課分析框架</p>
         <input type="text" id="tool-text-input" style="width:100%; padding:8px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:16px; outline:none; margin-bottom:10px; font-family:inherit;" placeholder="例：師說、背影、錯誤…">
         <div style="display:flex; gap:8px; margin-bottom:10px;">
@@ -3868,12 +3849,12 @@
           </select>
           <button class="btn btn-sage" onclick="genFramework()">產生框架</button>
         </div>
-        <div class="tool-output" id="framework-output">👈 輸入課文名稱後點擊「產生框架」</div>
+        <div class="tool-output" id="framework-output">輸入課文名稱後點擊「產生框架」</div>
       </div>
 
       <!-- 作文出題輔助 -->
       <div class="tool-card">
-        <h3>✍️ 作文出題輔助</h3>
+        <h3>作文出題</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">選擇主題，快速生成作文題目方向</p>
         <div class="chip-row" id="essay-chips">
           <span class="chip sage" onclick="pickEssayTheme('成長與蛻變',this)">成長蛻變</span>
@@ -3883,12 +3864,12 @@
           <span class="chip purple" onclick="pickEssayTheme('記憶與時間',this)">記憶時間</span>
           <span class="chip sage" onclick="pickEssayTheme('科技與人性',this)">科技人性</span>
         </div>
-        <div class="tool-output" id="essay-output">👆 點選主題後產生作文題目建議</div>
+        <div class="tool-output" id="essay-output">點選主題後產生作文題目建議</div>
       </div>
 
       <!-- 板書設計 -->
       <div class="tool-card">
-        <h3>🖊️ 板書結構範本</h3>
+        <h3>板書範本</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">常用板書結構，複製後自行填入</p>
         <div class="chip-row">
           <span class="chip sage" onclick="showBoard('cause')">因果分析</span>
@@ -3896,26 +3877,26 @@
           <span class="chip gold" onclick="showBoard('flow')">流程步驟</span>
           <span class="chip red" onclick="showBoard('mind')">心智導圖</span>
         </div>
-        <div class="tool-output" id="board-output">👆 點選板書類型後顯示範本</div>
+        <div class="tool-output" id="board-output">點選板書類型後顯示範本</div>
       </div>
 
       <!-- 常用素材 -->
       <div class="tool-card">
-        <h3>📚 備課素材快查</h3>
+        <h3>素材快查</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">常用字詞・成語・典故快速查詢</p>
         <ul class="link-list">
-          <li><a href="https://dict.revised.moe.edu.tw" target="_blank">🔠 重編國語辭典（字義/注音）</a><span class="link-tag tag-official">官方</span></li>
-          <li><a href="https://dict.idioms.moe.edu.tw" target="_blank">📖 成語典（典故來源）</a><span class="link-tag tag-official">官方</span></li>
-          <li><a href="https://www.zdic.net" target="_blank">🎵 漢典（聲韻/說文）</a><span class="link-tag tag-free">免費</span></li>
-          <li><a href="https://ctext.org/zh" target="_blank">📜 哲學書電子化計劃</a><span class="link-tag tag-free">免費</span></li>
-          <li><a href="https://db.nmtl.gov.tw" target="_blank">🏛️ 台灣文學辭典資料庫</a><span class="link-tag tag-official">官方</span></li>
-          <li><a href="https://nrch.culture.tw" target="_blank">🖼️ 國家文化記憶庫</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://dict.revised.moe.edu.tw" target="_blank"><svg class="fi"><use href="#fi-type"/></svg> 重編國語辭典（字義/注音）</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://dict.idioms.moe.edu.tw" target="_blank"><svg class="fi"><use href="#fi-book-open"/></svg> 成語典（典故來源）</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://www.zdic.net" target="_blank"><svg class="fi"><use href="#fi-music"/></svg> 漢典（聲韻/說文）</a><span class="link-tag tag-free">免費</span></li>
+          <li><a href="https://ctext.org/zh" target="_blank"><svg class="fi"><use href="#fi-file"/></svg> 哲學書電子化計劃</a><span class="link-tag tag-free">免費</span></li>
+          <li><a href="https://db.nmtl.gov.tw" target="_blank"><svg class="fi"><use href="#fi-home"/></svg> 台灣文學辭典資料庫</a><span class="link-tag tag-official">官方</span></li>
+          <li><a href="https://nrch.culture.tw" target="_blank"><svg class="fi"><use href="#fi-image"/></svg> 國家文化記憶庫</a><span class="link-tag tag-official">官方</span></li>
         </ul>
       </div>
 
       <!-- 教科書出版社資源 -->
       <div class="tool-card">
-        <h3>📕 教科書出版社資源</h3>
+        <h3>教材資源</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">四大高中國文版本・教材與電子書</p>
         <ul class="link-list">
           <li><a href="https://sh.hle.com.tw/" target="_blank">翰林・高中教材網</a><span class="link-tag tag-official">出版社</span></li>
@@ -3928,7 +3909,7 @@
 
       <!-- 數位學習平台 -->
       <div class="tool-card">
-        <h3>💻 數位學習平台</h3>
+        <h3>數位平台</h3>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">免費課程影片・互動教材・線上題庫</p>
         <ul class="link-list">
           <li><a href="https://cloud.edu.tw/" target="_blank">教育部・教育雲</a><span class="link-tag tag-official">官方</span></li>
@@ -3945,7 +3926,7 @@
   <div class="section" id="tab-notes">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--gold-pale)">📌</div>
+        <div class="section-icon" style="background:var(--gold-pale)"><svg class="fi"><use href="#fi-bookmark"/></svg></div>
         <div>
           <h2>我的備課筆記</h2>
           <p>私人記錄，儲存在瀏覽器本機，重新整理後保留</p>
@@ -3965,11 +3946,11 @@
         </select>
         <input type="text" id="note-input" placeholder="輸入備課筆記、待辦、靈感…" onkeydown="if(event.key==='Enter')addNote()">
         <button class="btn btn-sage" onclick="addNote()">＋ 新增</button>
-        <button class="btn btn-ghost" onclick="exportNotes()">⬇ 匯出</button>
+        <button class="btn btn-ghost" onclick="exportNotes()"><svg class="fi"><use href="#fi-download"/></svg> 匯出</button>
         <button class="btn btn-red" onclick="clearAllNotes()" style="font-size:12px; padding:7px 10px;">清空</button>
       </div>
       <div id="notes-list" class="notes-list">
-        <div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄 📝</div>
+        <div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄</div>
       </div>
     </div>
   </div>
@@ -3978,7 +3959,7 @@
   <div class="section" id="tab-chat">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--sage-pale)">💬</div>
+        <div class="section-icon" style="background:var(--sage-pale)"><svg class="fi"><use href="#fi-message"/></svg></div>
         <div>
           <h2>小助教</h2>
           <p>備課好幫手 × 課文分析 × 出題與批改</p>
@@ -4001,7 +3982,7 @@
           </div>
         </div>
         <div class="chat-input-row">
-          <button class="chat-voice-btn" id="chatVoiceBtn" onclick="startVoice()" title="語音輸入">🎤</button>
+          <button class="chat-voice-btn" id="chatVoiceBtn" onclick="startVoice()" title="語音輸入"><svg class="fi"><use href="#fi-mic"/></svg></button>
           <textarea id="chatInput" class="chat-input" placeholder="輸入問題，或點麥克風用說的…" rows="1"
             onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
             oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,110)+'px'"></textarea>
@@ -4015,7 +3996,7 @@
   <div class="section" id="tab-essay">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--sage-pale)">✍️</div>
+        <div class="section-icon" style="background:var(--sage-pale)"><svg class="fi"><use href="#fi-edit"/></svg></div>
         <div>
           <h2>作文批改</h2>
           <p>依學測國寫四向度 × 規則檢核 × 具體評語</p>
@@ -4061,7 +4042,7 @@
       </div>
 
       <div class="essay-note">
-        ⚠️ 本工具為「規則式檢核輔助」，依字數、段落、修辭、標點等可量化線索給<b>參考分數與建議</b>，
+        本工具為「規則式檢核輔助」，依字數、段落、修辭、標點等可量化線索給<b>參考分數與建議</b>，
         無法真正讀懂文意，<b>不等於真人級分</b>。最終評分與評語仍以老師判讀為準。作文內容僅在您的瀏覽器本機處理，不會上傳。
       </div>
     </div>
@@ -4073,7 +4054,7 @@
   <div class="section" id="tab-calendar">
     <div class="section-header">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--gold-pale)">🗓️</div>
+        <div class="section-icon" style="background:var(--gold-pale)"><svg class="fi"><use href="#fi-calendar"/></svg></div>
         <div>
           <h2>行事曆</h2>
           <p>段考、模考、活動 — 重要日期一手掌握</p>
@@ -4092,7 +4073,7 @@
 
     <div class="card">
       <div class="card-header">
-        <div class="card-icon icon-sage">➕</div>
+        <div class="card-icon icon-sage"><svg class="fi"><use href="#fi-plus"/></svg></div>
         <div>
           <div class="card-title">新增行事曆項目</div>
           <div class="card-sub">輸入日期與名稱，自動倒數提醒</div>
@@ -4102,11 +4083,11 @@
         <input type="date" id="calDate">
         <input type="text" id="calTitle" placeholder="例如：第一次段考、班親會…" maxlength="30">
         <select id="calType">
-          <option value="exam">📝 考試</option>
-          <option value="teach">📚 教學進度</option>
-          <option value="meeting">🧑‍🏫 會議研習</option>
-          <option value="activity">🎈 活動</option>
-          <option value="other">📌 其他</option>
+          <option value="exam">考試</option>
+          <option value="teach">教學進度</option>
+          <option value="meeting">會議研習</option>
+          <option value="activity">活動</option>
+          <option value="other">其他</option>
         </select>
         <button onclick="calAdd()">新增項目</button>
       </div>
@@ -4123,7 +4104,7 @@
 
     <div class="section-header" style="margin-top:8px;">
       <div class="section-title">
-        <div class="section-icon" style="background:var(--sage-pale)">📋</div>
+        <div class="section-icon" style="background:var(--sage-pale)"><svg class="fi"><use href="#fi-clipboard"/></svg></div>
         <div><h2>即將到來</h2><p>依日期排序，過期項目自動標示</p></div>
       </div>
     </div>
@@ -4133,59 +4114,36 @@
 </main>
 
 <script>
+// 單色線條 icon helper（引用 body 開頭的 SVG sprite）
+const fi = n => '<svg class="fi"><use href="#fi-'+n+'"/></svg>';
+
 // ========== TABS ==========
-const TAB_NAMES = { home:'教學首頁', g1:'高一資源', g2:'高二資源', g3:'高三資源', exam:'考試資源', calendar:'行事曆', tools:'備課工具', notes:'我的筆記', chat:'小助教', essay:'作文批改' };
 function switchTab(id, fromSearch) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-menu-item').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.bottom-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   document.querySelectorAll('[data-tab="'+id+'"]').forEach(t => t.classList.add('active'));
   // 底部 home bar：高一/高二/高三/筆記 收在「更多功能」，故這些分頁時將「更多」標為 active
   const moreBtn = document.getElementById('bottom-more');
   if (moreBtn) moreBtn.classList.toggle('active', ['g1','g2','g3','notes','chat','essay'].includes(id));
-  const cur = document.getElementById('nav-current');
-  if (cur && TAB_NAMES[id]) cur.textContent = TAB_NAMES[id];
   if (!fromSearch) window.scrollTo(0,0);
   return false;
 }
 
-// 切換分頁並篩選
+// 切換分頁並篩選（g1/g2/g3 統一走 filterG）
 function switchTabFilter(tabId, filter) {
   switchTab(tabId);
   setTimeout(() => {
-    if (tabId === 'g1') {
-      const el = document.querySelector('#tab-g1 .chip[onclick*="\''+filter+'\'"]');
-      if (el) { document.querySelectorAll('#tab-g1 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG1(filter, el); }
-    } else if (tabId === 'g2') {
-      const el = document.querySelector('#tab-g2 .chip[onclick*="\''+filter+'\'"]');
-      if (el) { document.querySelectorAll('#tab-g2 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG('g2', filter, el); }
-    } else if (tabId === 'g3') {
-      const el = document.querySelector('#tab-g3 .chip[onclick*="\''+filter+'\'"]');
-      if (el) { document.querySelectorAll('#tab-g3 .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); filterG('g3', filter, el); }
-    }
+    if (!['g1','g2','g3'].includes(tabId)) return;
+    const el = document.querySelector('#tab-'+tabId+' .chip[onclick*="\''+filter+'\'"]');
+    if (el) filterG(tabId, filter, el);
   }, 30);
 }
 
-// 單一下拉式選單：開關
-function toggleNavMenu(e) {
-  if (e) e.stopPropagation();
-  const m = document.getElementById('nav-menu'); if (m) m.classList.toggle('show');
-  const b = document.getElementById('nav-menu-btn'); if (b) b.classList.toggle('open');
-}
-function closeNavMenu() {
-  const m = document.getElementById('nav-menu'); if (m) m.classList.remove('show');
-  const b = document.getElementById('nav-menu-btn'); if (b) b.classList.remove('open');
-}
-// 選單項目點擊：切換分頁（grade 帶 all 篩選），關閉選單
+// 選單項目點擊：切換分頁（grade 帶 all 篩選）
 function navGo(tab, filter) {
   if (filter) { switchTabFilter(tab, filter); } else { switchTab(tab); }
-  closeNavMenu();
 }
-// 點選單以外處關閉
-document.addEventListener('click', e => {
-  if (!e.target.closest('.nav-inner')) closeNavMenu();
-});
 
 // 底部「更多功能」彈出選單開關
 function toggleMoreSheet(e) {
@@ -4215,23 +4173,23 @@ function closeMoreSheet() {
 // ========== 今日天氣（中壢市 / Open-Meteo，免金鑰）==========
 (function loadWeather() {
   const WX = {
-    0:['☀️','晴天'],1:['🌤️','晴時多雲'],2:['⛅','多雲'],3:['☁️','陰天'],
-    45:['🌫️','有霧'],48:['🌫️','霧淞'],
-    51:['🌦️','毛毛雨'],53:['🌦️','毛毛雨'],55:['🌧️','毛毛雨'],
-    61:['🌧️','小雨'],63:['🌧️','中雨'],65:['🌧️','大雨'],
-    66:['🌧️','凍雨'],67:['🌧️','凍雨'],
-    71:['🌨️','小雪'],73:['🌨️','中雪'],75:['❄️','大雪'],77:['❄️','雪珠'],
-    80:['🌦️','陣雨'],81:['🌧️','陣雨'],82:['⛈️','強陣雨'],
-    85:['🌨️','陣雪'],86:['🌨️','陣雪'],
-    95:['⛈️','雷雨'],96:['⛈️','雷雨伴冰雹'],99:['⛈️','強雷雨伴冰雹']
+    0:['sun','晴天'],1:['cloud-sun','晴時多雲'],2:['cloud-sun','多雲'],3:['cloud','陰天'],
+    45:['fog','有霧'],48:['fog','霧淞'],
+    51:['drizzle','毛毛雨'],53:['drizzle','毛毛雨'],55:['rain','毛毛雨'],
+    61:['rain','小雨'],63:['rain','中雨'],65:['rain','大雨'],
+    66:['rain','凍雨'],67:['rain','凍雨'],
+    71:['snow','小雪'],73:['snow','中雪'],75:['snow','大雪'],77:['snow','雪珠'],
+    80:['drizzle','陣雨'],81:['rain','陣雨'],82:['storm','強陣雨'],
+    85:['snow','陣雪'],86:['snow','陣雪'],
+    95:['storm','雷雨'],96:['storm','雷雨伴冰雹'],99:['storm','強雷雨伴冰雹']
   };
   const url = 'https://api.open-meteo.com/v1/forecast?latitude=24.9576&longitude=121.2168'
     + '&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min'
     + '&timezone=Asia%2FTaipei&forecast_days=1';
   const setTxt = (ids, val) => ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = val; });
   fetch(url).then(r => r.json()).then(d => {
-    const info = WX[d.current.weather_code] || ['🌈','天氣'];
-    setTxt(['wxIcon','wxIconH'], info[0]);
+    const info = WX[d.current.weather_code] || ['cloud','天氣'];
+    ['wxIcon','wxIconH'].forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = fi(info[0]); });
     setTxt(['wxDesc','wxDescH'], info[1]);
     setTxt(['wxTemp','wxTempH'], Math.round(d.current.temperature_2m));
     setTxt(['wxHi','wxHiH'], Math.round(d.daily.temperature_2m_max[0]));
@@ -4244,8 +4202,8 @@ function closeMoreSheet() {
 // ========== 行事曆 ==========
 const CAL_KEY = 'yifen_calendar_events';
 const CAL_TYPE = {
-  exam:['📝','考試'], teach:['📚','教學進度'], meeting:['🧑‍🏫','會議研習'],
-  activity:['🎈','活動'], other:['📌','其他']
+  exam:['file','考試'], teach:['book','教學進度'], meeting:['users','會議研習'],
+  activity:['flag','活動'], other:['bookmark','其他']
 };
 let calViewYear, calViewMonth;
 
@@ -4341,13 +4299,13 @@ function calRenderList() {
   const box = document.getElementById('calList');
   if (!box) return;
   calSorted = calLoad().slice().sort((a,b) => a.date < b.date ? -1 : 1);
-  if (!calSorted.length) { box.innerHTML = '<div class="cal-empty">還沒有任何項目，從上方新增吧 ✏️</div>'; return; }
+  if (!calSorted.length) { box.innerHTML = '<div class="cal-empty">還沒有任何項目，從上方新增吧</div>'; return; }
   let html = '';
   calSorted.forEach((e, i) => {
-    const info = CAL_TYPE[e.type] || ['📌','其他'];
+    const info = CAL_TYPE[e.type] || ['bookmark','其他'];
     const lab = calCountLabel(calDaysTo(e.date));
     html += '<div class="cal-event">'
-      + '<span class="ce-emoji">'+info[0]+'</span>'
+      + '<span class="ce-emoji">'+fi(info[0])+'</span>'
       + '<div class="ce-body"><div class="ce-title">'+calEsc(e.title)+'</div>'
       + '<div class="ce-date">'+calFmt(e.date)+'｜'+info[1]+'</div></div>'
       + '<span class="ce-count '+lab[1]+'">'+lab[0]+'</span>'
@@ -4370,9 +4328,8 @@ function calRenderRemind() {
     return;
   }
   const e = upcoming[0];
-  const info = CAL_TYPE[e.type] || ['📌','其他'];
   const days = calDaysTo(e.date);
-  document.getElementById('crTitle').textContent = info[0] + ' ' + e.title;
+  document.getElementById('crTitle').textContent = e.title;
   document.getElementById('crSub').textContent = calFmt(e.date) + (days === 0 ? '｜就是今天！' : '｜倒數中');
   document.getElementById('crNum').textContent = days === 0 ? '0' : days;
 }
@@ -4421,12 +4378,12 @@ input.addEventListener('input', function(){
   if (!q) { results.classList.remove('show'); return; }
   const hits = searchData.filter(d => d.title.includes(q) || d.cat.includes(q)).slice(0, 8);
   if (!hits.length) { results.innerHTML = '<div class="sr-item" style="color:var(--muted)">找不到相關結果</div>'; results.classList.add('show'); return; }
-  results.innerHTML = hits.map(h => `<div class="sr-item" onclick="switchTab('${h.tab}',true); results.classList.remove('show'); input.value=''; "><span>🔍 ${h.title}</span><span class="sr-cat">${h.cat}</span></div>`).join('');
+  results.innerHTML = hits.map(h => `<div class="sr-item" onclick="switchTab('${h.tab}',true); results.classList.remove('show'); input.value=''; "><span>${fi('search')} ${h.title}</span><span class="sr-cat">${h.cat}</span></div>`).join('');
   results.classList.add('show');
 });
 document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) results.classList.remove('show'); });
 
-// ========== FILTER G1 ==========
+// ========== FILTER 年級卡片 ==========
 // 設計規則：篩選後內容須與上方 chip 列同寬。
 // grid 欄數隨「可見卡片數」自動調整（1→1欄滿版、2→2欄、3↑→3欄），內容永遠填滿寬度。
 // 課程卡全站單欄（與上方 chip 列同寬），交給 CSS grid-template-columns:1fr
@@ -4434,14 +4391,6 @@ function fitGrid(gridId) {
   const grid = document.getElementById(gridId);
   if (!grid) return;
   grid.style.gridTemplateColumns = '1fr';
-}
-function filterG1(cat, el) {
-  document.querySelectorAll('#tab-g1 .chip').forEach(c => c.classList.remove('on'));
-  el.classList.add('on');
-  document.querySelectorAll('.g1-card').forEach(c => {
-    c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
-  });
-  fitGrid('g1-grid');
 }
 function filterG(grade, cat, el) {
   document.querySelectorAll(`#tab-${grade} .chip`).forEach(c => c.classList.remove('on'));
@@ -4821,7 +4770,7 @@ function showBoard(type) {
   out.style.border = 'none';
   out.style.padding = '0';
   out.style.whiteSpace = 'normal';
-  out.innerHTML = d.html + '<button class="bd-copy" onclick="copyBoard(\'' + type + '\', this)">📋 複製純文字範本</button>';
+  out.innerHTML = d.html + '<button class="bd-copy" onclick="copyBoard(\'' + type + '\', this)">複製純文字範本</button>';
 }
 
 function copyBoard(type, btn) {
@@ -4847,7 +4796,7 @@ function renderNotes() {
   const list = document.getElementById('notes-list');
   document.getElementById('notes-count').textContent = notes.length + ' 則';
   if (!notes.length) {
-    list.innerHTML = '<div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄 📝</div>';
+    list.innerHTML = '<div class="notes-empty">還沒有筆記，輸入後點「+ 新增」開始記錄</div>';
     return;
   }
   list.innerHTML = notes.map((n, i) => `
@@ -5073,14 +5022,14 @@ function appendMsg(role, text, links) {
       if (l.tab) {
         const a = document.createElement('span');
         a.className = 'chat-link internal';
-        a.innerHTML = '<span>📑</span>' + chatEsc(l.label);
+        a.innerHTML = '<span>'+fi('file')+'</span>' + chatEsc(l.label);
         a.onclick = () => switchTab(l.tab);
         lk.appendChild(a);
       } else if (l.url) {
         const a = document.createElement('a');
         a.className = 'chat-link external';
         a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
-        a.innerHTML = '<span>🔗</span>' + chatEsc(l.label);
+        a.innerHTML = '<span>'+fi('link')+'</span>' + chatEsc(l.label);
         lk.appendChild(a);
       }
     });
@@ -5444,7 +5393,7 @@ function essayGrade(){
   // ===== 渲染 =====
   let html='';
   html+='<div class="card">';
-  html+='<div class="card-header"><div class="card-icon" style="background:var(--gold-pale)">📊</div><div><div class="card-title">批改結果</div>'+(topic?('<div class="card-sub">題目：'+chatEsc(topic)+'</div>'):'')+'</div></div>';
+  html+='<div class="card-header"><div class="card-icon" style="background:var(--gold-pale)">'+fi('chart')+'</div><div><div class="card-title">批改結果</div>'+(topic?('<div class="card-sub">題目：'+chatEsc(topic)+'</div>'):'')+'</div></div>';
   html+='<div class="essay-stats">';
   html+='<div class="essay-stat"><b>'+charCount+'</b><span>字數</span></div>';
   html+='<div class="essay-stat"><b>'+paraCount+'</b><span>段落</span></div>';
@@ -5466,7 +5415,7 @@ function essayGrade(){
   // 依弱項給寫作提示
   let tipDims=dims.filter(d=>d.score<=3).sort((a,b)=>a.score-b.score).slice(0,2);
   if(!tipDims.length) tipDims=[dims[2]]; // 全部不錯時，給遣詞造句的精進提示
-  html+='<div class="essay-dim" style="background:var(--blue-pale);border-color:#cfe0ee;"><div class="essay-dim-head"><h3>✍️ 寫作提示（依本篇加強）</h3></div>';
+  html+='<div class="essay-dim" style="background:var(--blue-pale);border-color:#cfe0ee;"><div class="essay-dim-head"><h3>寫作提示</h3><span style="font-size:12px;color:var(--muted);white-space:nowrap;">依本篇加強</span></div>';
   tipDims.forEach(d=>{
     html+='<div style="font-size:13px;font-weight:700;color:var(--blue);margin:6px 0 4px;">'+d.name+'</div><ul>';
     (ESSAY_TIPS[d.name]||[]).forEach(t=>html+='<li class="sug">'+t+'</li>');
@@ -5474,7 +5423,7 @@ function essayGrade(){
   });
   html+='</div>';
 
-  html+='<div class="essay-note">⚠️ 以上為規則式檢核的<b>參考結果</b>，依可量化線索（字數、段落、修辭、標點）推估，無法判讀文意深度與情感，<b>不等於真人級分</b>，請以老師判讀為準。</div>';
+  html+='<div class="essay-note">以上為規則式檢核的<b>參考結果</b>，依可量化線索（字數、段落、修辭、標點）推估，無法判讀文意深度與情感，<b>不等於真人級分</b>，請以老師判讀為準。</div>';
   html+='<div class="essay-actions"><button class="btn btn-sage" onclick="essayCopy()">複製評語純文字</button><button class="btn btn-ghost" onclick="essaySaveNote()">存進我的筆記</button></div>';
   html+='</div>';
   document.getElementById('essayResult').innerHTML=html;
@@ -5486,12 +5435,12 @@ function essayGrade(){
   plain+='最該優先改：'+weakest.name+'——'+weakest.sug[0]+'\n\n';
   dims.forEach(d=>{
     plain+='■ '+d.name+'（'+d.score+'/5 星）\n';
-    d.obs.forEach(o=>plain+='　🔍 '+o.replace(/<[^>]+>/g,'')+'\n');
-    d.sug.forEach(o=>plain+='　✏️ '+o+'\n');
-    d.good.forEach(o=>plain+='　🌟 '+o+'\n');
+    d.obs.forEach(o=>plain+='　○ '+o.replace(/<[^>]+>/g,'')+'\n');
+    d.sug.forEach(o=>plain+='　✎ '+o+'\n');
+    d.good.forEach(o=>plain+='　✓ '+o+'\n');
     plain+='\n';
   });
-  plain+='✍️ 寫作提示（依本篇加強）\n';
+  plain+='寫作提示（依本篇加強）\n';
   tipDims.forEach(d=>{ plain+='〔'+d.name+'〕\n'; (ESSAY_TIPS[d.name]||[]).forEach(t=>plain+='　・'+t+'\n'); });
   plain+='\n＊本評語為規則式檢核參考，不等於真人級分，最終以老師判讀為準。';
   window._essayPlain=plain;
